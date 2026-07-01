@@ -1,0 +1,237 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "blog": "Blog",
+    "contact": "Contact",
+    "quote": "Demander un devis"
+  },
+  "hero": {
+    "badge": "DigitalPro Systems IT - Casablanca",
+    "title": "Sécurité, réseaux et solutions IT pour entreprises exigeantes.",
+    "description": "Nous concevons, sécurisons et maintenons des infrastructures critiques pour PME, grands comptes et administrations au Maroc.",
+    "btnQuote": "Demander un devis gratuit",
+    "btnServices": "Découvrir nos services",
+    "media": {
+      "offer": "Offre"
+    },
+    "offerings": {
+      "erp": {
+        "eyebrow": "Logiciel métier",
+        "title": "ERP & CRM sur mesure",
+        "description": "Automatisation, stock, ventes, workflows et tableaux de bord opérationnels.",
+        "tags": {
+          "t1": "Stock",
+          "t2": "CRM",
+          "t3": "Automatisation"
+        }
+      },
+      "web": {
+        "eyebrow": "Plateformes digitales",
+        "title": "Web & e-commerce",
+        "description": "Portails clients, interfaces métier et plateformes web rapides et élégantes.",
+        "tags": {
+          "t1": "UX",
+          "t2": "API",
+          "t3": "E-commerce"
+        }
+      },
+      "securityPhysical": {
+        "eyebrow": "Sécurité site",
+        "title": "Sécurité électronique",
+        "description": "Contrôle d'accès, vidéosurveillance intelligente, alarmes et protection incendie.",
+        "tags": {
+          "t1": "Accès",
+          "t2": "Caméras",
+          "t3": "Incendie"
+        }
+      },
+      "network": {
+        "eyebrow": "Infrastructure",
+        "title": "Réseaux & systèmes",
+        "description": "LAN/WAN, WiFi entreprise, VPN, virtualisation, stockage et cloud hybride.",
+        "tags": {
+          "t1": "Fibre",
+          "t2": "VPN",
+          "t3": "Cloud"
+        }
+      },
+      "cyber": {
+        "eyebrow": "Protection active",
+        "title": "Cybersécurité",
+        "description": "Audit, pare-feu, durcissement, supervision SOC et protection des accès.",
+        "tags": {
+          "t1": "SOC",
+          "t2": "VPN",
+          "t3": "Pare-feu"
+        }
+      },
+      "hardware": {
+        "eyebrow": "Exploitation & matériel",
+        "title": "Support IT & hardware",
+        "description": "Infogérance, maintenance, serveurs, postes de travail et équipements réseau.",
+        "tags": {
+          "t1": "Support",
+          "t2": "Serveurs",
+          "t3": "Parc IT"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "clients": "Clients accompagnés",
+    "experience": "Années d'expérience",
+    "projects": "Projets livrés",
+    "support": "Support technique"
+  },
+  "expertise": {
+    "eyebrow": "Notre Expertise",
+    "title": "4 piliers pour votre transformation digitale.",
+    "description": "De l'installation des caméras au développement de votre ERP, nous maîtrisons la chaîne technique complète.",
+    "points": {
+      "cyber": {
+        "title": "Cybersécurité opérationnelle",
+        "description": "Audit, durcissement, pare-feu, supervision et plans de reprise pour environnements sensibles."
+      },
+      "infra": {
+        "title": "Infrastructure fiable",
+        "description": "Réseaux LAN/WAN, WiFi entreprise, virtualisation, stockage et cloud hybride."
+      },
+      "system": {
+        "title": "Systèmes métier",
+        "description": "ERP, CRM, applications web, API et tableaux de bord adaptés aux processus internes."
+      },
+      "physical": {
+        "title": "Sécurité & Contrôle physique",
+        "description": "Vidéosurveillance avancée, contrôle d'accès biométrique et alarmes pour protéger vos sites."
+      }
+    },
+    "whyUs": "Pourquoi choisir DigitalPro ?"
+  },
+  "whyUsPoints": {
+    "p1": "Expertise technique certifiée",
+    "p2": "Support réactif 24/7",
+    "p3": "Solutions personnalisées",
+    "p4": "Partenariats avec les leaders du marché",
+    "p5": "Présence nationale au Maroc",
+    "p6": "Engagement qualité et délais"
+  },
+  "servicesGrid": {
+    "infra": {
+      "title": "Infrastructure fiable",
+      "eyebrow": "Infrastructure",
+      "description": "Réseaux LAN/WAN, WiFi entreprise, virtualisation, stockage et cloud hybride."
+    },
+    "btnExplore": "Explorer ce service",
+    "hardware": {
+      "eyebrow": "Infrastructure, security & hardware",
+      "title": "Nous sécurisons, câblons et opérons le socle physique.",
+      "description": "Sécurité électronique et infrastructures réseaux sont traitées comme des piliers majeurs, avec cybersécurité, support et matériel dans leur famille naturelle.",
+      "cards": {
+        "securityPhysical": {
+          "title": "Sécurité électronique",
+          "eyebrow": "Sites sensibles",
+          "description": "Contrôle d'accès, vidéosurveillance, alarmes et protection incendie pour sites professionnels."
+        },
+        "cyber": {
+          "title": "Cybersécurité",
+          "eyebrow": "Protection active",
+          "description": "Firewalls, VPN, détection d'intrusion, audit, sensibilisation et supervision SOC."
+        },
+        "network": {
+          "title": "Réseaux & systèmes",
+          "eyebrow": "Infrastructure",
+          "description": "Architecture, câblage, WiFi, virtualisation, firewall réseau et cloud hybride."
+        },
+        "gestion": {
+          "title": "Gestion de parc IT",
+          "eyebrow": "Support continu",
+          "description": "Helpdesk, maintenance préventive, inventaire, migration postes et gestion des licences."
+        },
+        "hardware": {
+          "title": "Matériel professionnel",
+          "eyebrow": "Distribution",
+          "description": "Serveurs, stockage, postes de travail, équipements réseau, périphériques et licences."
+        }
+      }
+    },
+    "software": {
+      "eyebrow": "Software & digital products",
+      "title": "Nous construisons le cerveau logiciel de votre entreprise.",
+      "description": "ERP, CRM, plateformes web et applications mobiles: la partie logicielle reste séparée, priorisée et conçue comme le moteur de vos opérations.",
+      "cards": {
+        "erp": {
+          "title": "Solutions ERP & CRM sur mesure",
+          "eyebrow": "Flagship logiciel",
+          "description": "Automatisation avancée, gestion de stock, ventes, achats, workflows personnalisés et pilotage complet de vos opérations."
+        },
+        "web": {
+          "title": "Développement Web & Plateformes Digitales",
+          "eyebrow": "Plateformes",
+          "description": "Portails B2B/B2C interactifs, plateformes e-commerce hautes performances et interfaces cloud."
+        },
+        "mobile": {
+          "title": "Applications mobiles métier",
+          "eyebrow": "Terrain & client",
+          "description": "Applications mobiles pour équipes terrain, parcours client, notifications, formulaires et données connectées."
+        }
+      }
+    }
+  },
+  "approach": {
+    "eyebrow": "Méthodologie",
+    "title": "De l'audit à la production.",
+    "description": "Une démarche pragmatique et documentée pour garantir le succès de vos projets IT critiques.",
+    "steps": {
+      "s1": {
+        "title": "Audit terrain",
+        "description": "Nous cadrons les risques, les dépendances métier, l'existant technique et les contraintes du site."
+      },
+      "s2": {
+        "title": "Architecture cible",
+        "description": "Nous proposons une trajectoire claire avec priorités, budget, planning et niveau de service attendu."
+      },
+      "s3": {
+        "title": "Déploiement maîtrisé",
+        "description": "Les équipes installent, sécurisent, documentent et valident chaque composant avant passage en production."
+      },
+      "s4": {
+        "title": "Support continu",
+        "description": "Supervision, maintenance, assistance et amélioration continue gardent l'infrastructure sous contrôle."
+      }
+    }
+  },
+  "caseStudy": {
+    "badge": "Cas Client",
+    "title": "Sécurisation d'un site industriel sensible",
+    "description": "Déploiement d'une architecture réseau redondée et d'un système de vidéosurveillance intelligent pour un acteur majeur de la logistique.",
+    "highlights": {
+      "h1": "Segmentation réseau et contrôle des accès critiques",
+      "h2": "Supervision centralisée avec alertes et procédures d'escalade",
+      "h3": "Sauvegarde, documentation et plan de reprise d'activité"
+    },
+    "metrics": {
+      "m1": "Équipements sécurisés",
+      "m2": "Sites raccordés",
+      "m3": "Disponibilité visée"
+    }
+  },
+  "cta": {
+    "eyebrow": "Audit & conseil",
+    "title": "Prêt à digitaliser et sécuriser votre entreprise ?",
+    "description": "Parlez-nous de votre infrastructure, de vos sites et de vos priorités. Nous vous répondrons avec une proposition claire et adaptée.",
+    "btnDetails": "Demander une consultation gratuite",
+    "btnServices": "Voir les services"
+  },
+  "footer": {
+    "description": "Solutions informatiques, infrastructures réseaux et cybersécurité de pointe pour entreprises exigeantes.",
+    "servicesTitle": "Services",
+    "companyTitle": "L'entreprise",
+    "contactTitle": "Contact",
+    "address": "Casablanca, Maroc",
+    "phone": "+212 (0) 5 22 00 00 00",
+    "email": "contact@dps-it.ma",
+    "rights": "Tous droits réservés."
+  }
+}
