@@ -28,7 +28,16 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
 
 type ServiceGroup = "software" | "hardware";
-type ServiceVariant = "erp" | "web" | "mobile" | "securityPhysical" | "network" | "support";
+type ServiceVariant =
+  | "erp"
+  | "web"
+  | "mobile"
+  | "hardware"
+  | "securityPhysical"
+  | "network"
+  | "cyber"
+  | "gestion"
+  | "support";
 
 type PriorityService = {
   title: string;
@@ -628,7 +637,7 @@ const InteractiveCarousel = ({
         </div>
 
         {/* Right Preview Area */}
-        <div className="relative flex min-h-[500px] flex-col overflow-hidden rounded-[28px] border border-white/5 bg-zinc-950/80 lg:w-[65%]">
+        <div className="relative flex min-h-[360px] flex-col overflow-hidden rounded-[28px] border border-white/5 bg-zinc-950/80 sm:min-h-[440px] lg:min-h-[500px] lg:w-[65%]">
           <AnimatePresence mode="wait">
              <motion.div
                 key={activeService.title}
@@ -651,9 +660,9 @@ const InteractiveCarousel = ({
                   </div>
                 )}
 
-                <div className="relative z-10 flex h-full flex-col p-8 lg:p-12">
+                <div className="relative z-10 flex h-full flex-col p-5 sm:p-8 lg:p-12">
                   <div className="max-w-2xl">
-                    <h3 className="mb-4 font-display text-3xl font-bold text-white sm:text-4xl">
+                    <h3 className="mb-4 font-display text-2xl font-bold text-white sm:text-4xl">
                       {t(`servicesGrid.${activeService.group}.cards.${activeService.variant}.title`)}
                     </h3>
                     <p className="text-sm leading-relaxed text-zinc-400 sm:text-base">
@@ -662,7 +671,7 @@ const InteractiveCarousel = ({
                   </div>
 
                   {/* Previews */}
-                  <div className="relative z-10 mt-8 flex flex-1 items-center justify-center">
+                  <div className="relative z-10 mt-6 flex flex-1 items-center justify-center sm:mt-8">
                      {activeService.variant === "erp" && <DashboardPreview />}
                      {activeService.variant === "web" && <WebPreview />}
                      {activeService.variant === "mobile" && <MobileAppPreview />}
@@ -673,7 +682,7 @@ const InteractiveCarousel = ({
                      {activeService.variant === "gestion" && <GestionPreview />}
                   </div>
 
-                  <div className="relative z-10 mt-8">
+                  <div className="relative z-10 mt-6 sm:mt-8">
                     <Link
                        to={activeService.href}
                        className="inline-flex items-center gap-2 rounded-[12px] bg-[#00AEEF] px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#009BD4] hover:shadow-[0_0_20px_rgba(0,174,239,0.3)]"

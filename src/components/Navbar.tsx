@@ -55,6 +55,14 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   return (
     <nav
       className={cn(
@@ -142,10 +150,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className={cn(
-              "absolute inset-x-0 top-full flex flex-col overflow-hidden border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0A0A0A]/95 p-4 shadow-2xl backdrop-blur-3xl lg:hidden",
-              scrolled ? "mt-2 mx-4 rounded-[24px] border" : "border-t border-b"
-            )}
+            className="fixed inset-x-4 top-20 z-[60] flex max-h-[calc(100dvh-6rem)] flex-col overflow-y-auto rounded-[24px] border border-black/10 bg-white/[0.98] p-4 text-[#111111] shadow-2xl backdrop-blur-3xl dark:border-white/10 dark:bg-[#0A0A0A]/[0.98] dark:text-white lg:hidden"
             style={{ WebkitBackdropFilter: "blur(32px)" }}
           >
             <div className="flex flex-col gap-2">
@@ -159,7 +164,9 @@ const Navbar = () => {
                     aria-current={isActive ? "page" : undefined}
                     className={cn(
                       "rounded-[12px] px-4 py-3.5 text-[15px] font-medium transition-colors",
-                      isActive ? "bg-white/10 text-white" : "text-white/60 hover:bg-white/5 hover:text-white",
+                      isActive
+                        ? "bg-black/[0.06] text-[#111111] dark:bg-white/10 dark:text-white"
+                        : "text-[#555555] hover:bg-black/[0.04] hover:text-[#111111] dark:text-white/60 dark:hover:bg-white/5 dark:hover:text-white",
                     )}
                   >
                     {item.label}
@@ -168,22 +175,22 @@ const Navbar = () => {
               })}
               <Link
                 to="/contact"
-                className="mt-4 w-full rounded-full bg-white py-3.5 text-center text-[15px] font-semibold text-black transition-transform active:scale-95"
+                className="mt-4 w-full rounded-full bg-[#111111] py-3.5 text-center text-[15px] font-semibold text-white transition-transform active:scale-95 dark:bg-white dark:text-black"
               >
                 {t("nav.quote")}
               </Link>
             </div>
-            <div className="mt-4 flex justify-between border-t border-white/10 pt-4">
+            <div className="mt-4 flex flex-col gap-3 border-t border-black/10 pt-4 dark:border-white/10 min-[380px]:flex-row min-[380px]:justify-between">
               <button
                 onClick={toggleTheme}
-                className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-full bg-black/[0.04] px-4 py-2 text-sm text-[#111111] transition-colors hover:bg-black/[0.08] dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
                 {theme === "light" ? "Mode Sombre" : "Mode Clair"}
               </button>
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-bold uppercase text-white transition-colors hover:bg-white/10"
+                className="flex items-center justify-center gap-2 rounded-full bg-black/[0.04] px-4 py-2 text-sm font-bold uppercase text-[#111111] transition-colors hover:bg-black/[0.08] dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <Globe className="h-4 w-4" />
                 {i18n.language === 'fr' ? 'English' : 'Français'}
