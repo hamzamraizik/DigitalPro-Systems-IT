@@ -1,0 +1,232 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "quote": "Get a quote"
+  },
+  "hero": {
+    "badge": "DigitalPro Systems IT - Casablanca",
+    "title": "Security, networks and IT solutions for demanding businesses.",
+    "description": "We design, secure, and maintain critical infrastructures for SMEs, large enterprises, and administrations in Morocco.",
+    "btnQuote": "Request a free quote",
+    "btnServices": "Discover our services",
+    "media": {
+      "offer": "Offer"
+    },
+    "offerings": {
+      "erp": {
+        "eyebrow": "Business software",
+        "title": "Custom ERP & CRM",
+        "description": "Automation, inventory, sales, workflows, and operational dashboards.",
+        "tags": {
+          "t1": "Inventory",
+          "t2": "CRM",
+          "t3": "Automation"
+        }
+      },
+      "web": {
+        "eyebrow": "Digital platforms",
+        "title": "Web & e-commerce",
+        "description": "Customer portals, business interfaces, and fast, elegant web platforms.",
+        "tags": {
+          "t1": "UX",
+          "t2": "API",
+          "t3": "E-commerce"
+        }
+      },
+      "securityPhysical": {
+        "eyebrow": "Site security",
+        "title": "Electronic security",
+        "description": "Access control, smart video surveillance, alarms, and fire protection.",
+        "tags": {
+          "t1": "Access",
+          "t2": "Cameras",
+          "t3": "Fire"
+        }
+      },
+      "network": {
+        "eyebrow": "Infrastructure",
+        "title": "Networks & systems",
+        "description": "LAN/WAN, enterprise WiFi, VPN, virtualization, storage, and hybrid cloud.",
+        "tags": {
+          "t1": "Fiber",
+          "t2": "VPN",
+          "t3": "Cloud"
+        }
+      },
+      "cyber": {
+        "eyebrow": "Active protection",
+        "title": "Cybersecurity",
+        "description": "Audit, firewalls, hardening, SOC supervision, and access protection.",
+        "tags": {
+          "t1": "SOC",
+          "t2": "VPN",
+          "t3": "Firewall"
+        }
+      },
+      "hardware": {
+        "eyebrow": "Operations & hardware",
+        "title": "IT support & hardware",
+        "description": "Managed services, maintenance, servers, workstations, and network equipment.",
+        "tags": {
+          "t1": "Support",
+          "t2": "Servers",
+          "t3": "IT Fleet"
+        }
+      }
+    }
+  },
+  "metrics": {
+    "clients": "Clients supported",
+    "experience": "Years of experience",
+    "projects": "Delivered projects",
+    "support": "Technical support"
+  },
+  "expertise": {
+    "eyebrow": "Our Expertise",
+    "title": "4 pillars for your digital transformation.",
+    "description": "From installing cameras to developing your ERP, we master the complete technical chain.",
+    "points": {
+      "cyber": {
+        "title": "Operational Cybersecurity",
+        "description": "Audit, hardening, firewall, supervision and recovery plans for sensitive environments."
+      },
+      "infra": {
+        "title": "Reliable Infrastructure",
+        "description": "LAN/WAN networks, enterprise WiFi, virtualization, storage and hybrid cloud."
+      },
+      "system": {
+        "title": "Business Systems",
+        "description": "ERP, CRM, web applications, APIs and dashboards tailored to internal processes."
+      },
+      "physical": {
+        "title": "Security & Physical Control",
+        "description": "Advanced video surveillance, biometric access control and alarms to protect your sites."
+      }
+    },
+    "whyUs": "Why choose DigitalPro?"
+  },
+  "whyUsPoints": {
+    "p1": "Certified technical expertise",
+    "p2": "24/7 responsive support",
+    "p3": "Customized solutions",
+    "p4": "Partnerships with market leaders",
+    "p5": "National presence in Morocco",
+    "p6": "Commitment to quality and deadlines"
+  },
+  "servicesGrid": {
+    "btnExplore": "Explore this service",
+    "hardware": {
+      "eyebrow": "Infrastructure, security & hardware",
+      "title": "We secure, wire, and operate the physical foundation.",
+      "description": "Electronic security and network infrastructures are treated as major pillars, with cybersecurity, support, and hardware in their natural family.",
+      "cards": {
+        "securityPhysical": {
+          "title": "Electronic Security",
+          "eyebrow": "Sensitive sites",
+          "description": "Access control, video surveillance, alarms and fire protection for professional sites."
+        },
+        "cyber": {
+          "title": "Cybersecurity",
+          "eyebrow": "Active protection",
+          "description": "Firewalls, VPNs, intrusion detection, audits, awareness, and SOC supervision."
+        },
+        "network": {
+          "title": "Networks & Systems",
+          "eyebrow": "Infrastructure",
+          "description": "Architecture, cabling, WiFi, virtualization, network firewall and hybrid cloud."
+        },
+        "gestion": {
+          "title": "IT Fleet Management",
+          "eyebrow": "Continuous support",
+          "description": "Helpdesk, preventive maintenance, inventory, workstation migration and license management."
+        },
+        "hardware": {
+          "title": "Professional Hardware",
+          "eyebrow": "Distribution",
+          "description": "Servers, storage, workstations, network equipment, peripherals, and licenses."
+        }
+      }
+    },
+    "software": {
+      "eyebrow": "Software & digital products",
+      "title": "We build the software brain of your business.",
+      "description": "ERP, CRM, web platforms, and mobile apps: the software side remains separate, prioritized, and designed as the engine of your operations.",
+      "cards": {
+        "erp": {
+          "title": "Custom ERP & CRM Solutions",
+          "eyebrow": "Software flagship",
+          "description": "Advanced automation, inventory management, sales, purchasing, custom workflows, and full control of your operations."
+        },
+        "web": {
+          "title": "Web Development & Digital Platforms",
+          "eyebrow": "Platforms",
+          "description": "Interactive B2B/B2C portals, high-performance e-commerce platforms, and cloud interfaces."
+        },
+        "mobile": {
+          "title": "Business Mobile Applications",
+          "eyebrow": "Field & client",
+          "description": "Mobile apps for field teams, customer journeys, notifications, forms, and connected data."
+        }
+      }
+    }
+  },
+  "approach": {
+    "eyebrow": "Methodology",
+    "title": "From audit to production.",
+    "description": "A pragmatic and documented approach to ensure the success of your critical IT projects.",
+    "steps": {
+      "s1": {
+        "title": "Field Audit",
+        "description": "We define the risks, business dependencies, technical baseline, and site constraints."
+      },
+      "s2": {
+        "title": "Target Architecture",
+        "description": "We propose a clear trajectory with priorities, budget, schedule, and expected service level."
+      },
+      "s3": {
+        "title": "Controlled Deployment",
+        "description": "Our teams install, secure, document, and validate every component before going into production."
+      },
+      "s4": {
+        "title": "Continuous Support",
+        "description": "Supervision, maintenance, assistance, and continuous improvement keep the infrastructure under control."
+      }
+    }
+  },
+  "caseStudy": {
+    "badge": "Case Study",
+    "title": "Securing a sensitive industrial site",
+    "description": "Deployment of a redundant network architecture and an intelligent video surveillance system for a major logistics player.",
+    "highlights": {
+      "h1": "Network segmentation and critical access control",
+      "h2": "Centralized supervision with alerts and escalation procedures",
+      "h3": "Backup, documentation and disaster recovery plan"
+    },
+    "metrics": {
+      "m1": "Secured equipment",
+      "m2": "Connected sites",
+      "m3": "Target availability"
+    }
+  },
+  "cta": {
+    "eyebrow": "Audit & consulting",
+    "title": "Ready to digitalize and secure your business?",
+    "description": "Tell us about your infrastructure, your sites, and your priorities. We will respond with a clear and tailored proposal.",
+    "btnDetails": "Request a free consultation",
+    "btnServices": "View services"
+  },
+  "footer": {
+    "description": "Cutting-edge IT solutions, network infrastructures, and cybersecurity for demanding businesses.",
+    "servicesTitle": "Services",
+    "companyTitle": "Company",
+    "contactTitle": "Contact",
+    "address": "Casablanca, Morocco",
+    "phone": "+212 (0) 5 22 00 00 00",
+    "email": "contact@dps-it.ma",
+    "rights": "All rights reserved."
+  }
+}

@@ -1,114 +1,193 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo.png";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X, Moon, Sun, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-const navItems = [
-  { label: "Accueil", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "À propos", path: "/a-propos" },
-  { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
-];
+import logo from "@/assets/dps-it_logo.png";
+import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+
+  const navItems = [
+    { label: t("nav.home"), path: "/" },
+    { label: t("nav.services"), path: "/services" },
+    { label: t("nav.about"), path: "/a-propos" },
+    { label: t("nav.blog"), path: "/blog" },
+    { label: t("nav.contact"), path: "/contact" },
+  ];
+
+  useEffect(() => {
+    // Check if dark mode is active on load
+    if (document.documentElement.classList.contains("dark")) {
+      setTheme("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (theme === "light") {
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      setTheme("light");
+    }
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'fr' ? 'en' : 'fr';
+    i18n.changeLanguage(newLang);
+  };
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-2xl border-b ${
+      className={cn(
+        "fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "inset-x-0 top-0 md:top-6 md:left-1/2 md:w-[92%] md:max-w-5xl md:-translate-x-1/2 md:rounded-full md:border",
         scrolled
-          ? "bg-[#0a1628]/85 shadow-[0_8px_32px_rgba(0,0,0,0.5)] border-white/10"
-          : "bg-gray-900/20 shadow-[0_2px_16px_rgba(0,0,0,0.1)] border-white/5"
-      }`}
+          ? "border-b border-black/5 dark:border-white/10 md:border-black/5 dark:md:border-white/10 bg-white/85 dark:bg-[#0A0A0A]/85 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
+          : "border-b border-transparent md:border-black/5 dark:md:border-white/5 bg-transparent md:bg-white/60 dark:md:bg-white/[0.03] backdrop-blur-xl"
+      )}
       style={{ WebkitBackdropFilter: "blur(24px)" }}
+      aria-label="Navigation principale"
     >
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="DigitalPro Systems IT" style={{ width: "150px", height: "auto" }} className="object-contain" />
-          </Link>
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`relative px-4 py-2 rounded-md text-sm font-medium transition-colors group ${
-                  location.pathname === item.path
-                    ? "text-accent"
-                    : "text-white/70 hover:text-white"
-                }`}
-              >
-                {item.label}
-                {location.pathname === item.path && (
-                  <motion.span
-                    layoutId="nav-indicator"
-                    className="absolute inset-0 rounded-md bg-white/10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
-            <Link to="/contact" className="ml-4">
-              <Button variant="hero" size="sm" className="rounded-full px-5 shadow-[0_0_20px_rgba(0,180,255,0.3)] hover:shadow-[0_0_30px_rgba(0,180,255,0.5)] transition-shadow">
-                Demander un devis
-              </Button>
+      <div className="mx-auto px-4 sm:px-6 md:px-8">
+        <div className="flex h-16 items-center justify-between transition-all duration-500">
+          <div className="flex items-center gap-8 lg:gap-12">
+            <Link to="/" className="flex min-w-0 items-center" aria-label="DigitalPro Systems IT - accueil">
+              <img 
+                src={logo} 
+                alt="DigitalPro Systems IT" 
+                className={cn("h-auto object-contain transition-all duration-500", scrolled ? "w-[140px]" : "w-[160px]")} 
+              />
+            </Link>
+
+            <div className="hidden items-center gap-2 lg:flex">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path;
+
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "px-3 py-2 text-[13px] font-medium tracking-wide transition-all duration-300",
+                      isActive ? "text-[#111111] dark:text-white" : "text-[#555555] hover:text-[#111111] dark:text-white/60 dark:hover:text-white",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="hidden lg:flex items-center gap-4">
+            <button
+              onClick={toggleLanguage}
+              className="inline-flex h-9 items-center justify-center gap-1.5 rounded-full px-3 text-[12px] font-bold uppercase tracking-wider text-[#555555] hover:bg-black/5 hover:text-[#111111] dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white transition-colors"
+            >
+              <Globe className="h-[14px] w-[14px]" />
+              {i18n.language === 'fr' ? 'EN' : 'FR'}
+            </button>
+            <button
+              onClick={toggleTheme}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full text-[#555555] hover:bg-black/5 hover:text-[#111111] dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white transition-colors"
+            >
+              {theme === "light" ? <Moon className="h-[18px] w-[18px]" /> : <Sun className="h-[18px] w-[18px]" />}
+            </button>
+            <Link 
+              to="/contact"
+              className="rounded-full bg-[#111111] dark:bg-white px-5 py-2 text-[13px] font-semibold text-white dark:text-black transition-all hover:scale-105 hover:bg-black dark:hover:bg-zinc-200"
+            >
+              {t("nav.quote")}
             </Link>
           </div>
 
-          {/* Mobile toggle */}
           <button
-            className="lg:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Menu"
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-[#111111] dark:text-white transition-colors hover:bg-black/5 dark:hover:bg-white/10 focus-visible:outline-none lg:hidden"
+            onClick={() => setIsOpen((value) => !value)}
+            aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="lg:hidden bg-gray-900/60 backdrop-blur-2xl border-t border-white/10"
-            style={{ WebkitBackdropFilter: "blur(24px)" }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className={cn(
+              "absolute inset-x-0 top-full flex flex-col overflow-hidden border-black/10 dark:border-white/10 bg-white/95 dark:bg-[#0A0A0A]/95 p-4 shadow-2xl backdrop-blur-3xl lg:hidden",
+              scrolled ? "mt-2 mx-4 rounded-[24px] border" : "border-t border-b"
+            )}
+            style={{ WebkitBackdropFilter: "blur(32px)" }}
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                    location.pathname === item.path
-                      ? "text-accent bg-white/10"
-                      : "text-white/70 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link to="/contact" onClick={() => setIsOpen(false)} className="mt-2">
-                <Button variant="hero" size="sm" className="w-full rounded-full">
-                  Demander un devis
-                </Button>
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path;
+
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "rounded-[12px] px-4 py-3.5 text-[15px] font-medium transition-colors",
+                      isActive ? "bg-white/10 text-white" : "text-white/60 hover:bg-white/5 hover:text-white",
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              <Link
+                to="/contact"
+                className="mt-4 w-full rounded-full bg-white py-3.5 text-center text-[15px] font-semibold text-black transition-transform active:scale-95"
+              >
+                {t("nav.quote")}
               </Link>
+            </div>
+            <div className="mt-4 flex justify-between border-t border-white/10 pt-4">
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10"
+              >
+                {theme === "light" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+                {theme === "light" ? "Mode Sombre" : "Mode Clair"}
+              </button>
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-sm font-bold uppercase text-white transition-colors hover:bg-white/10"
+              >
+                <Globe className="h-4 w-4" />
+                {i18n.language === 'fr' ? 'English' : 'Français'}
+              </button>
             </div>
           </motion.div>
         )}
