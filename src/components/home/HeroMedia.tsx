@@ -105,9 +105,9 @@ const offerings: HeroOffering[] = [
 ];
 
 const slideVariants = {
-  hidden: { opacity: 0, x: 22, scale: 0.98, filter: "blur(8px)" },
-  visible: { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" },
-  exit: { opacity: 0, x: -18, scale: 0.98, filter: "blur(8px)" },
+  hidden: { opacity: 0, x: 22, scale: 0.98 },
+  visible: { opacity: 1, x: 0, scale: 1 },
+  exit: { opacity: 0, x: -18, scale: 0.98 },
 };
 
 const ErpVisual = () => (
@@ -394,10 +394,10 @@ export const HeroMedia = () => {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={shouldReduceMotion ? undefined : { rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="group relative"
+        className="group relative [backface-visibility:hidden]"
       >
         <div className="rounded-[36px] border-[4px] border-zinc-400 dark:border-black bg-zinc-300 dark:bg-black p-3 sm:p-4 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.2)] dark:shadow-inner ring-1 ring-black/10 dark:ring-zinc-800 transition-colors duration-500">
-          <div className="relative overflow-hidden rounded-[24px] border border-black/20 dark:border-zinc-800 bg-[#070707] transition-colors duration-500">
+          <div className="relative overflow-hidden rounded-[24px] border border-black/20 dark:border-zinc-800 bg-[#070707] transition-colors duration-500 [backface-visibility:hidden] [transform:translateZ(0)]">
             <span
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -408,11 +408,11 @@ export const HeroMedia = () => {
             />
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 z-30 bg-[linear-gradient(135deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0.02)_24%,transparent_42%)] opacity-40"
+              className="pointer-events-none absolute inset-0 z-30 bg-[linear-gradient(135deg,rgba(255,255,255,0.12)_0%,rgba(255,255,255,0.02)_24%,transparent_42%)] opacity-0 dark:opacity-40"
             />
 
             <div className="relative z-10 aspect-[16/11] p-3 sm:p-5">
-              <div className="flex h-full flex-col rounded-[24px] border border-white/5 bg-white/[0.015] p-3 sm:p-4 shadow-2xl">
+              <div className="flex h-full flex-col rounded-[24px] border border-white/5 bg-white/[0.015] p-3 shadow-2xl [backface-visibility:hidden] sm:p-4">
                 <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 sm:grid-cols-[0.95fr_1.05fr]">
                   <div className="relative overflow-hidden rounded-[20px] border border-white/10 bg-black transition-transform duration-500 group-hover:-translate-x-1 group-hover:-translate-y-1 shadow-[0_8px_30px_rgb(0,0,0,0.4)]">
                   <AnimatePresence mode="wait">
