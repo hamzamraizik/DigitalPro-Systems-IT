@@ -233,5 +233,284 @@
     "phone": "+212 (0) 5 22 00 00 00",
     "email": "contact@dps-it.ma",
     "rights": "Tous droits réservés."
+  },
+  "servicesPage": {
+    "hero": {
+      "badge": "Expertise & Excellence",
+      "titlePrefix": "Nos",
+      "titleHighlight": "Services",
+      "subtitle": "Des solutions sur mesure pour sécuriser, connecter et propulser votre entreprise vers une infrastructure numérique de classe mondiale."
+    },
+    "methodology": {
+      "title": "Notre Méthodologie",
+      "steps": {
+        "audit": {
+          "title": "1. Audit terrain",
+          "desc": "Analyse approfondie de votre infrastructure existante et identification des points de vulnérabilité."
+        },
+        "architecture": {
+          "title": "2. Architecture cible",
+          "desc": "Conception d'une solution sur mesure alignée avec vos objectifs de croissance et de sécurité."
+        },
+        "deploiement": {
+          "title": "3. Déploiement",
+          "desc": "Mise en œuvre maîtrisée par nos experts, garantissant une transition fluide et sans interruption."
+        },
+        "support": {
+          "title": "4. Support continu",
+          "desc": "Accompagnement 24/7 et maintenance préventive pour assurer la pérennité de votre outil de travail."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Audit & Conseil",
+      "title": "Prêt à digitaliser et sécuriser votre entreprise ?",
+      "btnQuote": "Demander un devis",
+      "btnContact": "Nous contacter"
+    },
+    "whyUs": {
+      "title": "Pourquoi nous choisir",
+      "points": {
+        "expertise": "Expertise technique approfondie et certifiée",
+        "accompagnement": "Accompagnement personnalisé et sur-mesure",
+        "support": "Support réactif et disponibilité de nos équipes",
+        "solutions": "Solutions technologiques de dernière génération",
+        "delais": "Respect rigoureux des délais et des engagements",
+        "formation": "Transfert de compétences et formation continue"
+      }
+    },
+    "categories": {
+      "securite-electronique": {
+        "title": "Sécurité électronique",
+        "cardDesc": "Protégez vos actifs physiques avec nos solutions de contrôle d'accès intelligent et de vidéosurveillance haute définition pilotée par IA.",
+        "intro": "Protégez vos locaux, vos équipes et vos actifs physiques grâce à des systèmes de sécurité électronique intelligents, conçus sur mesure pour chaque site : bureaux, entrepôts, commerces ou sites industriels. Nos équipements certifiés sont installés et maintenus par nos techniciens agréés.",
+        "items": {
+          "controleAcces": {
+            "title": "Contrôle d'Accès",
+            "desc": "Biométrie, badges RFID/NFC, gestion multi-zones et journaux d'accès en temps réel."
+          },
+          "videosurveillance": {
+            "title": "Vidéosurveillance",
+            "desc": "Caméras IP/HD 24h/24, vision nocturne, analyse vidéo intelligente et stockage sécurisé."
+          },
+          "alarmeIntrusion": {
+            "title": "Alarme Anti-Intrusion",
+            "desc": "Détecteurs de mouvement, sirènes, alertes SMS et télésurveillance avec intervention rapide."
+          },
+          "protectionIncendie": {
+            "title": "Protection Incendie",
+            "desc": "Détection précoce, extinction automatique, conformité réglementaire et maintenance annuelle."
+          },
+          "securitePeripherique": {
+            "title": "Sécurité Périphérique",
+            "desc": "Clôtures électrifiées, barrières infrarouges, éclairage automatique et surveillance périmétrique."
+          },
+          "serruresBatiments": {
+            "title": "Serrures de Bâtiments",
+            "desc": "Serrures connectées, cylindres digitaux, portes blindées et gestion des accès à distance."
+          }
+        },
+        "tags": {
+          "controleAcces": [
+            "Lecteurs biométriques (empreinte, iris, reconnaissance faciale)",
+            "Badges & cartes RFID/NFC",
+            "Gestion multi-sites centralisée",
+            "Historique et journalisation des entrées/sorties"
+          ],
+          "videosurveillance": [
+            "Caméras IP HD/Full HD/4K",
+            "Vision nocturne & infrarouge",
+            "Analyse vidéo intelligente (reconnaissance de plaques)",
+            "Stockage local et/ou cloud"
+          ],
+          "alarmeIntrusion": [
+            "Détecteurs infrarouge & micro-ondes",
+            "Sirènes intérieures et extérieures",
+            "Alertes SMS en temps réel",
+            "Télésurveillance 24h/24"
+          ],
+          "protectionIncendie": [
+            "Détecteurs de fumée et de chaleur",
+            "Centrales d'alarme certifiées",
+            "Sprinklers et extinction automatique",
+            "Maintenance réglementaire périodique"
+          ],
+          "securitePeripherique": [
+            "Clôtures et barrières électrifiées",
+            "Détecteurs de vibration et de choc",
+            "Éclairage de sécurité automatique",
+            "Bornes anti-bélier et bollards"
+          ],
+          "serruresBatiments": [
+            "Serrures connectées à distance",
+            "Cylindres digitaux à code ou carte",
+            "Portes et portails automatiques sécurisés",
+            "Historique et audit des ouvertures"
+          ]
+        }
+      },
+      "cybersecurite": {
+        "title": "Cybersécurité",
+        "cardDesc": "Pare-feu nouvelle génération, SOC 24/7 et détection d'intrusion pour une résilience totale face aux menaces numériques.",
+        "intro": "Anticipez, détectez et neutralisez les menaces numériques grâce à une approche complète de la cybersécurité : protection périmétrique, supervision continue, audits réguliers et formation de vos équipes, pour une résilience totale face aux cyberattaques.",
+        "items": {
+          "firewallVpn": {
+            "title": "Firewall & VPN",
+            "desc": "Protection périmétrique avancée et tunnels VPN sécurisés pour vos collaborateurs."
+          },
+          "detectionIntrusion": {
+            "title": "Détection d'Intrusion",
+            "desc": "IDS/IPS, monitoring continu et alertes en temps réel sur vos infrastructures."
+          },
+          "socSupervision": {
+            "title": "SOC & Supervision",
+            "desc": "Centre opérationnel de sécurité, surveillance 24h/24 et réponse aux incidents."
+          },
+          "auditSecurite": {
+            "title": "Audit de Sécurité",
+            "desc": "Tests de pénétration, analyse des vulnérabilités et rapports de conformité."
+          },
+          "sensibilisation": {
+            "title": "Sensibilisation",
+            "desc": "Formations et ateliers pour sensibiliser vos équipes aux bonnes pratiques."
+          },
+          "planReprise": {
+            "title": "Plan de Reprise",
+            "desc": "PRA/PCA, sauvegarde chiffrée et continuité d'activité garantie."
+          }
+        }
+      },
+      "infrastructures-reseaux": {
+        "title": "Infrastructures Réseaux & Systèmes",
+        "cardDesc": "Architecture réseau haute disponibilité, WiFi haute performance et virtualisation serveur pour une agilité maximale.",
+        "intro": "Construisez une infrastructure réseau robuste, évolutive et hautement disponible. De la conception du câblage à la migration vers le cloud hybride, nous concevons des architectures qui garantissent performance, sécurité et agilité à votre entreprise.",
+        "items": {
+          "reseauxLanWan": {
+            "title": "Réseaux LAN/WAN",
+            "desc": "Conception et déploiement de réseaux performants et hautement disponibles."
+          },
+          "cablageStructure": {
+            "title": "Câblage Structuré",
+            "desc": "Installation de câblage cuivre et fibre optique aux standards TIA/ISO."
+          },
+          "wifiEntreprise": {
+            "title": "WiFi Entreprise",
+            "desc": "Solutions Wi-Fi 6 haute densité avec itinérance transparente et sécurisation."
+          },
+          "virtualisation": {
+            "title": "Virtualisation",
+            "desc": "VMware, Hyper-V, migration vers le cloud hybride et conteneurisation."
+          },
+          "firewallReseau": {
+            "title": "Firewall Réseau",
+            "desc": "Segmentation, DMZ, VLAN et politique de sécurité réseau avancée."
+          },
+          "cloudHybride": {
+            "title": "Cloud Hybride",
+            "desc": "Migration et gestion de vos ressources cloud AWS, Azure ou privées."
+          }
+        }
+      },
+      "gestion-parc": {
+        "title": "Gestion de Parc Informatique",
+        "cardDesc": "Maintenance préventive, Helpdesk réactif et inventaire automatisé pour une tranquillité opérationnelle complète.",
+        "intro": "Confiez-nous la gestion opérationnelle de votre parc informatique. Maintenance préventive, helpdesk réactif, supervision proactive et inventaire automatisé : nous assurons la tranquillité et la continuité de votre activité au quotidien.",
+        "items": {
+          "maintenancePreventive": {
+            "title": "Maintenance Préventive",
+            "desc": "Interventions planifiées, nettoyage, mises à jour et rapport de santé du parc."
+          },
+          "helpdesk": {
+            "title": "Helpdesk N1/N2/N3",
+            "desc": "Support technique multi-niveaux, ticketing et SLA garantis."
+          },
+          "supervisionProactive": {
+            "title": "Supervision Proactive",
+            "desc": "Monitoring en temps réel avec alertes avant panne et tableaux de bord."
+          },
+          "inventaireSuivi": {
+            "title": "Inventaire & Suivi",
+            "desc": "Gestion complète des actifs informatiques et cycle de vie des équipements."
+          },
+          "migrationPostes": {
+            "title": "Migration de Postes",
+            "desc": "Remplacement, déploiement d'images et transfert de données sécurisé."
+          },
+          "gestionLicences": {
+            "title": "Gestion des Licences",
+            "desc": "Audit, renouvellement et optimisation de vos licences logicielles."
+          }
+        }
+      },
+      "developpement": {
+        "title": "Développement Logiciel & ERP/CRM",
+        "cardDesc": "Développement d'applications web métier et intégration d'ERP sur mesure pour optimiser vos flux de travail.",
+        "intro": "Optimisez vos flux de travail grâce à des logiciels métiers sur mesure. De l'application web à l'intégration ERP, nos équipes de développement conçoivent des solutions digitales adaptées à vos processus et à votre secteur d'activité.",
+        "items": {
+          "applicationsWeb": {
+            "title": "Applications Web",
+            "desc": "Sites et applications web sur mesure, performants, responsive et sécurisés."
+          },
+          "applicationsMobiles": {
+            "title": "Applications Mobiles",
+            "desc": "Apps iOS et Android natives ou cross-platform adaptées à vos métiers."
+          },
+          "apiIntegrations": {
+            "title": "API & Intégrations",
+            "desc": "Connexion de vos logiciels existants via des APIs robustes et documentées."
+          },
+          "erpSurMesure": {
+            "title": "ERP sur Mesure",
+            "desc": "Implémentation et personnalisation de solutions ERP adaptées à votre secteur."
+          },
+          "crmRelationClient": {
+            "title": "CRM & Relation Client",
+            "desc": "Gestion des ventes, marketing automation et fidélisation client."
+          },
+          "businessIntelligence": {
+            "title": "Business Intelligence",
+            "desc": "Tableaux de bord, KPIs et rapports pour piloter votre activité."
+          }
+        }
+      },
+      "distribution": {
+        "title": "Vente & Distribution de Matériel",
+        "cardDesc": "Sourcing et installation de serveurs, stations de travail et périphériques critiques auprès des meilleurs constructeurs mondiaux.",
+        "intro": "Équipez votre entreprise avec du matériel professionnel de qualité, sourcé auprès des meilleurs constructeurs mondiaux. Serveurs, postes de travail, équipements réseau et périphériques : nous gérons le sourcing, l'installation et la garantie.",
+        "items": {
+          "serveursStockage": {
+            "title": "Serveurs & Stockage",
+            "desc": "Serveurs rack, NAS, SAN et solutions de stockage haute capacité."
+          },
+          "postesTravail": {
+            "title": "Postes de Travail",
+            "desc": "PC fixes, laptops, stations graphiques de marques leaders avec garantie."
+          },
+          "equipementsReseau": {
+            "title": "Équipements Réseau",
+            "desc": "Switches, routeurs, points d'accès Cisco, Ubiquiti, HP et autres."
+          },
+          "peripheriques": {
+            "title": "Périphériques",
+            "desc": "Imprimantes, écrans, scanners et accessoires informatiques professionnels."
+          },
+          "licencesLogicielles": {
+            "title": "Licences Logicielles",
+            "desc": "Microsoft, Adobe, antivirus et logiciels métiers au meilleur prix."
+          },
+          "importExport": {
+            "title": "Import / Export",
+            "desc": "Importation et exportation de matériel technologique international."
+          }
+        }
+      }
+    },
+    "modal": {
+      "expertiseLabel": "Notre Expertise",
+      "requestQuote": "Demander un devis",
+      "close": "Fermer"
+    },
+    "cardCta": "En savoir plus",
+    "customDevBadge": "Custom Dev"
   }
 }

@@ -228,5 +228,284 @@
     "phone": "+212 (0) 5 22 00 00 00",
     "email": "contact@dps-it.ma",
     "rights": "All rights reserved."
+  },
+  "servicesPage": {
+    "hero": {
+      "badge": "Expertise & Excellence",
+      "titlePrefix": "Our",
+      "titleHighlight": "Services",
+      "subtitle": "Tailor-made solutions to secure, connect and propel your business toward a world-class digital infrastructure."
+    },
+    "methodology": {
+      "title": "Our Methodology",
+      "steps": {
+        "audit": {
+          "title": "1. On-site Audit",
+          "desc": "In-depth analysis of your existing infrastructure and identification of vulnerability points."
+        },
+        "architecture": {
+          "title": "2. Target Architecture",
+          "desc": "Design of a tailor-made solution aligned with your growth and security objectives."
+        },
+        "deploiement": {
+          "title": "3. Deployment",
+          "desc": "Controlled implementation by our experts, ensuring a smooth transition without interruption."
+        },
+        "support": {
+          "title": "4. Ongoing Support",
+          "desc": "24/7 support and preventive maintenance to ensure the longevity of your work tools."
+        }
+      }
+    },
+    "cta": {
+      "eyebrow": "Audit & Consulting",
+      "title": "Ready to digitalize and secure your business?",
+      "btnQuote": "Request a quote",
+      "btnContact": "Contact us"
+    },
+    "whyUs": {
+      "title": "Why choose us",
+      "points": {
+        "expertise": "Deep, certified technical expertise",
+        "accompagnement": "Personalized, tailor-made support",
+        "support": "Responsive support and team availability",
+        "solutions": "Latest-generation technology solutions",
+        "delais": "Strict adherence to deadlines and commitments",
+        "formation": "Skills transfer and continuous training"
+      }
+    },
+    "categories": {
+      "securite-electronique": {
+        "title": "Electronic Security",
+        "cardDesc": "Protect your physical assets with our intelligent access control and AI-driven HD video surveillance solutions.",
+        "intro": "Protect your premises, teams and physical assets with intelligent electronic security systems, custom-designed for every site: offices, warehouses, stores or industrial facilities. Our certified equipment is installed and maintained by our licensed technicians.",
+        "items": {
+          "controleAcces": {
+            "title": "Access Control",
+            "desc": "Biometrics, RFID/NFC badges, multi-zone management and real-time access logs."
+          },
+          "videosurveillance": {
+            "title": "Video Surveillance",
+            "desc": "24/7 IP/HD cameras, night vision, intelligent video analytics and secure storage."
+          },
+          "alarmeIntrusion": {
+            "title": "Intrusion Alarm",
+            "desc": "Motion detectors, sirens, SMS alerts and remote monitoring with rapid response."
+          },
+          "protectionIncendie": {
+            "title": "Fire Protection",
+            "desc": "Early detection, automatic extinguishing, regulatory compliance and annual maintenance."
+          },
+          "securitePeripherique": {
+            "title": "Perimeter Security",
+            "desc": "Electrified fences, infrared barriers, automatic lighting and perimeter surveillance."
+          },
+          "serruresBatiments": {
+            "title": "Building Locks",
+            "desc": "Connected locks, digital cylinders, armored doors and remote access management."
+          }
+        },
+        "tags": {
+          "controleAcces": [
+            "Biometric readers (fingerprint, iris, facial recognition)",
+            "RFID/NFC badges & cards",
+            "Centralized multi-site management",
+            "Entry/exit history and logging"
+          ],
+          "videosurveillance": [
+            "HD/Full HD/4K IP cameras",
+            "Night vision & infrared",
+            "Intelligent video analytics (license plate recognition)",
+            "Local and/or cloud storage"
+          ],
+          "alarmeIntrusion": [
+            "Infrared & microwave detectors",
+            "Indoor and outdoor sirens",
+            "Real-time SMS alerts",
+            "24/7 remote monitoring"
+          ],
+          "protectionIncendie": [
+            "Smoke and heat detectors",
+            "Certified alarm panels",
+            "Sprinklers and automatic extinguishing",
+            "Periodic regulatory maintenance"
+          ],
+          "securitePeripherique": [
+            "Electrified fences and barriers",
+            "Vibration and impact detectors",
+            "Automatic security lighting",
+            "Anti-ram bollards"
+          ],
+          "serruresBatiments": [
+            "Remotely connected locks",
+            "Digital code or card cylinders",
+            "Secure automatic doors and gates",
+            "Opening history and audit trail"
+          ]
+        }
+      },
+      "cybersecurite": {
+        "title": "Cybersecurity",
+        "cardDesc": "Next-generation firewall, 24/7 SOC and intrusion detection for total resilience against digital threats.",
+        "intro": "Anticipate, detect and neutralize digital threats with a comprehensive cybersecurity approach: perimeter protection, continuous monitoring, regular audits and team training, for total resilience against cyberattacks.",
+        "items": {
+          "firewallVpn": {
+            "title": "Firewall & VPN",
+            "desc": "Advanced perimeter protection and secure VPN tunnels for your employees."
+          },
+          "detectionIntrusion": {
+            "title": "Intrusion Detection",
+            "desc": "IDS/IPS, continuous monitoring and real-time alerts on your infrastructure."
+          },
+          "socSupervision": {
+            "title": "SOC & Monitoring",
+            "desc": "Security operations center, 24/7 surveillance and incident response."
+          },
+          "auditSecurite": {
+            "title": "Security Audit",
+            "desc": "Penetration testing, vulnerability analysis and compliance reports."
+          },
+          "sensibilisation": {
+            "title": "Awareness Training",
+            "desc": "Training and workshops to raise your teams' awareness of best practices."
+          },
+          "planReprise": {
+            "title": "Disaster Recovery Plan",
+            "desc": "DRP/BCP, encrypted backup and guaranteed business continuity."
+          }
+        }
+      },
+      "infrastructures-reseaux": {
+        "title": "Network & Systems Infrastructure",
+        "cardDesc": "High-availability network architecture, high-performance WiFi and server virtualization for maximum agility.",
+        "intro": "Build a robust, scalable and highly available network infrastructure. From cabling design to hybrid cloud migration, we design architectures that guarantee performance, security and agility for your business.",
+        "items": {
+          "reseauxLanWan": {
+            "title": "LAN/WAN Networks",
+            "desc": "Design and deployment of high-performance, highly available networks."
+          },
+          "cablageStructure": {
+            "title": "Structured Cabling",
+            "desc": "Copper and fiber optic cabling installation to TIA/ISO standards."
+          },
+          "wifiEntreprise": {
+            "title": "Enterprise WiFi",
+            "desc": "High-density Wi-Fi 6 solutions with seamless roaming and security."
+          },
+          "virtualisation": {
+            "title": "Virtualization",
+            "desc": "VMware, Hyper-V, hybrid cloud migration and containerization."
+          },
+          "firewallReseau": {
+            "title": "Network Firewall",
+            "desc": "Segmentation, DMZ, VLAN and advanced network security policy."
+          },
+          "cloudHybride": {
+            "title": "Hybrid Cloud",
+            "desc": "Migration and management of your AWS, Azure or private cloud resources."
+          }
+        }
+      },
+      "gestion-parc": {
+        "title": "IT Fleet Management",
+        "cardDesc": "Preventive maintenance, responsive helpdesk and automated inventory for complete operational peace of mind.",
+        "intro": "Entrust us with the operational management of your IT fleet. Preventive maintenance, responsive helpdesk, proactive monitoring and automated inventory: we ensure the peace of mind and continuity of your daily operations.",
+        "items": {
+          "maintenancePreventive": {
+            "title": "Preventive Maintenance",
+            "desc": "Scheduled interventions, cleaning, updates and fleet health reports."
+          },
+          "helpdesk": {
+            "title": "L1/L2/L3 Helpdesk",
+            "desc": "Multi-level technical support, ticketing and guaranteed SLAs."
+          },
+          "supervisionProactive": {
+            "title": "Proactive Monitoring",
+            "desc": "Real-time monitoring with pre-failure alerts and dashboards."
+          },
+          "inventaireSuivi": {
+            "title": "Inventory & Tracking",
+            "desc": "Complete management of IT assets and equipment lifecycle."
+          },
+          "migrationPostes": {
+            "title": "Workstation Migration",
+            "desc": "Replacement, image deployment and secure data transfer."
+          },
+          "gestionLicences": {
+            "title": "License Management",
+            "desc": "Audit, renewal and optimization of your software licenses."
+          }
+        }
+      },
+      "developpement": {
+        "title": "Software Development & ERP/CRM",
+        "cardDesc": "Business web application development and tailor-made ERP integration to optimize your workflows.",
+        "intro": "Optimize your workflows with tailor-made business software. From web applications to ERP integration, our development teams design digital solutions adapted to your processes and industry.",
+        "items": {
+          "applicationsWeb": {
+            "title": "Web Applications",
+            "desc": "Custom, high-performance, responsive and secure websites and web apps."
+          },
+          "applicationsMobiles": {
+            "title": "Mobile Applications",
+            "desc": "Native or cross-platform iOS and Android apps tailored to your business."
+          },
+          "apiIntegrations": {
+            "title": "API & Integrations",
+            "desc": "Connecting your existing software via robust, documented APIs."
+          },
+          "erpSurMesure": {
+            "title": "Custom ERP",
+            "desc": "Implementation and customization of ERP solutions tailored to your industry."
+          },
+          "crmRelationClient": {
+            "title": "CRM & Customer Relations",
+            "desc": "Sales management, marketing automation and customer loyalty."
+          },
+          "businessIntelligence": {
+            "title": "Business Intelligence",
+            "desc": "Dashboards, KPIs and reports to steer your business."
+          }
+        }
+      },
+      "distribution": {
+        "title": "Hardware Sales & Distribution",
+        "cardDesc": "Sourcing and installation of servers, workstations and critical peripherals from the world's best manufacturers.",
+        "intro": "Equip your business with quality professional hardware, sourced from the world's best manufacturers. Servers, workstations, network equipment and peripherals: we handle sourcing, installation and warranty.",
+        "items": {
+          "serveursStockage": {
+            "title": "Servers & Storage",
+            "desc": "Rack servers, NAS, SAN and high-capacity storage solutions."
+          },
+          "postesTravail": {
+            "title": "Workstations",
+            "desc": "Desktops, laptops and graphics workstations from leading brands with warranty."
+          },
+          "equipementsReseau": {
+            "title": "Network Equipment",
+            "desc": "Switches, routers, access points from Cisco, Ubiquiti, HP and others."
+          },
+          "peripheriques": {
+            "title": "Peripherals",
+            "desc": "Printers, monitors, scanners and professional IT accessories."
+          },
+          "licencesLogicielles": {
+            "title": "Software Licenses",
+            "desc": "Microsoft, Adobe, antivirus and business software at the best price."
+          },
+          "importExport": {
+            "title": "Import / Export",
+            "desc": "Import and export of international technology equipment."
+          }
+        }
+      }
+    },
+    "modal": {
+      "expertiseLabel": "Our Expertise",
+      "requestQuote": "Request a quote",
+      "close": "Close"
+    },
+    "cardCta": "Learn more",
+    "customDevBadge": "Custom Dev"
   }
 }
