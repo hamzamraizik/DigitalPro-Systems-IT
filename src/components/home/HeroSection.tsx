@@ -31,18 +31,7 @@ export const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-zinc-100 dark:bg-[#0A0A0A] pt-24 text-[#111111] dark:text-white sm:pt-28 lg:pt-32 transition-colors duration-500">
-      {/* Creative IT Background */}
-      <div 
-        className="absolute inset-0 z-0 opacity-40 invert dark:invert-0 dark:opacity-[0.35] dark:mix-blend-screen transition-all duration-500"
-        style={{
-          backgroundImage: "url('/hero-bg.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
-        }}
-      />
+<section className="relative min-h-screen overflow-hidden pt-24 text-[#111111] dark:text-white sm:pt-28 lg:pt-32 transition-colors duration-500">      {/* Creative IT Background */}
 
       <Container className="relative z-10 flex min-h-[calc(100vh-7rem)] items-center py-14 lg:py-16">
         <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
