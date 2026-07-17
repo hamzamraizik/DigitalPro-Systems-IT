@@ -21,8 +21,8 @@ const contactSchema = z.object({
 });
 
 const contactInfo = [
-  { icon: MapPin, label: "Adresse", value: "82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3ème étage N°13, Palmier, Casablanca" },
-  { icon: Phone, label: "Téléphone", value: "06 63 46 31 89" },
+{ icon: MapPin, label: "Adresse", value: "Etage 3 N°13, Rés Shéhérazade 1, 82 Angle rue Soumaya et Bd Abdelmoumen, Casablanca 20340" },
+  { icon: Phone, label: "Téléphone", value: "07 66 21 85 98" },
   { icon: Mail, label: "Email", value: "contact@dps-it.ma" },
   { icon: Clock, label: "Horaires", value: "Lun-Ven : 8h30 - 17h30" },
 ];
