@@ -1,218 +1,363 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
-  Shield, ShieldCheck, Server, Monitor, Code, BarChart3, ShoppingCart,
-  Fingerprint, Camera, BellRing, Flame, ShieldAlert, KeyRound,
-  Lock, Bug, Eye, BookOpen, Globe, Wifi, HardDrive, Headphones,
-  Package, LayoutDashboard, Database, TrendingUp, Truck, Laptop, ArrowRight,
+  Video, ShieldCheck, Network, Terminal, BarChart3, Package, ArrowRight,
+  ClipboardCheck, Compass, Rocket, Headphones,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import ServiceModal from "@/components/ServiceModal";
+import { getServiceCategory } from "@/data/servicesData";
 
-const CARD_COLORS = [
-  "bg-[#1a3a6b] hover:bg-[#1e4580]",
-  "bg-[#8b1a2d] hover:bg-[#9e2035]",
-  "bg-[#1a3a6b] hover:bg-[#1e4580]",
-  "bg-[#8b1a2d] hover:bg-[#9e2035]",
-  "bg-[#1a3a6b] hover:bg-[#1e4580]",
-  "bg-[#8b1a2d] hover:bg-[#9e2035]",
+const methodologyKeys = [
+  { key: "audit", icon: ClipboardCheck },
+  { key: "architecture", icon: Compass },
+  { key: "deploiement", icon: Rocket },
+  { key: "support", icon: Headphones },
 ];
-
-const categories = [
-  {
-    id: "securite-electronique",
-    label: "Notre Expertise",
-    title: "Sécurité Électronique",
-    bg: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1920&q=80",
-    cards: [
-      { icon: Fingerprint, title: "Contrôle d'Accès", desc: "Biométrie, badges RFID/NFC, gestion multi-zones et journaux d'accès en temps réel.", href: "/services/securite-electronique/controle-acces" },
-      { icon: Camera, title: "Vidéosurveillance", desc: "Caméras IP/HD 24h/24, vision nocturne, analyse vidéo intelligente et stockage sécurisé.", href: "/services/securite-electronique/videosurveillance" },
-      { icon: BellRing, title: "Alarme Anti-Intrusion", desc: "Détecteurs de mouvement, sirènes, alertes SMS et télésurveillance avec intervention rapide.", href: "/services/securite-electronique/alarme-anti-intrusion" },
-      { icon: Flame, title: "Protection Incendie", desc: "Détection précoce, extinction automatique, conformité réglementaire et maintenance annuelle.", href: "/services/securite-electronique/protection-incendie" },
-      { icon: ShieldAlert, title: "Sécurité Périphérique", desc: "Clôtures électrifiées, barrières infrarouges, éclairage automatique et surveillance périmétrique.", href: "/services/securite-electronique/securite-peripherique" },
-      { icon: KeyRound, title: "Serrures de Bâtiments", desc: "Serrures connectées, cylindres digitaux, portes blindées et gestion des accès à distance.", href: "/services/securite-electronique/serrures-batiments" },
-    ],
-  },
-  {
-    id: "cybersecurite",
-    label: "Notre Expertise",
-    title: "Cybersécurité",
-    bg: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1920&q=80",
-    cards: [
-      { icon: Shield, title: "Firewall & VPN", desc: "Protection périmétrique avancée et tunnels VPN sécurisés pour vos collaborateurs.", href: "/services/cybersecurite/firewall-vpn" },
-      { icon: Bug, title: "Détection d'Intrusion", desc: "IDS/IPS, monitoring continu et alertes en temps réel sur vos infrastructures.", href: "/services/cybersecurite/detection-intrusion" },
-      { icon: Eye, title: "SOC & Supervision", desc: "Centre opérationnel de sécurité, surveillance 24h/24 et réponse aux incidents.", href: "/services/cybersecurite/soc-supervision" },
-      { icon: BookOpen, title: "Audit de Sécurité", desc: "Tests de pénétration, analyse des vulnérabilités et rapports de conformité.", href: "/services/cybersecurite/audit-securite" },
-      { icon: Lock, title: "Sensibilisation", desc: "Formations et ateliers pour sensibiliser vos équipes aux bonnes pratiques.", href: "/services/cybersecurite/sensibilisation" },
-      { icon: Database, title: "Plan de Reprise", desc: "PRA/PCA, sauvegarde chiffrée et continuité d'activité garantie.", href: "/services/cybersecurite/plan-reprise" },
-    ],
-  },
-  {
-    id: "infrastructures-reseaux",
-    label: "Notre Expertise",
-    title: "Infrastructures Réseaux & Systèmes",
-    bg: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80",
-    cards: [
-      { icon: Globe, title: "Réseaux LAN/WAN", desc: "Conception et déploiement de réseaux performants et hautement disponibles.", href: "/services/infrastructures-reseaux/reseaux-lan-wan" },
-      { icon: HardDrive, title: "Câblage Structuré", desc: "Installation de câblage cuivre et fibre optique aux standards TIA/ISO.", href: "/services/infrastructures-reseaux/cablage-structure" },
-      { icon: Wifi, title: "WiFi Entreprise", desc: "Solutions Wi-Fi 6 haute densité avec itinérance transparente et sécurisation.", href: "/services/infrastructures-reseaux/wifi-entreprise" },
-      { icon: Server, title: "Virtualisation", desc: "VMware, Hyper-V, migration vers le cloud hybride et conteneurisation.", href: "/services/infrastructures-reseaux/virtualisation" },
-      { icon: ShieldCheck, title: "Firewall Réseau", desc: "Segmentation, DMZ, VLAN et politique de sécurité réseau avancée.", href: "/services/infrastructures-reseaux/firewall-reseau" },
-      { icon: TrendingUp, title: "Cloud Hybride", desc: "Migration et gestion de vos ressources cloud AWS, Azure ou privées.", href: "/services/infrastructures-reseaux/cloud-hybride" },
-    ],
-  },
-  {
-    id: "gestion-parc",
-    label: "Notre Expertise",
-    title: "Gestion de Parc Informatique",
-    bg: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1920&q=80",
-    cards: [
-      { icon: Monitor, title: "Maintenance Préventive", desc: "Interventions planifiées, nettoyage, mises à jour et rapport de santé du parc.", href: "/services/gestion-parc/maintenance-preventive" },
-      { icon: Headphones, title: "Helpdesk N1/N2/N3", desc: "Support technique multi-niveaux, ticketing et SLA garantis.", href: "/services/gestion-parc/helpdesk" },
-      { icon: LayoutDashboard, title: "Supervision Proactive", desc: "Monitoring en temps réel avec alertes avant panne et tableaux de bord.", href: "/services/gestion-parc/supervision-proactive" },
-      { icon: Package, title: "Inventaire & Suivi", desc: "Gestion complète des actifs informatiques et cycle de vie des équipements.", href: "/services/gestion-parc/inventaire-suivi" },
-      { icon: Laptop, title: "Migration de Postes", desc: "Remplacement, déploiement d'images et transfert de données sécurisé.", href: "/services/gestion-parc/migration-postes" },
-      { icon: BookOpen, title: "Gestion des Licences", desc: "Audit, renouvellement et optimisation de vos licences logicielles.", href: "/services/gestion-parc/gestion-licences" },
-    ],
-  },
-  {
-    id: "developpement",
-    label: "Notre Expertise",
-    title: "Développement Logiciel & ERP/CRM",
-    bg: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80",
-    cards: [
-      { icon: Globe, title: "Applications Web", desc: "Sites et applications web sur mesure, performants, responsive et sécurisés.", href: "/services/developpement/applications-web" },
-      { icon: Laptop, title: "Applications Mobiles", desc: "Apps iOS et Android natives ou cross-platform adaptées à vos métiers.", href: "/services/developpement/applications-mobiles" },
-      { icon: Code, title: "API & Intégrations", desc: "Connexion de vos logiciels existants via des APIs robustes et documentées.", href: "/services/developpement/api-integrations" },
-      { icon: BarChart3, title: "ERP sur Mesure", desc: "Implémentation et personnalisation de solutions ERP adaptées à votre secteur.", href: "/services/developpement/erp-sur-mesure" },
-      { icon: TrendingUp, title: "CRM & Relation Client", desc: "Gestion des ventes, marketing automation et fidélisation client.", href: "/services/developpement/crm-relation-client" },
-      { icon: LayoutDashboard, title: "Business Intelligence", desc: "Tableaux de bord, KPIs et rapports pour piloter votre activité.", href: "/services/developpement/business-intelligence" },
-    ],
-  },
-  {
-    id: "distribution",
-    label: "Notre Expertise",
-    title: "Vente & Distribution de Matériel",
-    bg: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=80",
-    cards: [
-      { icon: Server, title: "Serveurs & Stockage", desc: "Serveurs rack, NAS, SAN et solutions de stockage haute capacité.", href: "/services/distribution/serveurs-stockage" },
-      { icon: Laptop, title: "Postes de Travail", desc: "PC fixes, laptops, stations graphiques de marques leaders avec garantie.", href: "/services/distribution/postes-travail" },
-      { icon: Wifi, title: "Équipements Réseau", desc: "Switches, routeurs, points d'accès Cisco, Ubiquiti, HP et autres.", href: "/services/distribution/equipements-reseau" },
-      { icon: Package, title: "Périphériques", desc: "Imprimantes, écrans, scanners et accessoires informatiques professionnels.", href: "/services/distribution/peripheriques" },
-      { icon: BookOpen, title: "Licences Logicielles", desc: "Microsoft, Adobe, antivirus et logiciels métiers au meilleur prix.", href: "/services/distribution/licences-logicielles" },
-      { icon: Truck, title: "Import / Export", desc: "Importation et exportation de matériel technologique international.", href: "/services/distribution/import-export" },
-    ],
-  },
-];
-
-function ParallaxBg({ imageUrl, children, id }: { imageUrl: string; children: React.ReactNode; id?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-  return (
-    <div id={id} ref={ref} className="relative overflow-hidden scroll-mt-24 lg:scroll-mt-28">
-      <motion.div style={{ y }} className="absolute inset-[-15%] will-change-transform">
-        <img src={imageUrl} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-[#0a1628]/80" />
-      </motion.div>
-      <div className="relative z-10">{children}</div>
-    </div>
-  );
-}
 
 const ServicesPage = () => {
+  const { t } = useTranslation();
   const { hash } = useLocation();
+  const [activeId, setActiveId] = useState<string | null>(null);
+  const activeService = activeId ? getServiceCategory(activeId) : null;
+  const closeServiceModal = useCallback(() => setActiveId(null), []);
 
   useEffect(() => {
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace("#", "");
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
+    if (!hash) {
       window.scrollTo(0, 0);
+      return;
     }
+
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [hash]);
 
+  const cardText = (id: string, field: "title" | "cardDesc") =>
+    t(`servicesPage.categories.${id}.${field}`);
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <div className="pt-16 lg:pt-20"> {/* Match new navbar height */}
+<div className="min-h-screen bg-page transition-colors duration-500">      <Navbar />
+      <div className="pt-16 lg:pt-20">
         {/* Hero */}
-        <section className="bg-hero py-16 lg:py-24">
-          <div className="container mx-auto px-4 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
-              <h1 className="font-display text-3xl lg:text-5xl font-bold text-primary-foreground mb-4">Nos Services</h1>
-              <p className="text-primary-foreground/70 text-lg">Des solutions technologiques complètes pour répondre à tous les besoins des PME, grandes entreprises et administrations publiques.</p>
-            </motion.div>
+        <header className="relative pt-20 pb-20 overflow-hidden">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-cyan/10 rounded-full blur-[120px] pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10 text-center">
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-block px-4 py-1.5 rounded-full border border-black/10 dark:border-white/10 bg-black/[0.03] dark:bg-white/5 text-cyan text-sm font-medium mb-6"
+            >
+              {t("servicesPage.hero.badge")}
+            </motion.span>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight text-[#111111] dark:text-white"
+            >
+              {t("servicesPage.hero.titlePrefix")}{" "}
+              <span className="bg-gradient-to-r from-cyan to-cyan-light bg-clip-text text-transparent">
+                {t("servicesPage.hero.titleHighlight")}
+              </span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="max-w-2xl mx-auto text-lg text-[#555555] dark:text-white/70 leading-relaxed"
+            >
+              {t("servicesPage.hero.subtitle")}
+            </motion.p>
+          </div>
+        </header>
+
+        {/* Bento Grid des services */}
+        <section className="py-16 lg:py-24">
+          <div className="max-w-7xl mx-auto px-4 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+              {/* 1. Sécurité électronique */}
+              <motion.div
+                id="securite-electronique"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="scroll-mt-28 lg:col-span-4 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500 flex flex-col md:flex-row"
+              >
+                <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />
+                  <img
+                    src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80"
+                    alt={cardText("securite-electronique", "title")}
+                    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-8 md:p-12 w-full md:w-1/2 flex flex-col justify-center">
+                  <Video className="w-9 h-9 text-cyan mb-6" />
+                  <h3 className="font-display text-2xl font-bold text-[#111111] dark:text-white mb-4">
+                    {cardText("securite-electronique", "title")}
+                  </h3>
+                  <p className="text-[#555555] dark:text-white/60 mb-8 leading-relaxed">
+                    {cardText("securite-electronique", "cardDesc")}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setActiveId("securite-electronique")}
+                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all w-fit"
+                  >
+                    {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* 2. Cybersécurité */}
+              <motion.div
+                id="cybersecurite"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.05 }}
+                className="scroll-mt-28 lg:col-span-2 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 flex flex-col justify-between group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+              >
+                <div>
+                  <div className="w-14 h-14 rounded-xl bg-cyan/10 flex items-center justify-center mb-8 border border-cyan/20">
+                    <ShieldCheck className="w-7 h-7 text-cyan" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-[#111111] dark:text-white mb-4">
+                    {cardText("cybersecurite", "title")}
+                  </h3>
+                  <p className="text-[#555555] dark:text-white/60 text-sm mb-6">
+                    {cardText("cybersecurite", "cardDesc")}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setActiveId("cybersecurite")}
+                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                  >
+                    {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+                <img
+                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"
+                  alt={cardText("cybersecurite", "title")}
+                  className="w-full h-32 object-cover rounded-lg opacity-50 group-hover:opacity-100 transition-opacity mt-6"
+                />
+              </motion.div>
+
+              {/* 3. Réseaux & Systèmes */}
+              <motion.div
+                id="infrastructures-reseaux"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="scroll-mt-28 lg:col-span-3 relative overflow-hidden bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+              >
+                <div className="relative z-10">
+                  <Network className="w-9 h-9 text-cyan mb-6" />
+                  <h3 className="font-display text-2xl font-bold text-[#111111] dark:text-white mb-4">
+                    {cardText("infrastructures-reseaux", "title")}
+                  </h3>
+                  <p className="text-[#555555] dark:text-white/60 mb-6 leading-relaxed">
+                    {cardText("infrastructures-reseaux", "cardDesc")}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setActiveId("infrastructures-reseaux")}
+                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                  >
+                    {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-cyan/5 rounded-full blur-3xl group-hover:bg-cyan/10 transition-all" />
+              </motion.div>
+
+              {/* 4. Gestion de parc IT */}
+              <motion.div
+                id="gestion-parc"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                className="scroll-mt-28 lg:col-span-3 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+              >
+                <Terminal className="w-9 h-9 text-cyan mb-6" />
+                <h3 className="font-display text-2xl font-bold text-[#111111] dark:text-white mb-4">
+                  {cardText("gestion-parc", "title")}
+                </h3>
+                <p className="text-[#555555] dark:text-white/60 mb-6 leading-relaxed">
+                  {cardText("gestion-parc", "cardDesc")}
+                </p>
+                <div className="flex gap-2 mb-6">
+                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-[#555555] dark:text-white/60 border border-black/10 dark:border-white/10">Audit</span>
+                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-[#555555] dark:text-white/60 border border-black/10 dark:border-white/10">Support</span>
+                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-[#555555] dark:text-white/60 border border-black/10 dark:border-white/10">Monitoring</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveId("gestion-parc")}
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                >
+                  {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+
+              {/* 5. ERP, CRM & Logiciels */}
+              <motion.div
+                id="developpement"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="scroll-mt-28 lg:col-span-3 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+              >
+                <div className="flex items-start justify-between mb-8">
+                  <BarChart3 className="w-9 h-9 text-cyan" />
+                  <span className="text-[10px] uppercase tracking-widest text-cyan font-bold bg-cyan/10 px-2 py-1 rounded">
+                    {t("servicesPage.customDevBadge")}
+                  </span>
+                </div>
+                <h3 className="font-display text-xl font-bold text-[#111111] dark:text-white mb-4">
+                  {cardText("developpement", "title")}
+                </h3>
+                <p className="text-[#555555] dark:text-white/60 mb-6 text-sm">
+                  {cardText("developpement", "cardDesc")}
+                </p>
+                <div className="h-1 w-full bg-black/5 dark:bg-white/5 rounded-full overflow-hidden mb-6">
+                  <div className="h-full bg-cyan w-3/4 group-hover:w-full transition-all duration-1000" />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveId("developpement")}
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                >
+                  {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+
+              {/* 6. Matériel professionnel */}
+              <motion.div
+                id="distribution"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+                className="scroll-mt-28 lg:col-span-3 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 border-l-4 border-l-cyan rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+              >
+                <Package className="w-9 h-9 text-cyan mb-6" />
+                <h3 className="font-display text-xl font-bold text-[#111111] dark:text-white mb-4">
+                  {cardText("distribution", "title")}
+                </h3>
+                <p className="text-[#555555] dark:text-white/60 mb-6 text-sm">
+                  {cardText("distribution", "cardDesc")}
+                </p>
+                <div className="flex -space-x-3 mb-6">
+                  <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">DELL</div>
+                  <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">HP</div>
+                  <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">CISCO</div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveId("distribution")}
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                >
+                  {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* Categories */}
-        {categories.map((cat) => (
-          <ParallaxBg key={cat.title} imageUrl={cat.bg} id={cat.id}>
-            <div className="py-16 lg:py-24">
-              <div className="container mx-auto px-4 lg:px-8">
+        {/* Méthodologie */}
+        <section className="py-24 lg:py-32 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-16 lg:mb-20"
+            >
+              <h2 className="font-display text-3xl lg:text-5xl font-bold text-[#111111] dark:text-white mb-6">
+                {t("servicesPage.methodology.title")}
+              </h2>
+              <div className="w-24 h-1 bg-cyan mx-auto rounded-full" />
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+              {methodologyKeys.map((step, i) => (
                 <motion.div
+                  key={step.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="mb-10"
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="relative group"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="w-4 h-4 rounded-sm bg-accent inline-block" />
-                    <span className="text-accent font-semibold text-sm uppercase tracking-widest">{cat.label}</span>
+                  <div className="mb-8 relative">
+                    <div className="w-16 h-16 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex items-center justify-center text-cyan group-hover:bg-cyan/10 group-hover:border-cyan/50 transition-all duration-300">
+                      <step.icon className="w-7 h-7" />
+                    </div>
+                    {i < methodologyKeys.length - 1 && (
+                      <div className="hidden md:block absolute top-1/2 left-full w-full h-[1px] bg-gradient-to-r from-black/20 dark:from-white/20 to-transparent -translate-y-1/2" />
+                    )}
                   </div>
-                  <h2 className="font-display text-3xl lg:text-5xl font-extrabold text-white uppercase tracking-wide">
-                    {cat.title}
-                  </h2>
+                  <h4 className="font-display text-lg font-bold text-[#111111] dark:text-white mb-4">
+                    {t(`servicesPage.methodology.steps.${step.key}.title`)}
+                  </h4>
+                  <p className="text-[#555555] dark:text-white/60 text-sm leading-relaxed">
+                    {t(`servicesPage.methodology.steps.${step.key}.desc`)}
+                  </p>
                 </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {cat.cards.map((card, i) => {
-                    const colorClass = CARD_COLORS[i % CARD_COLORS.length];
-                    return (
-                      <motion.div
-                        key={card.title}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: i * 0.07 }}
-                        whileHover={{ y: -5 }}
-                      >
-                        <Link
-                          to={card.href}
-                          className={`group flex flex-col h-full rounded-xl p-6 transition-all duration-300 ${colorClass} shadow-lg`}
-                        >
-                          <div className="w-16 h-16 rounded-[40%] bg-white/15 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110">
-                            <card.icon className="w-8 h-8 text-white" />
-                          </div>
-                          <h3 className="font-display text-base font-bold text-white uppercase tracking-wide mb-3">
-                            {card.title}
-                          </h3>
-                          <p className="text-white/75 text-sm leading-relaxed flex-1 mb-5">
-                            {card.desc}
-                          </p>
-                          <span className="inline-flex items-center gap-1.5 text-white/90 text-sm font-semibold group-hover:gap-3 transition-all duration-200">
-                            Voir Plus <ArrowRight className="w-4 h-4" />
-                          </span>
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
+              ))}
             </div>
-          </ParallaxBg>
-        ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 lg:py-24 relative overflow-hidden">
+          <div className="max-w-5xl mx-auto px-4 lg:px-8 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-[2.5rem] p-10 md:p-20 relative overflow-hidden"
+            >
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-cyan/20 rounded-full blur-[80px]" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan/10 rounded-full blur-[80px]" />
+              <span className="relative z-10 text-cyan text-sm font-semibold uppercase tracking-[0.2em] mb-8 block">
+                {t("servicesPage.cta.eyebrow")}
+              </span>
+              <h2 className="relative z-10 font-display text-3xl lg:text-5xl font-bold text-[#111111] dark:text-white mb-10 leading-tight">
+                {t("servicesPage.cta.title")}
+              </h2>
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6">
+                <Link
+                  to="/contact"
+                  className="bg-cyan hover:bg-cyan/90 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(0,174,239,0.4)]"
+                >
+                  {t("servicesPage.cta.btnQuote")}
+                </Link>
+                <Link
+                  to="/contact"
+                  className="border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-white px-10 py-4 rounded-xl transition-all duration-300"
+                >
+                  {t("servicesPage.cta.btnContact")}
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </div>
+
       <Footer />
+
+      <ServiceModal service={activeService ?? null} onClose={closeServiceModal} />
     </div>
   );
 };
