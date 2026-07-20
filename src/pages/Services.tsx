@@ -18,6 +18,11 @@ const methodologyKeys = [
   { key: "support", icon: Headphones },
 ];
 
+// Shared styling so every bento card has identical border, radius, hover and
+// backdrop treatment — only spacing/layout differs per card.
+const BENTO_CARD =
+  "scroll-mt-28 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500";
+
 const ServicesPage = () => {
   const { t } = useTranslation();
   const { hash } = useLocation();
@@ -42,7 +47,8 @@ const ServicesPage = () => {
     t(`servicesPage.categories.${id}.${field}`);
 
   return (
-<div className="min-h-screen bg-page transition-colors duration-500">      <Navbar />
+    <div className="min-h-screen bg-page transition-colors duration-500">
+      <Navbar />
       <div className="pt-16 lg:pt-20">
         {/* Hero */}
         <header className="relative pt-20 pb-20 overflow-hidden">
@@ -59,7 +65,7 @@ const ServicesPage = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight text-[#111111] dark:text-white"
+              className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight text-foreground"
             >
               {t("servicesPage.hero.titlePrefix")}{" "}
               <span className="bg-gradient-to-r from-cyan to-cyan-light bg-clip-text text-transparent">
@@ -70,7 +76,7 @@ const ServicesPage = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="max-w-2xl mx-auto text-lg text-[#555555] dark:text-white/70 leading-relaxed"
+              className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed"
             >
               {t("servicesPage.hero.subtitle")}
             </motion.p>
@@ -80,7 +86,7 @@ const ServicesPage = () => {
         {/* Bento Grid des services */}
         <section className="py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 items-stretch">
               {/* 1. Sécurité électronique */}
               <motion.div
                 id="securite-electronique"
@@ -88,9 +94,9 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="scroll-mt-28 lg:col-span-4 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl overflow-hidden group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500 flex flex-col md:flex-row"
+                className={`${BENTO_CARD} lg:col-span-4 overflow-hidden flex flex-col md:flex-row h-full`}
               >
-                <div className="w-full md:w-1/2 h-64 md:h-auto relative">
+                <div className="w-full md:w-1/2 h-64 md:h-auto relative shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />
                   <img
                     src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80"
@@ -98,18 +104,18 @@ const ServicesPage = () => {
                     className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
                   />
                 </div>
-                <div className="p-8 md:p-12 w-full md:w-1/2 flex flex-col justify-center">
+                <div className="p-8 w-full md:w-1/2 h-full flex flex-col">
                   <Video className="w-9 h-9 text-cyan mb-6" />
-                  <h3 className="font-display text-2xl font-bold text-[#111111] dark:text-white mb-4">
+                  <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                     {cardText("securite-electronique", "title")}
                   </h3>
-                  <p className="text-[#555555] dark:text-white/60 mb-8 leading-relaxed">
+                  <p className="text-muted-foreground mb-8 leading-relaxed">
                     {cardText("securite-electronique", "cardDesc")}
                   </p>
                   <button
                     type="button"
                     onClick={() => setActiveId("securite-electronique")}
-                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all w-fit"
+                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all w-fit mt-auto"
                   >
                     {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
                   </button>
@@ -123,31 +129,29 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.05 }}
-                className="scroll-mt-28 lg:col-span-2 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 flex flex-col justify-between group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+                className={`${BENTO_CARD} lg:col-span-2 p-8 flex flex-col h-full`}
               >
-                <div>
-                  <div className="w-14 h-14 rounded-xl bg-cyan/10 flex items-center justify-center mb-8 border border-cyan/20">
-                    <ShieldCheck className="w-7 h-7 text-cyan" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-[#111111] dark:text-white mb-4">
-                    {cardText("cybersecurite", "title")}
-                  </h3>
-                  <p className="text-[#555555] dark:text-white/60 text-sm mb-6">
-                    {cardText("cybersecurite", "cardDesc")}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setActiveId("cybersecurite")}
-                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
-                  >
-                    {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
                 <img
                   src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"
                   alt={cardText("cybersecurite", "title")}
-                  className="w-full h-32 object-cover rounded-lg opacity-50 group-hover:opacity-100 transition-opacity mt-6"
+                  className="w-full h-28 object-cover rounded-lg opacity-60 group-hover:opacity-100 transition-opacity mb-6"
                 />
+                <div className="w-14 h-14 rounded-xl bg-cyan/10 flex items-center justify-center mb-6 border border-cyan/20">
+                  <ShieldCheck className="w-7 h-7 text-cyan" />
+                </div>
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
+                  {cardText("cybersecurite", "title")}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-6">
+                  {cardText("cybersecurite", "cardDesc")}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveId("cybersecurite")}
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
+                >
+                  {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
+                </button>
               </motion.div>
 
               {/* 3. Réseaux & Systèmes */}
@@ -157,20 +161,20 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="scroll-mt-28 lg:col-span-3 relative overflow-hidden bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+                className={`${BENTO_CARD} lg:col-span-3 relative overflow-hidden p-8 flex flex-col h-full`}
               >
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col flex-1">
                   <Network className="w-9 h-9 text-cyan mb-6" />
-                  <h3 className="font-display text-2xl font-bold text-[#111111] dark:text-white mb-4">
+                  <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                     {cardText("infrastructures-reseaux", "title")}
                   </h3>
-                  <p className="text-[#555555] dark:text-white/60 mb-6 leading-relaxed">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
                     {cardText("infrastructures-reseaux", "cardDesc")}
                   </p>
                   <button
                     type="button"
                     onClick={() => setActiveId("infrastructures-reseaux")}
-                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
                   >
                     {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
                   </button>
@@ -185,24 +189,24 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.15 }}
-                className="scroll-mt-28 lg:col-span-3 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+                className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}
               >
                 <Terminal className="w-9 h-9 text-cyan mb-6" />
-                <h3 className="font-display text-2xl font-bold text-[#111111] dark:text-white mb-4">
+                <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                   {cardText("gestion-parc", "title")}
                 </h3>
-                <p className="text-[#555555] dark:text-white/60 mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed">
                   {cardText("gestion-parc", "cardDesc")}
                 </p>
-                <div className="flex gap-2 mb-6">
-                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-[#555555] dark:text-white/60 border border-black/10 dark:border-white/10">Audit</span>
-                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-[#555555] dark:text-white/60 border border-black/10 dark:border-white/10">Support</span>
-                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-[#555555] dark:text-white/60 border border-black/10 dark:border-white/10">Monitoring</span>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-muted-foreground border border-black/10 dark:border-white/10">Audit</span>
+                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-muted-foreground border border-black/10 dark:border-white/10">Support</span>
+                  <span className="px-3 py-1 bg-black/5 dark:bg-white/5 rounded-full text-xs text-muted-foreground border border-black/10 dark:border-white/10">Monitoring</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setActiveId("gestion-parc")}
-                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
                 >
                   {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
                 </button>
@@ -215,7 +219,7 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="scroll-mt-28 lg:col-span-3 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+                className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}
               >
                 <div className="flex items-start justify-between mb-8">
                   <BarChart3 className="w-9 h-9 text-cyan" />
@@ -223,10 +227,10 @@ const ServicesPage = () => {
                     {t("servicesPage.customDevBadge")}
                   </span>
                 </div>
-                <h3 className="font-display text-xl font-bold text-[#111111] dark:text-white mb-4">
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {cardText("developpement", "title")}
                 </h3>
-                <p className="text-[#555555] dark:text-white/60 mb-6 text-sm">
+                <p className="text-muted-foreground mb-6 text-sm">
                   {cardText("developpement", "cardDesc")}
                 </p>
                 <div className="h-1 w-full bg-black/5 dark:bg-white/5 rounded-full overflow-hidden mb-6">
@@ -235,7 +239,7 @@ const ServicesPage = () => {
                 <button
                   type="button"
                   onClick={() => setActiveId("developpement")}
-                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
                 >
                   {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
                 </button>
@@ -248,13 +252,13 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.25 }}
-                className="scroll-mt-28 lg:col-span-3 bg-black/[0.02] dark:bg-white/[0.03] backdrop-blur-md border border-black/10 dark:border-white/10 border-l-4 border-l-cyan rounded-2xl p-8 group hover:border-cyan/40 hover:shadow-[0_0_30px_rgba(0,174,239,0.15)] dark:hover:shadow-[0_0_30px_rgba(0,174,239,0.3)] transition-all duration-500"
+                className={`${BENTO_CARD} lg:col-span-3 border-l-4 border-l-cyan p-8 flex flex-col h-full`}
               >
                 <Package className="w-9 h-9 text-cyan mb-6" />
-                <h3 className="font-display text-xl font-bold text-[#111111] dark:text-white mb-4">
+                <h3 className="font-display text-xl font-bold text-foreground mb-4">
                   {cardText("distribution", "title")}
                 </h3>
-                <p className="text-[#555555] dark:text-white/60 mb-6 text-sm">
+                <p className="text-muted-foreground mb-6 text-sm">
                   {cardText("distribution", "cardDesc")}
                 </p>
                 <div className="flex -space-x-3 mb-6">
@@ -265,7 +269,7 @@ const ServicesPage = () => {
                 <button
                   type="button"
                   onClick={() => setActiveId("distribution")}
-                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all"
+                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
                 >
                   {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
                 </button>
@@ -283,7 +287,7 @@ const ServicesPage = () => {
               viewport={{ once: true }}
               className="text-center mb-16 lg:mb-20"
             >
-              <h2 className="font-display text-3xl lg:text-5xl font-bold text-[#111111] dark:text-white mb-6">
+              <h2 className="font-display text-3xl lg:text-5xl font-bold text-foreground mb-6">
                 {t("servicesPage.methodology.title")}
               </h2>
               <div className="w-24 h-1 bg-cyan mx-auto rounded-full" />
@@ -307,10 +311,10 @@ const ServicesPage = () => {
                       <div className="hidden md:block absolute top-1/2 left-full w-full h-[1px] bg-gradient-to-r from-black/20 dark:from-white/20 to-transparent -translate-y-1/2" />
                     )}
                   </div>
-                  <h4 className="font-display text-lg font-bold text-[#111111] dark:text-white mb-4">
+                  <h4 className="font-display text-lg font-bold text-foreground mb-4">
                     {t(`servicesPage.methodology.steps.${step.key}.title`)}
                   </h4>
-                  <p className="text-[#555555] dark:text-white/60 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {t(`servicesPage.methodology.steps.${step.key}.desc`)}
                   </p>
                 </motion.div>
@@ -333,7 +337,7 @@ const ServicesPage = () => {
               <span className="relative z-10 text-cyan text-sm font-semibold uppercase tracking-[0.2em] mb-8 block">
                 {t("servicesPage.cta.eyebrow")}
               </span>
-              <h2 className="relative z-10 font-display text-3xl lg:text-5xl font-bold text-[#111111] dark:text-white mb-10 leading-tight">
+              <h2 className="relative z-10 font-display text-3xl lg:text-5xl font-bold text-foreground mb-10 leading-tight">
                 {t("servicesPage.cta.title")}
               </h2>
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6">
@@ -345,7 +349,7 @@ const ServicesPage = () => {
                 </Link>
                 <Link
                   to="/contact"
-                  className="border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-white px-10 py-4 rounded-xl transition-all duration-300"
+                  className="border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 text-foreground px-10 py-4 rounded-xl transition-all duration-300"
                 >
                   {t("servicesPage.cta.btnContact")}
                 </Link>

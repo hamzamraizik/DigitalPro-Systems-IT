@@ -109,8 +109,12 @@ const ContactPage = () => {
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid lg:grid-cols-3 gap-10">
               {/* Info */}
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                <h2 className="font-display text-2xl font-bold text-foreground mb-6">Nos coordonnées</h2>
+<motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-card rounded-xl border border-border p-8 shadow-card h-fit"
+              >                <h2 className="font-display text-2xl font-bold text-foreground mb-6">Nos coordonnées</h2>
                 <div className="space-y-5">
                 {contactInfo.map((info) => (
                     <div key={info.label} className="flex items-start gap-4">
