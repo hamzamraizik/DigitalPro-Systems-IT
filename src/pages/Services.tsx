@@ -87,40 +87,51 @@ const ServicesPage = () => {
         <section className="py-16 lg:py-24">
           <div className="max-w-7xl mx-auto px-4 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 items-stretch">
-              {/* 1. Sécurité électronique */}
-              <motion.div
-                id="securite-electronique"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className={`${BENTO_CARD} lg:col-span-4 overflow-hidden flex flex-col md:flex-row h-full`}
-              >
-                <div className="w-full md:w-1/2 h-64 md:h-auto relative shrink-0">
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />
-                  <img
-                    src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80"
-                    alt={cardText("securite-electronique", "title")}
-                    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-8 w-full md:w-1/2 h-full flex flex-col">
-                  <Video className="w-9 h-9 text-cyan mb-6" />
-                  <h3 className="font-display text-2xl font-bold text-foreground mb-4">
-                    {cardText("securite-electronique", "title")}
-                  </h3>
-                  <p className="text-muted-foreground mb-8 leading-relaxed">
-                    {cardText("securite-electronique", "cardDesc")}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setActiveId("securite-electronique")}
-                    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all w-fit mt-auto"
-                  >
-                    {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </motion.div>
+            {/* 1. Sécurité électronique */}
+ {/* 1. Sécurité électronique */}
+<motion.div
+  id="securite-electronique"
+  initial={{ opacity: 0, y: 24 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5 }}
+  className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}
+>
+  {/* Image */}
+  <div className="relative h-52 rounded-xl overflow-hidden mb-6">
+    <img
+      src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1200&q=80"
+      alt={cardText("securite-electronique", "title")}
+      className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+    />
+
+    {/* Shadow */}
+    <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+  </div>
+
+  {/* Icône */}
+  <Video className="w-9 h-9 text-cyan mb-6" />
+
+  {/* Titre */}
+  <h3 className="font-display text-2xl font-bold text-foreground mb-4">
+    {cardText("securite-electronique", "title")}
+  </h3>
+
+  {/* Description */}
+  <p className="text-muted-foreground mb-6 leading-relaxed flex-1">
+    {cardText("securite-electronique", "cardDesc")}
+  </p>
+
+  {/* Bouton */}
+  <button
+    type="button"
+    onClick={() => setActiveId("securite-electronique")}
+    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
+  >
+    {t("servicesPage.cardCta")}
+    <ArrowRight className="w-4 h-4" />
+  </button>
+</motion.div>
 
               {/* 2. Cybersécurité */}
               <motion.div
@@ -129,8 +140,7 @@ const ServicesPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.05 }}
-                className={`${BENTO_CARD} lg:col-span-2 p-8 flex flex-col h-full`}
-              >
+className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}              >
                 <img
                   src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"
                   alt={cardText("cybersecurite", "title")}
