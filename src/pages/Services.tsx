@@ -133,36 +133,48 @@ const ServicesPage = () => {
   </button>
 </motion.div>
 
-              {/* 2. Cybersécurité */}
-              <motion.div
-                id="cybersecurite"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}              >
-                <img
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80"
-                  alt={cardText("cybersecurite", "title")}
-                  className="w-full h-28 object-cover rounded-lg opacity-60 group-hover:opacity-100 transition-opacity mb-6"
-                />
-                <div className="w-14 h-14 rounded-xl bg-cyan/10 flex items-center justify-center mb-6 border border-cyan/20">
-                  <ShieldCheck className="w-7 h-7 text-cyan" />
-                </div>
-                <h3 className="font-display text-xl font-bold text-foreground mb-4">
-                  {cardText("cybersecurite", "title")}
-                </h3>
-                <p className="text-muted-foreground text-sm mb-6">
-                  {cardText("cybersecurite", "cardDesc")}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setActiveId("cybersecurite")}
-                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
-                >
-                  {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
-                </button>
-              </motion.div>
+            {/* 2. Cybersécurité */}
+<motion.div
+  id="cybersecurite"
+  initial={{ opacity: 0, y: 24 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: 0.05 }}
+  className={`${BENTO_CARD} group lg:col-span-3 p-8 flex flex-col h-full`}
+>
+  {/* Image */}
+  <div className="relative h-52 rounded-xl overflow-hidden mb-6">
+    <img
+      src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80"
+      alt={cardText("cybersecurite", "title")}
+      className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+    />
+
+    {/* Shadow */}
+    <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+  </div>
+
+  <div className="w-14 h-14 rounded-xl bg-cyan/10 flex items-center justify-center mb-6 border border-cyan/20">
+    <ShieldCheck className="w-7 h-7 text-cyan" />
+  </div>
+
+  <h3 className="font-display text-xl font-bold text-foreground mb-4">
+    {cardText("cybersecurite", "title")}
+  </h3>
+
+  <p className="text-muted-foreground text-sm mb-6">
+    {cardText("cybersecurite", "cardDesc")}
+  </p>
+
+  <button
+    type="button"
+    onClick={() => setActiveId("cybersecurite")}
+    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
+  >
+    {t("servicesPage.cardCta")}
+    <ArrowRight className="w-4 h-4" />
+  </button>
+</motion.div>
 
               {/* 3. Réseaux & Systèmes */}
               <motion.div
@@ -174,6 +186,14 @@ className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}              
                 className={`${BENTO_CARD} lg:col-span-3 relative overflow-hidden p-8 flex flex-col h-full`}
               >
                 <div className="relative z-10 flex flex-col flex-1">
+                 <div className="relative h-52 rounded-xl overflow-hidden mb-6">
+  <img
+    src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80"
+    alt={cardText("infrastructures-reseaux", "title")}
+    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+  />
+  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+</div>
                   <Network className="w-9 h-9 text-cyan mb-6" />
                   <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                     {cardText("infrastructures-reseaux", "title")}
@@ -201,6 +221,14 @@ className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}              
                 transition={{ duration: 0.5, delay: 0.15 }}
                 className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}
               >
+                <div className="relative h-52 rounded-xl overflow-hidden mb-6">
+  <img
+    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80"
+    alt={cardText("gestion-parc", "title")}
+    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+  />
+  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+</div>
                 <Terminal className="w-9 h-9 text-cyan mb-6" />
                 <h3 className="font-display text-2xl font-bold text-foreground mb-4">
                   {cardText("gestion-parc", "title")}
@@ -231,8 +259,16 @@ className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}              
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}
               >
-                <div className="flex items-start justify-between mb-8">
-                  <BarChart3 className="w-9 h-9 text-cyan" />
+<div className="relative h-52 rounded-xl overflow-hidden mb-6">
+  <img
+    src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=80"
+    alt={cardText("developpement", "title")}
+    className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+  />
+  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+</div>
+
+<div className="flex items-start justify-between mb-8">                  <BarChart3 className="w-9 h-9 text-cyan" />
                   <span className="text-[10px] uppercase tracking-widest text-cyan font-bold bg-cyan/10 px-2 py-1 rounded">
                     {t("servicesPage.customDevBadge")}
                   </span>
@@ -256,34 +292,58 @@ className={`${BENTO_CARD} lg:col-span-3 p-8 flex flex-col h-full`}              
               </motion.div>
 
               {/* 6. Matériel professionnel */}
-              <motion.div
-                id="distribution"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.25 }}
-                className={`${BENTO_CARD} lg:col-span-3 border-l-4 border-l-cyan p-8 flex flex-col h-full`}
-              >
-                <Package className="w-9 h-9 text-cyan mb-6" />
-                <h3 className="font-display text-xl font-bold text-foreground mb-4">
-                  {cardText("distribution", "title")}
-                </h3>
-                <p className="text-muted-foreground mb-6 text-sm">
-                  {cardText("distribution", "cardDesc")}
-                </p>
-                <div className="flex -space-x-3 mb-6">
-                  <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">DELL</div>
-                  <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">HP</div>
-                  <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">CISCO</div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setActiveId("distribution")}
-                  className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
-                >
-                  {t("servicesPage.cardCta")} <ArrowRight className="w-4 h-4" />
-                </button>
-              </motion.div>
+            {/* 6. Matériel professionnel */}
+<motion.div
+  id="distribution"
+  initial={{ opacity: 0, y: 24 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: 0.25 }}
+  className={`${BENTO_CARD} lg:col-span-3 border-l-4 border-l-cyan p-8 flex flex-col h-full`}
+>
+  {/* Image */}
+  <div className="relative h-52 rounded-xl overflow-hidden mb-6">
+    <img
+      src="https://images.pexels.com/photos/325229/pexels-photo-325229.jpeg?auto=compress&cs=tinysrgb&w=1200"
+      alt={cardText("distribution", "title")}
+      className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
+    />
+
+    {/* Shadow */}
+    <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+  </div>
+
+  <Package className="w-9 h-9 text-cyan mb-6" />
+
+  <h3 className="font-display text-xl font-bold text-foreground mb-4">
+    {cardText("distribution", "title")}
+  </h3>
+
+  <p className="text-muted-foreground mb-6 text-sm">
+    {cardText("distribution", "cardDesc")}
+  </p>
+
+  <div className="flex -space-x-3 mb-6">
+    <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">
+      DELL
+    </div>
+    <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">
+      HP
+    </div>
+    <div className="w-10 h-10 rounded-full border-2 border-white dark:border-background bg-zinc-800 flex items-center justify-center text-[9px] font-bold text-white">
+      CISCO
+    </div>
+  </div>
+
+  <button
+    type="button"
+    onClick={() => setActiveId("distribution")}
+    className="inline-flex items-center gap-2 text-cyan text-sm font-semibold hover:gap-4 transition-all mt-auto w-fit"
+  >
+    {t("servicesPage.cardCta")}
+    <ArrowRight className="w-4 h-4" />
+  </button>
+</motion.div>
             </div>
           </div>
         </section>
