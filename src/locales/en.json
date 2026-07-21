@@ -507,5 +507,107 @@
     },
     "cardCta": "Learn more",
     "customDevBadge": "Custom Dev"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About Us",
+      "subtitle": "Discover DigitalPro Systems IT, our vision and our commitment to technological excellence in Casablanca."
+    },
+    "vision": {
+      "title": "Our Vision",
+      "text": "To become Morocco's benchmark technology partner, offering innovative and secure solutions that help SMEs, large companies and public administrations thrive in the digital era. We believe in a future where every Moroccan organization can benefit from world-class, secure and high-performing IT infrastructure."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text": "Support Moroccan companies and administrations in their digital transformation by providing integrated technology solutions: electronic security, cybersecurity, networking, software development and ERP/CRM. Based in Casablanca, the DigitalPro Systems IT team is committed to guaranteeing the security, performance and longevity of your information systems."
+    },
+    "values": {
+      "title": "Our Values",
+      "subtitle": "The principles that guide everything we do.",
+      "items": {
+        "excellence": { "title": "Excellence", "desc": "We strive for excellence in every project, with high quality standards." },
+        "proximite": { "title": "Closeness", "desc": "Personalized support and close attention to your needs." },
+        "innovation": { "title": "Innovation", "desc": "We integrate the latest technologies for high-performing solutions." },
+        "engagement": { "title": "Commitment", "desc": "A strong commitment to customer satisfaction and meeting deadlines." }
+      }
+    }
+  },
+  "blogPage": {
+    "hero": { "title": "Tech Blog", "subtitle": "News, tips and trends from the IT and cybersecurity world." },
+    "readTimeSuffix": "min read",
+    "articles": {
+      "cybersecurite-pme-maroc": {
+        "title": "Cybersecurity: 10 best practices for Moroccan SMEs",
+        "excerpt": "Discover the essential measures to protect your business against growing cyber threats in Morocco.",
+        "category": "Cybersecurity",
+        "date": "Feb 15, 2026"
+      },
+      "transformation-digitale-2026": {
+        "title": "Digital transformation: key trends for 2026",
+        "excerpt": "The technologies that will shape the digitalization of Moroccan businesses this year.",
+        "category": "Digital Transformation",
+        "date": "Feb 10, 2026"
+      },
+      "erp-cloud-avantages": {
+        "title": "Cloud ERP: why move your management to the cloud?",
+        "excerpt": "The concrete benefits of a cloud-hosted ERP solution for your business.",
+        "category": "ERP/CRM",
+        "date": "Feb 5, 2026"
+      },
+      "infrastructure-reseau-securise": {
+        "title": "How to design a secure network infrastructure?",
+        "excerpt": "A complete guide to building a high-performing, protected corporate network.",
+        "category": "Networks",
+        "date": "Jan 28, 2026"
+      },
+      "ia-innovation-it": {
+        "title": "Artificial intelligence powering enterprise IT",
+        "excerpt": "How AI is revolutionizing infrastructure management and predictive maintenance.",
+        "category": "Innovation",
+        "date": "Jan 20, 2026"
+      },
+      "videosurveillance-ip": {
+        "title": "IP video surveillance: a buying guide for businesses",
+        "excerpt": "Selection criteria, technologies and best practices for your video surveillance system.",
+        "category": "Security",
+        "date": "Jan 12, 2026"
+      }
+    }
+  },
+  "contactPage": {
+    "hero": { "title": "Contact Us", "subtitle": "Let's talk about your project. Our team is ready to listen." },
+    "info": {
+      "title": "Our Contact Details",
+      "labels": { "address": "Address", "phone": "Phone", "email": "Email", "hours": "Business Hours" },
+      "hoursValue": "Mon-Fri: 8:30 AM - 5:30 PM"
+    },
+    "form": {
+      "nameLabel": "Full Name *",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "your@email.com",
+      "phoneLabel": "Phone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "subjectLabel": "Subject *",
+      "subjectPlaceholder": "Subject of your message",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Describe your needs...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "errors": {
+        "nameRequired": "Name is required",
+        "emailInvalid": "Invalid email",
+        "subjectRequired": "Subject is required",
+        "messageRequired": "Message is required"
+      },
+      "toastSuccessTitle": "Message sent!",
+      "toastSuccessDesc": "We will get back to you as soon as possible.",
+      "toastErrorTitle": "Sending error",
+      "toastErrorDesc": "An error occurred. Please try again or contact us by phone."
+    },
+    "map": {
+      "caption": "82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3rd floor N°13, Palmier, Casablanca",
+      "iframeTitle": "DigitalPro Systems IT - Casablanca Location"
+    }
   }
 }

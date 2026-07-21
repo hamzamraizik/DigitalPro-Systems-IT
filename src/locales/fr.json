@@ -512,5 +512,107 @@
     },
     "cardCta": "En savoir plus",
     "customDevBadge": "Custom Dev"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "À propos",
+      "subtitle": "Découvrez DigitalPro Systems IT, notre vision et notre engagement envers l'excellence technologique à Casablanca."
+    },
+    "vision": {
+      "title": "Notre Vision",
+      "text": "Devenir le partenaire technologique de référence au Maroc, en offrant des solutions innovantes et sécurisées qui permettent aux PME, grandes entreprises et administrations publiques de prospérer dans l'ère digitale. Nous croyons en un avenir où chaque organisation marocaine peut bénéficier d'infrastructures IT de classe mondiale, sécurisées et performantes."
+    },
+    "mission": {
+      "title": "Notre Mission",
+      "text": "Accompagner les entreprises et administrations marocaines dans leur transformation digitale en leur fournissant des solutions technologiques intégrées : sécurité électronique, cybersécurité, réseaux, développement logiciel et ERP/CRM. Basée à Casablanca, l'équipe de DigitalPro Systems IT s'engage à garantir la sécurité, la performance et la pérennité de vos systèmes d'information."
+    },
+    "values": {
+      "title": "Nos Valeurs",
+      "subtitle": "Les principes qui guident chacune de nos actions.",
+      "items": {
+        "excellence": { "title": "Excellence", "desc": "Nous visons l'excellence dans chaque projet, avec des standards de qualité élevés." },
+        "proximite": { "title": "Proximité", "desc": "Un accompagnement personnalisé et une écoute attentive de vos besoins." },
+        "innovation": { "title": "Innovation", "desc": "Nous intégrons les dernières technologies pour des solutions performantes." },
+        "engagement": { "title": "Engagement", "desc": "Un engagement fort envers la satisfaction client et le respect des délais." }
+      }
+    }
+  },
+  "blogPage": {
+    "hero": { "title": "Blog Tech", "subtitle": "Actualités, conseils et tendances du monde IT et de la cybersécurité." },
+    "readTimeSuffix": "min",
+    "articles": {
+      "cybersecurite-pme-maroc": {
+        "title": "Cybersécurité : les 10 bonnes pratiques pour les PME marocaines",
+        "excerpt": "Découvrez les mesures essentielles pour protéger votre entreprise contre les cybermenaces croissantes au Maroc.",
+        "category": "Cybersécurité",
+        "date": "15 Fév 2026"
+      },
+      "transformation-digitale-2026": {
+        "title": "Transformation digitale : tendances clés pour 2026",
+        "excerpt": "Les technologies qui façonneront la digitalisation des entreprises marocaines cette année.",
+        "category": "Transformation Digitale",
+        "date": "10 Fév 2026"
+      },
+      "erp-cloud-avantages": {
+        "title": "ERP Cloud : pourquoi migrer votre gestion vers le cloud ?",
+        "excerpt": "Les avantages concrets d'une solution ERP hébergée dans le cloud pour votre entreprise.",
+        "category": "ERP/CRM",
+        "date": "5 Fév 2026"
+      },
+      "infrastructure-reseau-securise": {
+        "title": "Comment concevoir une infrastructure réseau sécurisée ?",
+        "excerpt": "Guide complet pour mettre en place un réseau d'entreprise performant et protégé.",
+        "category": "Réseaux",
+        "date": "28 Jan 2026"
+      },
+      "ia-innovation-it": {
+        "title": "L'intelligence artificielle au service de l'IT d'entreprise",
+        "excerpt": "Comment l'IA révolutionne la gestion des infrastructures et la maintenance prédictive.",
+        "category": "Innovation",
+        "date": "20 Jan 2026"
+      },
+      "videosurveillance-ip": {
+        "title": "Vidéosurveillance IP : guide d'achat pour entreprises",
+        "excerpt": "Critères de choix, technologies et bonnes pratiques pour votre système de vidéosurveillance.",
+        "category": "Sécurité",
+        "date": "12 Jan 2026"
+      }
+    }
+  },
+  "contactPage": {
+    "hero": { "title": "Contactez-nous", "subtitle": "Discutons de votre projet. Notre équipe est à votre écoute." },
+    "info": {
+      "title": "Nos coordonnées",
+      "labels": { "address": "Adresse", "phone": "Téléphone", "email": "Email", "hours": "Horaires" },
+      "hoursValue": "Lun-Ven : 8h30 - 17h30"
+    },
+    "form": {
+      "nameLabel": "Nom complet *",
+      "namePlaceholder": "Votre nom",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "votre@email.com",
+      "phoneLabel": "Téléphone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "subjectLabel": "Sujet *",
+      "subjectPlaceholder": "Objet de votre message",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Décrivez votre besoin...",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
+      "errors": {
+        "nameRequired": "Le nom est requis",
+        "emailInvalid": "Email invalide",
+        "subjectRequired": "Le sujet est requis",
+        "messageRequired": "Le message est requis"
+      },
+      "toastSuccessTitle": "Message envoyé !",
+      "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
+      "toastErrorTitle": "Erreur d'envoi",
+      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
+    },
+    "map": {
+      "caption": "82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3ème étage N°13, Palmier, Casablanca",
+      "iframeTitle": "DigitalPro Systems IT - Localisation Casablanca"
+    }
   }
 }
