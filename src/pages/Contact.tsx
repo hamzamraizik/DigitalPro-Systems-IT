@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ParallaxSection } from "@/components/ParallaxSection";
-import { motion } from "framer-motion";
+import { NetworkBackground } from "@/components/NetworkBackground";import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -103,29 +102,26 @@ const ContactPage = () => {
           </div>
         </section>
 
-        <ParallaxSection
-          imageUrl="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1920&q=80"
-          overlayClass="bg-background/96"
-          className="py-16 lg:py-24"
-          speed={8}
-        >
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-10">
-              {/* Info */}
-<motion.div
+<section className="relative overflow-hidden bg-background py-16 lg:py-24">
+          <NetworkBackground />
+          <div className="container relative z-10 mx-auto px-4 lg:px-8">            <div className="grid lg:grid-cols-3 gap-10">
+{/* Info */}
+              <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="bg-card rounded-xl border border-border p-8 shadow-card h-fit" >               
-<h2 className="font-display text-2xl font-bold text-foreground mb-6">{t("contactPage.info.title")}</h2>                <div className="space-y-5">
-                {contactInfo.map((info) => (
+                className="h-fit"
+              >
+                <h2 className="font-display text-2xl font-bold text-foreground mb-6">{t("contactPage.info.title")}</h2>
+                <div className="space-y-6">
+                  {contactInfo.map((info) => (
                     <div key={info.label} className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-11 h-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
                         <info.icon className="w-5 h-5 text-accent" />
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-foreground">{info.label}</div>
-                       {info.label === t("contactPage.info.labels.email") ? (
+                        <div className="text-sm font-semibold text-foreground">{info.label}</div>
+                        {info.label === t("contactPage.info.labels.email") ? (
                           <a href={`mailto:${info.value}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
                         ) : info.label === t("contactPage.info.labels.phone") ? (
                           <a href={`tel:+212663463189`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
@@ -137,50 +133,81 @@ const ContactPage = () => {
                   ))}
                 </div>
               </motion.div>
-
-              {/* Form */}
+{/* Form */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 className="lg:col-span-2">
-                <form onSubmit={handleSubmit} className="bg-card rounded-xl border border-border p-8 shadow-card space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="rounded-xl p-8 space-y-5 shadow-card"
+                  style={{ background: "var(--gradient-hero)" }}
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-<label className="text-sm font-medium text-foreground mb-1.5 block">{t("contactPage.form.nameLabel")}</label>
-                      <Input name="name" placeholder={t("contactPage.form.namePlaceholder")} />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.nameLabel")}</label>
+                      <Input
+                        name="name"
+                        placeholder={t("contactPage.form.namePlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                       {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contactPage.form.emailLabel")}</label>
-                      <Input name="email" type="email" placeholder={t("contactPage.form.emailPlaceholder")} />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.emailLabel")}</label>
+                      <Input
+                        name="email"
+                        type="email"
+                        placeholder={t("contactPage.form.emailPlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                       {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contactPage.form.phoneLabel")}</label>
-                      <Input name="phone" placeholder={t("contactPage.form.phonePlaceholder")} />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.phoneLabel")}</label>
+                      <Input
+                        name="phone"
+                        placeholder={t("contactPage.form.phonePlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contactPage.form.subjectLabel")}</label>
-                      <Input name="subject" placeholder={t("contactPage.form.subjectPlaceholder")} />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.subjectLabel")}</label>
+                      <Input
+                        name="subject"
+                        placeholder={t("contactPage.form.subjectPlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                       {errors.subject && <p className="text-destructive text-xs mt-1">{errors.subject}</p>}
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contactPage.form.messageLabel")}</label>
-                    <Textarea name="message" placeholder={t("contactPage.form.messagePlaceholder")} rows={5} />                    {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
+                    <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.messageLabel")}</label>
+                    <Textarea
+                      name="message"
+                      placeholder={t("contactPage.form.messagePlaceholder")}
+                      rows={5}
+                      className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                    />
+                    {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
                   </div>
-                  <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={loading}>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full sm:w-auto bg-cyan hover:bg-cyan-light text-primary-foreground"
+                    disabled={loading}
+                  >
                     {loading ? (
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     ) : (
                       <Send className="w-4 h-4 mr-2" />
                     )}
-{loading ? t("contactPage.form.submitting") : t("contactPage.form.submit")}                  </Button>
+                    {loading ? t("contactPage.form.submitting") : t("contactPage.form.submit")}
+                  </Button>
                 </form>
-              </motion.div>
-            </div>
-          </div>
-        </ParallaxSection>
+              </motion.div>            </div>
+       </div>
+        </section>
 
         {/* Google Maps */}
         <section className="bg-muted">
