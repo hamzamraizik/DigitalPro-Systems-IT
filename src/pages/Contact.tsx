@@ -1,37 +1,38 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { ParallaxSection } from "@/components/ParallaxSection";
-import { motion } from "framer-motion";
+import { NetworkBackground } from "@/components/NetworkBackground";import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string;
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Le nom est requis").max(100),
-  email: z.string().trim().email("Email invalide").max(255),
-  phone: z.string().trim().max(20).optional(),
-  subject: z.string().trim().min(1, "Le sujet est requis").max(200),
-  message: z.string().trim().min(1, "Le message est requis").max(2000),
-});
-
-const contactInfo = [
-{ icon: MapPin, label: "Adresse", value: "Etage 3 N°13, Rés Shéhérazade 1, 82 Angle rue Soumaya et Bd Abdelmoumen, Casablanca 20340" },
-  { icon: Phone, label: "Téléphone", value: "07 66 21 85 98" },
-  { icon: Mail, label: "Email", value: "contact@dps-it.ma" },
-  { icon: Clock, label: "Horaires", value: "Lun-Ven : 8h30 - 17h30" },
-];
-
 const ContactPage = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
 
+  // Recréé à chaque rendu pour que les messages suivent la langue active
+  const contactSchema = z.object({
+    name: z.string().trim().min(1, t("contactPage.form.errors.nameRequired")).max(100),
+    email: z.string().trim().email(t("contactPage.form.errors.emailInvalid")).max(255),
+    phone: z.string().trim().max(20).optional(),
+    subject: z.string().trim().min(1, t("contactPage.form.errors.subjectRequired")).max(200),
+    message: z.string().trim().min(1, t("contactPage.form.errors.messageRequired")).max(2000),
+  });
+
+  // Les valeurs brutes (adresse, téléphone, email) viennent de footer.* pour éviter la duplication
+  const contactInfo = [
+    { icon: MapPin, label: t("contactPage.info.labels.address"), value: t("footer.address") },
+    { icon: Phone, label: t("contactPage.info.labels.phone"), value: t("footer.phone") },
+    { icon: Mail, label: t("contactPage.info.labels.email"), value: t("footer.email") },
+    { icon: Clock, label: t("contactPage.info.labels.hours"), value: t("contactPage.info.hoursValue") },
+  ];
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -68,19 +69,19 @@ const ContactPage = () => {
       const json = await response.json();
 
       if (json.success) {
-        toast({
-          title: "Message envoyé !",
-          description: "Nous vous répondrons dans les plus brefs délais.",
+     toast({
+          title: t("contactPage.form.toastSuccessTitle"),
+          description: t("contactPage.form.toastSuccessDesc"),
         });
         (e.target as HTMLFormElement).reset();
       } else {
         throw new Error(json.message ?? "Erreur inconnue");
       }
     } catch (err) {
-      toast({
+   toast({
         variant: "destructive",
-        title: "Erreur d'envoi",
-        description: "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.",
+        title: t("contactPage.form.toastErrorTitle"),
+        description: t("contactPage.form.toastErrorDesc"),
       });
     } finally {
       setLoading(false);
@@ -94,34 +95,35 @@ const ContactPage = () => {
         <section className="bg-hero py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
-              <h1 className="font-display text-3xl lg:text-5xl font-bold text-primary-foreground mb-4">Contactez-nous</h1>
-              <p className="text-primary-foreground/70 text-lg">Discutons de votre projet. Notre équipe est à votre écoute.</p>
-            </motion.div>
+<h1 className="font-display text-3xl lg:text-5xl font-bold text-primary-foreground mb-4">
+                {t("contactPage.hero.title")}
+              </h1>
+              <p className="text-primary-foreground/70 text-lg">{t("contactPage.hero.subtitle")}</p>            </motion.div>
           </div>
         </section>
 
-        <ParallaxSection
-          imageUrl="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1920&q=80"
-          overlayClass="bg-background/96"
-          className="py-16 lg:py-24"
-          speed={8}
-        >
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-10">
-              {/* Info */}
-              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-                <h2 className="font-display text-2xl font-bold text-foreground mb-6">Nos coordonnées</h2>
-                <div className="space-y-5">
-                {contactInfo.map((info) => (
+<section className="relative overflow-hidden bg-background py-16 lg:py-24">
+          <NetworkBackground />
+          <div className="container relative z-10 mx-auto px-4 lg:px-8">            <div className="grid lg:grid-cols-3 gap-10">
+{/* Info */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="h-fit"
+              >
+                <h2 className="font-display text-2xl font-bold text-foreground mb-6">{t("contactPage.info.title")}</h2>
+                <div className="space-y-6">
+                  {contactInfo.map((info) => (
                     <div key={info.label} className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-11 h-11 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
                         <info.icon className="w-5 h-5 text-accent" />
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-foreground">{info.label}</div>
-                        {info.label === "Email" ? (
+                        <div className="text-sm font-semibold text-foreground">{info.label}</div>
+                        {info.label === t("contactPage.info.labels.email") ? (
                           <a href={`mailto:${info.value}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
-                        ) : info.label === "Téléphone" ? (
+                        ) : info.label === t("contactPage.info.labels.phone") ? (
                           <a href={`tel:+212663463189`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
                         ) : (
                           <div className="text-sm text-muted-foreground">{info.value}</div>
@@ -131,52 +133,81 @@ const ContactPage = () => {
                   ))}
                 </div>
               </motion.div>
-
-              {/* Form */}
+{/* Form */}
               <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                 className="lg:col-span-2">
-                <form onSubmit={handleSubmit} className="bg-card rounded-xl border border-border p-8 shadow-card space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="rounded-xl p-8 space-y-5 shadow-card"
+                  style={{ background: "var(--gradient-hero)" }}
+                >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Nom complet *</label>
-                      <Input name="name" placeholder="Votre nom" />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.nameLabel")}</label>
+                      <Input
+                        name="name"
+                        placeholder={t("contactPage.form.namePlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                       {errors.name && <p className="text-destructive text-xs mt-1">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Email *</label>
-                      <Input name="email" type="email" placeholder="votre@email.com" />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.emailLabel")}</label>
+                      <Input
+                        name="email"
+                        type="email"
+                        placeholder={t("contactPage.form.emailPlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                       {errors.email && <p className="text-destructive text-xs mt-1">{errors.email}</p>}
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Téléphone</label>
-                      <Input name="phone" placeholder="+212 6 00 00 00 00" />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.phoneLabel")}</label>
+                      <Input
+                        name="phone"
+                        placeholder={t("contactPage.form.phonePlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-foreground mb-1.5 block">Sujet *</label>
-                      <Input name="subject" placeholder="Objet de votre message" />
+                      <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.subjectLabel")}</label>
+                      <Input
+                        name="subject"
+                        placeholder={t("contactPage.form.subjectPlaceholder")}
+                        className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                      />
                       {errors.subject && <p className="text-destructive text-xs mt-1">{errors.subject}</p>}
                     </div>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Message *</label>
-                    <Textarea name="message" placeholder="Décrivez votre besoin..." rows={5} />
+                    <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("contactPage.form.messageLabel")}</label>
+                    <Textarea
+                      name="message"
+                      placeholder={t("contactPage.form.messagePlaceholder")}
+                      rows={5}
+                      className="bg-navy-dark/40 border-cyan/30 text-primary-foreground placeholder:text-primary-foreground/40 focus-visible:ring-cyan"
+                    />
                     {errors.message && <p className="text-destructive text-xs mt-1">{errors.message}</p>}
                   </div>
-                  <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={loading}>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full sm:w-auto bg-cyan hover:bg-cyan-light text-primary-foreground"
+                    disabled={loading}
+                  >
                     {loading ? (
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     ) : (
                       <Send className="w-4 h-4 mr-2" />
                     )}
-                    {loading ? "Envoi en cours..." : "Envoyer le message"}
+                    {loading ? t("contactPage.form.submitting") : t("contactPage.form.submit")}
                   </Button>
                 </form>
-              </motion.div>
-            </div>
-          </div>
-        </ParallaxSection>
+              </motion.div>            </div>
+       </div>
+        </section>
 
         {/* Google Maps */}
         <section className="bg-muted">
@@ -188,8 +219,7 @@ const ContactPage = () => {
               className="rounded-xl overflow-hidden border border-border shadow-card"
             >
               <iframe
-                title="DigitalPro Systems IT - Localisation Casablanca"
-                src="https://maps.google.com/maps?q=Rue+Soumaya+Boulevard+Abdelmoumen+Palmier+Casablanca+Maroc&output=embed&z=16"
+title={t("contactPage.map.iframeTitle")}                src="https://maps.google.com/maps?q=Rue+Soumaya+Boulevard+Abdelmoumen+Palmier+Casablanca+Maroc&output=embed&z=16"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
@@ -199,8 +229,7 @@ const ContactPage = () => {
               />
             </motion.div>
             <p className="text-xs text-muted-foreground text-center mt-3">
-              82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3ème étage N°13, Palmier, Casablanca
-            </p>
+{t("contactPage.map.caption")}            </p>
           </div>
         </section>
       </div>

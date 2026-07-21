@@ -3,15 +3,17 @@ import Footer from "@/components/Footer";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { motion } from "framer-motion";
 import { Target, Eye, Award, Users, Cpu, Globe } from "lucide-react";
-
-const values = [
-  { icon: Award, title: "Excellence", desc: "Nous visons l'excellence dans chaque projet, avec des standards de qualité élevés." },
-  { icon: Users, title: "Proximité", desc: "Un accompagnement personnalisé et une écoute attentive de vos besoins." },
-  { icon: Cpu, title: "Innovation", desc: "Nous intégrons les dernières technologies pour des solutions performantes." },
-  { icon: Globe, title: "Engagement", desc: "Un engagement fort envers la satisfaction client et le respect des délais." },
+import { useTranslation } from "react-i18next";
+const valueKeys = [
+  { key: "excellence", icon: Award },
+  { key: "proximite", icon: Users },
+  { key: "innovation", icon: Cpu },
+  { key: "engagement", icon: Globe },
 ];
 
 const AboutPage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen">
       <Navbar />
@@ -19,9 +21,10 @@ const AboutPage = () => {
         <section className="bg-hero py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-2xl">
-              <h1 className="font-display text-3xl lg:text-5xl font-bold text-primary-foreground mb-4">À propos</h1>
-              <p className="text-primary-foreground/70 text-lg">Découvrez DigitalPro Systems IT, notre vision et notre engagement envers l'excellence technologique à Casablanca.</p>
-            </motion.div>
+<h1 className="font-display text-3xl lg:text-5xl font-bold text-primary-foreground mb-4">
+                {t("aboutPage.hero.title")}
+              </h1>
+              <p className="text-primary-foreground/70 text-lg">{t("aboutPage.hero.subtitle")}</p>            </motion.div>
           </div>
         </section>
 
@@ -39,12 +42,9 @@ const AboutPage = () => {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
                   <Eye className="w-6 h-6 text-accent" />
                 </div>
-                <h2 className="font-display text-2xl font-bold text-foreground mb-4">Notre Vision</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t("aboutPage.vision.title")}</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Devenir le partenaire technologique de référence au Maroc, en offrant des solutions innovantes
-                  et sécurisées qui permettent aux PME, grandes entreprises et administrations publiques de prospérer
-                  dans l'ère digitale. Nous croyons en un avenir où chaque organisation marocaine peut bénéficier
-                  d'infrastructures IT de classe mondiale, sécurisées et performantes.
+                  {t("aboutPage.vision.text")}
                 </p>
               </motion.div>
 
@@ -53,12 +53,9 @@ const AboutPage = () => {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-5">
                   <Target className="w-6 h-6 text-accent" />
                 </div>
-                <h2 className="font-display text-2xl font-bold text-foreground mb-4">Notre Mission</h2>
+               <h2 className="font-display text-2xl font-bold text-foreground mb-4">{t("aboutPage.mission.title")}</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Accompagner les entreprises et administrations marocaines dans leur transformation digitale en leur fournissant
-                  des solutions technologiques intégrées : sécurité électronique, cybersécurité, réseaux, développement logiciel
-                  et ERP/CRM. Basée à Casablanca, l'équipe de DigitalPro Systems IT s'engage à garantir la sécurité,
-                  la performance et la pérennité de vos systèmes d'information.
+                  {t("aboutPage.mission.text")}
                 </p>
               </motion.div>
             </div>
@@ -75,13 +72,11 @@ const AboutPage = () => {
           <div className="container mx-auto px-4 lg:px-8">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               className="text-center mb-12">
-              <h2 className="font-display text-3xl font-bold text-primary-foreground mb-4">Nos Valeurs</h2>
-              <p className="text-primary-foreground/70 max-w-xl mx-auto">Les principes qui guident chacune de nos actions.</p>
-            </motion.div>
+<h2 className="font-display text-3xl font-bold text-primary-foreground mb-4">{t("aboutPage.values.title")}</h2>
+              <p className="text-primary-foreground/70 max-w-xl mx-auto">{t("aboutPage.values.subtitle")}</p>            </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {values.map((v, i) => (
-                <motion.div key={v.title}
-                  initial={{ opacity: 0, y: 20 }}
+{valueKeys.map((v, i) => (
+                <motion.div key={v.key}                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
@@ -90,9 +85,12 @@ const AboutPage = () => {
                   <div className="w-12 h-12 rounded-lg bg-accent/20 flex items-center justify-center mx-auto mb-4">
                     <v.icon className="w-6 h-6 text-accent" />
                   </div>
-                  <h3 className="font-display font-semibold text-primary-foreground mb-2">{v.title}</h3>
-                  <p className="text-primary-foreground/60 text-sm">{v.desc}</p>
-                </motion.div>
+<h3 className="font-display font-semibold text-primary-foreground mb-2">
+                    {t(`aboutPage.values.items.${v.key}.title`)}
+                  </h3>
+                  <p className="text-primary-foreground/60 text-sm">
+                    {t(`aboutPage.values.items.${v.key}.desc`)}
+                  </p>                </motion.div>
               ))}
             </div>
           </div>
