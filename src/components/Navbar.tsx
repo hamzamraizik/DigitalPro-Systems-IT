@@ -66,8 +66,7 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        "fixed z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-        "inset-x-0 top-0 md:top-6 md:left-1/2 md:w-[92%] md:max-w-5xl md:-translate-x-1/2 md:rounded-full md:border",
+        "fixed z-50 transition-all duration-500 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",        "inset-x-0 top-0 md:top-6 md:left-1/2 md:w-[92%] md:max-w-5xl md:-translate-x-1/2 md:rounded-full md:border",
         scrolled
           ? "border-b border-black/5 dark:border-white/10 md:border-black/5 dark:md:border-white/10 bg-white/85 dark:bg-[#0A0A0A]/85 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.4)]"
           : "border-b border-transparent md:border-black/5 dark:md:border-white/5 bg-transparent md:bg-white/60 dark:md:bg-white/[0.03] backdrop-blur-xl"
