@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Users, 
   Briefcase, 
@@ -57,6 +58,24 @@ const AboutPage = () => {
     { name: t('about.team.members.3.name'), role: t('about.team.members.3.role'), image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" },
     { name: t('about.team.members.4.name'), role: t('about.team.members.4.role'), image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
   ];
+
+  // --- Carousel state (projects) : rotation circulaire, 3 visibles en permanence ---
+  const [offset, setOffset] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      setOffset((prev) => (prev + 1) % projects.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isPaused, projects.length]);
+
+  const next = () => setOffset((prev) => (prev + 1) % projects.length);
+  const prev = () => setOffset((p) => (p - 1 + projects.length) % projects.length);
+
+  // Ordre affiché : les 3 projets réarrangés selon l'offset (circulaire)
+  const displayedProjects = projects.map((_, i) => projects[(i + offset) % projects.length]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -159,7 +178,7 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* Our Work */}
+        {/* Our Work — 3 projets visibles, rotation circulaire */}
         <section className="bg-navy-dark py-24 text-white">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="text-center mb-16">
@@ -172,38 +191,66 @@ const AboutPage = () => {
               </p>
             </div>
 
-            <div className="relative mb-12">
+            <div
+              className="relative mb-12"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
               <div className="grid md:grid-cols-3 gap-8">
-                {projects.map((project, i) => (
-                  <motion.div 
-                    key={project.title}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="bg-navy rounded-xl border border-white/10 overflow-hidden group"
-                  >
-                    <div className="h-48 overflow-hidden">
-                      <img 
-                        src={project.image} 
-                        alt={project.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="font-display text-xl font-bold mb-3">{project.title}</h3>
-                      <p className="text-gray-400 text-sm leading-relaxed">{project.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
+                <AnimatePresence mode="popLayout">
+                  {displayedProjects.map((project) => (
+                    <motion.div 
+                      key={project.title}
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="bg-navy rounded-xl border border-white/10 overflow-hidden group"
+                    >
+                      <div className="h-48 overflow-hidden">
+                        <img 
+                          src={project.image} 
+                          alt={project.title} 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      <div className="p-6">
+                        <h3 className="font-display text-xl font-bold mb-3">{project.title}</h3>
+                        <p className="text-gray-400 text-sm leading-relaxed">{project.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
               
-              <button className="hidden lg:flex absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10">
+              <button
+                onClick={prev}
+                aria-label="Précédent"
+                className="hidden lg:flex absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10"
+              >
                 <ChevronLeft className="w-6 h-6 text-white" />
               </button>
-              <button className="hidden lg:flex absolute top-1/2 -right-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10">
+              <button
+                onClick={next}
+                aria-label="Suivant"
+                className="hidden lg:flex absolute top-1/2 -right-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10"
+              >
                 <ChevronRight className="w-6 h-6 text-white" />
               </button>
+
+              <div className="flex justify-center gap-2 mt-8">
+                {projects.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setOffset(i)}
+                    aria-label={`Aller à la position ${i + 1}`}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      offset === i ? "w-8 bg-accent" : "w-2 bg-white/20"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
 
             <div className="text-center">
