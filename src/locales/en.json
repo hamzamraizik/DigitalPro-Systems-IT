@@ -510,30 +510,112 @@
   },
   "aboutPage": {
     "hero": {
-      "title": "About Us",
-      "subtitle": "Discover DigitalPro Systems IT, our vision and our commitment to technological excellence in Casablanca."
+      "eyebrow": "About Us",
+      "title": "Building technology. Empowering businesses.",
+      "text1": "At DigitalPro Systems IT, we turn ideas into powerful technology solutions. Our mission is to drive innovation, solve complex challenges, and deliver measurable results for businesses.",
+      "text2": "With a passionate team and a customer-first mindset, we build solutions that help you scale, succeed, and lead the way.",
+      "imageAlt": "DigitalPro Systems IT team working in a technology operations center"
     },
-    "vision": {
-      "title": "Our Vision",
-      "text": "To become Morocco's benchmark technology partner, offering innovative and secure solutions that help SMEs, large companies and public administrations thrive in the digital era. We believe in a future where every Moroccan organization can benefit from world-class, secure and high-performing IT infrastructure."
+    "partner": {
+      "eyebrow": "Partner",
+      "title": "A trusted technology partner focused on your success.",
+      "text": "At DigitalPro Systems IT, we deliver smart solutions that drive innovation, improve efficiency, and empower growth with confidence.",
+      "stats": {
+        "projects": {
+          "value": "20+",
+          "label": "Successful Projects"
+        },
+        "clients": {
+          "value": "50+",
+          "label": "Clients Served"
+        },
+        "satisfaction": {
+          "value": "98%",
+          "label": "Client Satisfaction"
+        }
+      }
     },
-    "mission": {
-      "title": "Our Mission",
-      "text": "Support Moroccan companies and administrations in their digital transformation by providing integrated technology solutions: electronic security, cybersecurity, networking, software development and ERP/CRM. Based in Casablanca, the DigitalPro Systems IT team is committed to guaranteeing the security, performance and longevity of your information systems."
-    },
-    "values": {
-      "title": "Our Values",
-      "subtitle": "The principles that guide everything we do.",
+    "whatWeDo": {
+      "eyebrow": "What We Do",
+      "title": "Technology that works for you.",
+      "subtitle": "We deliver smart, reliable, and future-ready IT solutions for every business.",
       "items": {
-        "excellence": { "title": "Excellence", "desc": "We strive for excellence in every project, with high quality standards." },
-        "proximite": { "title": "Closeness", "desc": "Personalized support and close attention to your needs." },
-        "innovation": { "title": "Innovation", "desc": "We integrate the latest technologies for high-performing solutions." },
-        "engagement": { "title": "Commitment", "desc": "A strong commitment to customer satisfaction and meeting deadlines." }
+        "managedIt": {
+          "title": "Managed IT Services",
+          "desc": "Ensure smooth and secure operations with proactive support and expertise."
+        },
+        "softwareDev": {
+          "title": "Software Development",
+          "desc": "Custom software solutions built to streamline and transform your business processes."
+        },
+        "businessSolutions": {
+          "title": "Business Solutions",
+          "desc": "Innovative tools and integrations designed to solve your challenges and drive real impact."
+        },
+        "cloudSupport": {
+          "title": "Cloud & IT Support",
+          "desc": "From migration to ongoing management, we keep your IT running anywhere, anytime."
+        }
+      }
+    },
+    "projects": {
+      "eyebrow": "Our Work",
+      "title": "Recent Projects",
+      "subtitle": "Explore a selection of our successful solutions.",
+      "items": {
+        "techflow": {
+          "title": "TechFlow Portal",
+          "desc": "Streamlined IT service management portal for four enterprises and teams."
+        },
+        "smartcity": {
+          "title": "SmartCity IoT",
+          "desc": "IoT platform for smart infrastructure monitoring and analytics."
+        },
+        "healthcare": {
+          "title": "HealthCare Plus",
+          "desc": "Secure healthcare app for appointments and patient management."
+        }
+      },
+      "seeAllBtn": "See all projects"
+    },
+    "cta": {
+      "title": "Let's make your project the Next One",
+      "subtitle": "Let's turn your ideas into powerful digital solutions together.",
+      "btn": "Let's Talk"
+    },
+    "team": {
+      "eyebrow": "Our Team",
+      "title": "Meet Our Team",
+      "subtitle": "The minds behind our IT solutions.",
+      "members": {
+        "johnD": {
+          "name": "John D.",
+          "role": "CEO"
+        },
+        "tinaK": {
+          "name": "Tina K.",
+          "role": "CTO"
+        },
+        "michaelR": {
+          "name": "Michael R.",
+          "role": "Lead Developer"
+        },
+        "saraL": {
+          "name": "Sara L.",
+          "role": "Project Manager"
+        },
+        "chrisM": {
+          "name": "Chris M.",
+          "role": "UX Designer"
+        }
       }
     }
   },
   "blogPage": {
-    "hero": { "title": "Tech Blog", "subtitle": "News, tips and trends from the IT and cybersecurity world." },
+    "hero": {
+      "title": "Tech Blog",
+      "subtitle": "News, tips and trends from the IT and cybersecurity world."
+    },
     "readTimeSuffix": "min read",
     "articles": {
       "cybersecurite-pme-maroc": {
@@ -575,10 +657,18 @@
     }
   },
   "contactPage": {
-    "hero": { "title": "Contact Us", "subtitle": "Let's talk about your project. Our team is ready to listen." },
+    "hero": {
+      "title": "Contact Us",
+      "subtitle": "Let's talk about your project. Our team is ready to listen."
+    },
     "info": {
       "title": "Our Contact Details",
-      "labels": { "address": "Address", "phone": "Phone", "email": "Email", "hours": "Business Hours" },
+      "labels": {
+        "address": "Address",
+        "phone": "Phone",
+        "email": "Email",
+        "hours": "Business Hours"
+      },
       "hoursValue": "Mon-Fri: 8:30 AM - 5:30 PM"
     },
     "form": {
@@ -608,6 +698,108 @@
     "map": {
       "caption": "82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3rd floor N°13, Palmier, Casablanca",
       "iframeTitle": "DigitalPro Systems IT - Casablanca Location"
+    }
+  },
+  "about": {
+    "hero": {
+      "badge": "About us",
+      "title": "Building technology.<br />Empowering businesses.",
+      "desc1": "At DigitalPro Systems IT, we turn ideas into powerful technology solutions. Our mission is to drive innovation, solve complex IT challenges, and deliver measurable results for businesses.",
+      "desc2": "With a passionate team and a customer-first mindset, we build solutions that help you scale, succeed, and lead the way."
+    },
+    "partner": {
+      "badge": "Partner",
+      "title": "A trusted technology partner focused on your success.",
+      "desc": "At DigitalPro Systems IT, we deliver smart solutions that drive innovation, proactive efficiency, and empower growth with confidence.",
+      "stats": [
+        {
+          "value": "20+",
+          "label": "Successful Projects"
+        },
+        {
+          "value": "50+",
+          "label": "Clients Served"
+        },
+        {
+          "value": "98%",
+          "label": "Client Satisfaction"
+        }
+      ]
+    },
+    "whatWeDo": {
+      "badge": "What we do",
+      "title": "Technology that works for you.",
+      "desc": "We deliver smart, reliable, and future-ready IT solutions for every business.",
+      "services": [
+        {
+          "title": "Managed IT Services",
+          "desc": "Ensure smooth and secure operations with proactive support and expertise."
+        },
+        {
+          "title": "Software Development",
+          "desc": "Custom software solutions built to streamline and transform your business processes."
+        },
+        {
+          "title": "Business Solutions",
+          "desc": "Innovative tools and integrations designed to solve your challenges and drive real impact."
+        },
+        {
+          "title": "Cloud & IT Support",
+          "desc": "From migration to ongoing management, we keep your IT anywhere, anytime."
+        }
+      ]
+    },
+    "ourWork": {
+      "badge": "Our work",
+      "title": "Recent Projects",
+      "desc": "Explore a selection of our successful solutions.",
+      "projects": [
+        {
+          "title": "TechFlow Portal",
+          "desc": "Streamlined IT service management portal for enterprises and teams."
+        },
+        {
+          "title": "SmartCity IoT",
+          "desc": "IoT platform for smart infrastructure monitoring and analytics."
+        },
+        {
+          "title": "HealthCare Plus",
+          "desc": "Secure healthcare app for appointments and patient management."
+        }
+      ],
+      "seeAll": "See all projects"
+    },
+    "cta": {
+      "title": "Let's make your project the Next One",
+      "desc": "Let's turn your ideas into powerful digital solutions together.",
+      "button": "Let's Talk"
+    },
+    "team": {
+      "badge": "Our team",
+      "title": "Meet Our Team",
+      "desc": "The minds behind our IT solutions.",
+      "members": [
+        {
+          "name": "John D.",
+          "role": "CEO"
+        },
+        {
+          "name": "Tina K.",
+          "role": "CTO"
+        },
+        {
+          "name": "Michael R.",
+          "role": "Lead Developer"
+        },
+        {
+          "name": "Sara L.",
+          "role": "Project Manager"
+        },
+        {
+          "name": "Chris M.",
+          "role": "UX Designer"
+        }
+      ]
     }
   }
 }

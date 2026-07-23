@@ -229,7 +229,7 @@
     "servicesTitle": "Services",
     "companyTitle": "L'entreprise",
     "contactTitle": "Contact",
-   "address": "Etage 3 N°13, Rés Shéhérazade 1, 82 Angle rue Soumaya et Bd Abdelmoumen, Casablanca 20340",
+    "address": "Etage 3 N°13, Rés Shéhérazade 1, 82 Angle rue Soumaya et Bd Abdelmoumen, Casablanca 20340",
     "phone": "07 66 21 85 98",
     "email": "contact@dps-it.ma",
     "rights": "Tous droits réservés."
@@ -267,6 +267,13 @@
       "title": "Prêt à digitaliser et sécuriser votre entreprise ?",
       "btnQuote": "Demander un devis",
       "btnContact": "Nous contacter"
+    },
+    "cardCta": "En savoir plus",
+    "customDevBadge": "Sur mesure",
+    "modal": {
+      "expertiseLabel": "Notre expertise",
+      "requestQuote": "Demander un devis",
+      "close": "Fermer"
     },
     "whyUs": {
       "title": "Pourquoi nous choisir",
@@ -504,41 +511,159 @@
           }
         }
       }
-    },
-    "modal": {
-      "expertiseLabel": "Notre Expertise",
-      "requestQuote": "Demander un devis",
-      "close": "Fermer"
-    },
-    "cardCta": "En savoir plus",
-    "customDevBadge": "Custom Dev"
+    }
   },
-  "aboutPage": {
+  "about": {
     "hero": {
-      "title": "À propos",
-      "subtitle": "Découvrez DigitalPro Systems IT, notre vision et notre engagement envers l'excellence technologique à Casablanca."
+      "badge": "À propos",
+      "title": "Innover par la technologie.<br />Propulser les entreprises.",
+      "desc1": "Chez DigitalPro Systems IT, nous transformons vos idées en solutions technologiques puissantes. Notre mission est de stimuler l'innovation, de résoudre des défis IT complexes et d'offrir des résultats mesurables pour les entreprises.",
+      "desc2": "Avec une équipe passionnée et une approche orientée client, nous concevons des solutions qui vous aident à évoluer, réussir et ouvrir la voie."
     },
-    "vision": {
-      "title": "Notre Vision",
-      "text": "Devenir le partenaire technologique de référence au Maroc, en offrant des solutions innovantes et sécurisées qui permettent aux PME, grandes entreprises et administrations publiques de prospérer dans l'ère digitale. Nous croyons en un avenir où chaque organisation marocaine peut bénéficier d'infrastructures IT de classe mondiale, sécurisées et performantes."
+    "partner": {
+      "badge": "Partenaire",
+      "title": "Un partenaire technologique de confiance axé sur votre réussite.",
+      "desc": "Chez DigitalPro Systems IT, nous fournissons des solutions intelligentes qui stimulent l'innovation, offrent une efficacité proactive et favorisent la croissance en toute confiance.",
+      "stats": [
+        {
+          "value": "20+",
+          "label": "Projets Réussis"
+        },
+        {
+          "value": "50+",
+          "label": "Clients Accompagnés"
+        },
+        {
+          "value": "98%",
+          "label": "Satisfaction Client"
+        }
+      ]
     },
-    "mission": {
-      "title": "Notre Mission",
-      "text": "Accompagner les entreprises et administrations marocaines dans leur transformation digitale en leur fournissant des solutions technologiques intégrées : sécurité électronique, cybersécurité, réseaux, développement logiciel et ERP/CRM. Basée à Casablanca, l'équipe de DigitalPro Systems IT s'engage à garantir la sécurité, la performance et la pérennité de vos systèmes d'information."
+    "whatWeDo": {
+      "badge": "Ce que nous faisons",
+      "title": "Une technologie qui travaille pour vous.",
+      "desc": "Nous fournissons des solutions IT intelligentes, fiables et pérennes pour chaque entreprise.",
+      "services": [
+        {
+          "title": "Services IT Gérés",
+          "desc": "Assurez des opérations fluides et sécurisées avec un support proactif et une expertise pointue."
+        },
+        {
+          "title": "Développement Logiciel",
+          "desc": "Des solutions logicielles sur mesure conçues pour optimiser et transformer vos processus métiers."
+        },
+        {
+          "title": "Solutions d'Entreprise",
+          "desc": "Des outils et intégrations innovants conçus pour relever vos défis et avoir un impact réel."
+        },
+        {
+          "title": "Cloud & Support IT",
+          "desc": "De la migration à la gestion continue, nous maintenons votre informatique opérationnelle, partout et à tout moment."
+        }
+      ]
     },
-    "values": {
-      "title": "Nos Valeurs",
-      "subtitle": "Les principes qui guident chacune de nos actions.",
-      "items": {
-        "excellence": { "title": "Excellence", "desc": "Nous visons l'excellence dans chaque projet, avec des standards de qualité élevés." },
-        "proximite": { "title": "Proximité", "desc": "Un accompagnement personnalisé et une écoute attentive de vos besoins." },
-        "innovation": { "title": "Innovation", "desc": "Nous intégrons les dernières technologies pour des solutions performantes." },
-        "engagement": { "title": "Engagement", "desc": "Un engagement fort envers la satisfaction client et le respect des délais." }
-      }
+    "ourWork": {
+      "badge": "Notre travail",
+      "title": "Projets Récents",
+      "desc": "Découvrez une sélection de nos solutions réussies.",
+      "projects": [
+        {
+          "title": "Portail TechFlow",
+          "desc": "Portail de gestion des services IT rationalisé pour les entreprises et les équipes."
+        },
+        {
+          "title": "IoT SmartCity",
+          "desc": "Plateforme IoT pour la surveillance et l'analyse intelligente des infrastructures."
+        },
+        {
+          "title": "Santé Plus",
+          "desc": "Application de santé sécurisée pour la gestion des rendez-vous et des patients."
+        }
+      ],
+      "seeAll": "Voir tous les projets"
+    },
+    "cta": {
+      "title": "Faisons de votre projet le prochain",
+      "desc": "Ensemble, transformons vos idées en solutions numériques puissantes.",
+      "button": "Parlons-en"
+    },
+    "team": {
+      "badge": "Notre équipe",
+      "title": "Rencontrez Notre Équipe",
+      "desc": "Les esprits derrière nos solutions informatiques.",
+      "members": [
+        {
+          "name": "John D.",
+          "role": "CEO"
+        },
+        {
+          "name": "Tina K.",
+          "role": "CTO"
+        },
+        {
+          "name": "Michael R.",
+          "role": "Lead Developer"
+        },
+        {
+          "name": "Sara L.",
+          "role": "Project Manager"
+        },
+        {
+          "name": "Chris M.",
+          "role": "UX Designer"
+        }
+      ]
+    }
+  },
+  "contactPage": {
+    "hero": {
+      "title": "Contactez-nous",
+      "subtitle": "Discutons de votre projet. Notre équipe est à votre écoute."
+    },
+    "info": {
+      "title": "Nos coordonnées",
+      "labels": {
+        "address": "Adresse",
+        "phone": "Téléphone",
+        "email": "Email",
+        "hours": "Horaires"
+      },
+      "hoursValue": "Lun-Ven : 8h30 - 17h30"
+    },
+    "form": {
+      "nameLabel": "Nom complet *",
+      "namePlaceholder": "Votre nom",
+      "emailLabel": "Email *",
+      "emailPlaceholder": "votre@email.com",
+      "phoneLabel": "Téléphone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "subjectLabel": "Sujet *",
+      "subjectPlaceholder": "Objet de votre message",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Décrivez votre besoin...",
+      "submit": "Envoyer le message",
+      "submitting": "Envoi en cours...",
+      "errors": {
+        "nameRequired": "Le nom est requis",
+        "emailInvalid": "Email invalide",
+        "subjectRequired": "Le sujet est requis",
+        "messageRequired": "Le message est requis"
+      },
+      "toastSuccessTitle": "Message envoyé !",
+      "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
+      "toastErrorTitle": "Erreur d'envoi",
+      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
+    },
+    "map": {
+      "caption": "82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3ème étage N°13, Palmier, Casablanca",
+      "iframeTitle": "DigitalPro Systems IT - Localisation Casablanca"
     }
   },
   "blogPage": {
-    "hero": { "title": "Blog Tech", "subtitle": "Actualités, conseils et tendances du monde IT et de la cybersécurité." },
+    "hero": {
+      "title": "Blog Tech",
+      "subtitle": "Actualités, conseils et tendances du monde IT et de la cybersécurité."
+    },
     "readTimeSuffix": "min",
     "articles": {
       "cybersecurite-pme-maroc": {
@@ -579,40 +704,107 @@
       }
     }
   },
-  "contactPage": {
-    "hero": { "title": "Contactez-nous", "subtitle": "Discutons de votre projet. Notre équipe est à votre écoute." },
-    "info": {
-      "title": "Nos coordonnées",
-      "labels": { "address": "Adresse", "phone": "Téléphone", "email": "Email", "hours": "Horaires" },
-      "hoursValue": "Lun-Ven : 8h30 - 17h30"
+  "aboutPage": {
+    "hero": {
+      "eyebrow": "À propos de nous",
+      "title": "Construire la technologie. Renforcer les entreprises.",
+      "text1": "Chez DigitalPro Systems IT, nous transformons les idées en solutions technologiques puissantes. Notre mission est de stimuler l'innovation, résoudre des problématiques complexes et livrer des résultats mesurables pour les entreprises.",
+      "text2": "Avec une équipe passionnée et une approche centrée sur le client, nous construisons des solutions qui vous aident à grandir, réussir et prendre les devants.",
+      "imageAlt": "Équipe DigitalPro Systems IT au travail"
     },
-    "form": {
-      "nameLabel": "Nom complet *",
-      "namePlaceholder": "Votre nom",
-      "emailLabel": "Email *",
-      "emailPlaceholder": "votre@email.com",
-      "phoneLabel": "Téléphone",
-      "phonePlaceholder": "+212 6 00 00 00 00",
-      "subjectLabel": "Sujet *",
-      "subjectPlaceholder": "Objet de votre message",
-      "messageLabel": "Message *",
-      "messagePlaceholder": "Décrivez votre besoin...",
-      "submit": "Envoyer le message",
-      "submitting": "Envoi en cours...",
-      "errors": {
-        "nameRequired": "Le nom est requis",
-        "emailInvalid": "Email invalide",
-        "subjectRequired": "Le sujet est requis",
-        "messageRequired": "Le message est requis"
+    "partner": {
+      "eyebrow": "Partenaire",
+      "title": "Un partenaire technologique de confiance, tourné vers votre succès.",
+      "text": "Chez DigitalPro Systems IT, nous livrons des solutions intelligentes qui stimulent l'innovation, améliorent l'efficacité et renforcent la croissance en toute confiance.",
+      "stats": {
+        "projects": {
+          "value": "20+",
+          "label": "Projets réussis"
+        },
+        "clients": {
+          "value": "50+",
+          "label": "Clients accompagnés"
+        },
+        "satisfaction": {
+          "value": "98%",
+          "label": "Satisfaction client"
+        }
+      }
+    },
+    "whatWeDo": {
+      "eyebrow": "Ce que nous faisons",
+      "title": "Une technologie qui travaille pour vous.",
+      "subtitle": "Nous livrons des solutions IT intelligentes, fiables et tournées vers l'avenir pour chaque entreprise.",
+      "items": {
+        "managedIt": {
+          "title": "Services IT gérés",
+          "desc": "Garantissez des opérations fluides et sécurisées grâce à un support et une expertise proactifs."
+        },
+        "softwareDev": {
+          "title": "Développement logiciel",
+          "desc": "Des solutions logicielles sur mesure conçues pour fluidifier et transformer vos processus métier."
+        },
+        "businessSolutions": {
+          "title": "Solutions métier",
+          "desc": "Des outils et intégrations innovants pour résoudre vos défis et créer un impact réel."
+        },
+        "cloudSupport": {
+          "title": "Cloud & Support IT",
+          "desc": "De la migration à la gestion, nous assurons votre IT partout, à tout moment."
+        }
+      }
+    },
+    "projects": {
+      "eyebrow": "Nos réalisations",
+      "title": "Projets récents",
+      "subtitle": "Découvrez une sélection de nos solutions réussies.",
+      "items": {
+        "techflow": {
+          "title": "TechFlow Portal",
+          "desc": "Portail de gestion de services IT simplifié pour entreprises et équipes."
+        },
+        "smartcity": {
+          "title": "SmartCity IoT",
+          "desc": "Plateforme IoT pour la supervision et l'analyse d'infrastructures intelligentes."
+        },
+        "healthcare": {
+          "title": "HealthCare Plus",
+          "desc": "Application santé sécurisée pour la gestion des rendez-vous et des patients."
+        }
       },
-      "toastSuccessTitle": "Message envoyé !",
-      "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
-      "toastErrorTitle": "Erreur d'envoi",
-      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
+      "seeAllBtn": "Voir tous les projets"
     },
-    "map": {
-      "caption": "82, Angle Rue Soumaya et BD Abdelmoumen, Résidence Shéhérazade 1, 3ème étage N°13, Palmier, Casablanca",
-      "iframeTitle": "DigitalPro Systems IT - Localisation Casablanca"
+    "cta": {
+      "title": "Faisons de votre projet le prochain succès",
+      "subtitle": "Transformons vos idées en solutions numériques puissantes, ensemble.",
+      "btn": "Discutons-en"
+    },
+    "team": {
+      "eyebrow": "Notre équipe",
+      "title": "Rencontrez notre équipe",
+      "subtitle": "Les esprits derrière nos solutions IT.",
+      "members": {
+        "johnD": {
+          "name": "John D.",
+          "role": "CEO"
+        },
+        "tinaK": {
+          "name": "Tina K.",
+          "role": "CTO"
+        },
+        "michaelR": {
+          "name": "Michael R.",
+          "role": "Lead Developer"
+        },
+        "saraL": {
+          "name": "Sara L.",
+          "role": "Project Manager"
+        },
+        "chrisM": {
+          "name": "Chris M.",
+          "role": "UX Designer"
+        }
+      }
     }
   }
 }
