@@ -564,23 +564,32 @@
     },
     "ourWork": {
       "badge": "Notre travail",
-      "title": "Projets Récents",
-      "desc": "Découvrez une sélection de nos solutions réussies.",
+      "title": "Des produits conçus pour le terrain",
+      "desc": "Un portefeuille ciblé de plateformes métier conçues et développées par DigitalPro Systems IT.",
+      "carouselLabel": "Présentation des produits DigitalPro Systems IT",
+      "previousProject": "Afficher le projet précédent",
+      "nextProject": "Afficher le projet suivant",
+      "selectProject": "Afficher {{project}}",
       "projects": [
         {
-          "title": "Portail TechFlow",
-          "desc": "Portail de gestion des services IT rationalisé pour les entreprises et les équipes."
+          "title": "Medoc",
+          "category": "Plateforme de santé",
+          "status": "Opérationnel",
+          "desc": "Un système complet de gestion de clinique réunissant dossiers patients, rendez-vous, consultations, facturation, stock et opérations médicales quotidiennes dans un espace fiable."
         },
         {
-          "title": "IoT SmartCity",
-          "desc": "Plateforme IoT pour la surveillance et l'analyse intelligente des infrastructures."
+          "title": "DPS-POS",
+          "category": "Opérations retail",
+          "status": "Opérationnel",
+          "desc": "Une plateforme de stock, d'inventaire et de point de vente pensée pour un encaissement rapide, un contrôle précis des produits et une gestion quotidienne fiable."
         },
         {
-          "title": "Santé Plus",
-          "desc": "Application de santé sécurisée pour la gestion des rendez-vous et des patients."
+          "title": "DPS-Invoice",
+          "category": "Gestion commerciale",
+          "status": "En développement",
+          "desc": "Un système de devis, facturation et gestion commerciale pour organiser les clients, suivre les règlements et garder une vision claire de l'activité."
         }
-      ],
-      "seeAll": "Voir tous les projets"
+      ]
     },
     "cta": {
       "title": "Faisons de votre projet le prochain",
@@ -590,27 +599,33 @@
     "team": {
       "badge": "Notre équipe",
       "title": "Rencontrez Notre Équipe",
-      "desc": "Les esprits derrière nos solutions informatiques.",
+      "desc": "Une équipe marocaine pluridisciplinaire qui transforme les défis métier en technologies fiables.",
+      "photoPending": "Photo à venir",
+      "specialityLabel": "Spécialité",
       "members": [
         {
-          "name": "John D.",
-          "role": "CEO"
+          "name": "Omar Assahsah",
+          "role": "Co-fondateur & CEO"
         },
         {
-          "name": "Tina K.",
-          "role": "CTO"
+          "name": "Abdelatif Aghozaf",
+          "role": "Co-fondateur & CTO"
         },
         {
-          "name": "Michael R.",
-          "role": "Lead Developer"
+          "name": "Hamza Mraizik",
+          "role": "Tech Lead & Ingénieur logiciel"
         },
         {
-          "name": "Sara L.",
-          "role": "Project Manager"
+          "name": "Salma El Amrani",
+          "role": "Product & UX Designer"
         },
         {
-          "name": "Chris M.",
-          "role": "UX Designer"
+          "name": "Youssef El Mansouri",
+          "role": "Ingénieur Systèmes & Cybersécurité"
+        },
+        {
+          "name": "Nadia Bennani",
+          "role": "Responsable Projets & Succès Client"
         }
       ]
     }
@@ -756,20 +771,20 @@
     },
     "projects": {
       "eyebrow": "Nos réalisations",
-      "title": "Projets récents",
-      "subtitle": "Découvrez une sélection de nos solutions réussies.",
+      "title": "Des produits conçus pour le terrain",
+      "subtitle": "Un portefeuille ciblé de plateformes métier conçues et développées par DigitalPro Systems IT.",
       "items": {
-        "techflow": {
-          "title": "TechFlow Portal",
-          "desc": "Portail de gestion de services IT simplifié pour entreprises et équipes."
+        "medoc": {
+          "title": "Medoc",
+          "desc": "Un système complet de gestion de clinique pour les patients, rendez-vous, consultations, facturation et stock."
         },
-        "smartcity": {
-          "title": "SmartCity IoT",
-          "desc": "Plateforme IoT pour la supervision et l'analyse d'infrastructures intelligentes."
+        "dpsPos": {
+          "title": "DPS-POS",
+          "desc": "Inventaire, stock, ventes et point de vente réunis dans une plateforme fiable."
         },
-        "healthcare": {
-          "title": "HealthCare Plus",
-          "desc": "Application santé sécurisée pour la gestion des rendez-vous et des patients."
+        "dpsInvoice": {
+          "title": "DPS-Invoice",
+          "desc": "Devis, facturation et gestion commerciale pour les entreprises en croissance."
         }
       },
       "seeAllBtn": "Voir tous les projets"
@@ -782,27 +797,27 @@
     "team": {
       "eyebrow": "Notre équipe",
       "title": "Rencontrez notre équipe",
-      "subtitle": "Les esprits derrière nos solutions IT.",
+      "subtitle": "Une équipe marocaine pluridisciplinaire qui transforme les défis métier en technologies fiables.",
       "members": {
-        "johnD": {
-          "name": "John D.",
-          "role": "CEO"
+        "omarAssahsah": {
+          "name": "Omar Assahsah",
+          "role": "Co-fondateur & CEO"
         },
-        "tinaK": {
-          "name": "Tina K.",
-          "role": "CTO"
+        "abdelatifAghozaf": {
+          "name": "Abdelatif Aghozaf",
+          "role": "Co-fondateur & CTO"
         },
-        "michaelR": {
-          "name": "Michael R.",
-          "role": "Lead Developer"
+        "hamzaMraizik": {
+          "name": "Hamza Mraizik",
+          "role": "Tech Lead & Ingénieur logiciel"
         },
-        "saraL": {
-          "name": "Sara L.",
-          "role": "Project Manager"
+        "salmaElAmrani": {
+          "name": "Salma El Amrani",
+          "role": "Product & UX Designer"
         },
-        "chrisM": {
-          "name": "Chris M.",
-          "role": "UX Designer"
+        "youssefElMansouri": {
+          "name": "Youssef El Mansouri",
+          "role": "Ingénieur Systèmes & Cybersécurité"
         }
       }
     }

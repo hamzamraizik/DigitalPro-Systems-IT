@@ -1,142 +1,237 @@
-import { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Users, 
-  Briefcase, 
-  Award, 
-  ShieldCheck, 
-  Code, 
-  Puzzle, 
-  Headphones, 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowRight, 
-  Linkedin 
+import { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowRight,
+  Award,
+  Briefcase,
+  ChevronLeft,
+  ChevronRight,
+  Code,
+  Headphones,
+  Puzzle,
+  ShieldCheck,
+  Users,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+const PROJECT_COUNT = 3;
+const AUTO_ADVANCE_DELAY = 6000;
+
+type CarouselPosition = -1 | 0 | 1;
+
+const getCarouselPosition = (
+  projectIndex: number,
+  activeIndex: number,
+): CarouselPosition => {
+  if (projectIndex === activeIndex) return 0;
+  if (projectIndex === (activeIndex - 1 + PROJECT_COUNT) % PROJECT_COUNT) {
+    return -1;
+  }
+  return 1;
+};
+
+const carouselMotion = {
+  "-1": {
+    x: "-102%",
+    y: "-50%",
+    scale: 0.78,
+    opacity: 0.5,
+    filter: "blur(5px)",
+    zIndex: 10,
+  },
+  "0": {
+    x: "-50%",
+    y: "-50%",
+    scale: 1,
+    opacity: 1,
+    filter: "blur(0px)",
+    zIndex: 30,
+  },
+  "1": {
+    x: "2%",
+    y: "-50%",
+    scale: 0.78,
+    opacity: 0.5,
+    filter: "blur(5px)",
+    zIndex: 10,
+  },
+} as const;
 
 const AboutPage = () => {
   const { t } = useTranslation();
+  const prefersReducedMotion = useReducedMotion();
+  const [activeProject, setActiveProject] = useState(0);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
 
   const stats = [
-    { icon: Users, value: t('about.partner.stats.0.value'), label: t('about.partner.stats.0.label') },
-    { icon: Briefcase, value: t('about.partner.stats.1.value'), label: t('about.partner.stats.1.label') },
-    { icon: Award, value: t('about.partner.stats.2.value'), label: t('about.partner.stats.2.label') },
+    {
+      icon: Users,
+      value: t("about.partner.stats.0.value"),
+      label: t("about.partner.stats.0.label"),
+    },
+    {
+      icon: Briefcase,
+      value: t("about.partner.stats.1.value"),
+      label: t("about.partner.stats.1.label"),
+    },
+    {
+      icon: Award,
+      value: t("about.partner.stats.2.value"),
+      label: t("about.partner.stats.2.label"),
+    },
   ];
 
   const services = [
-    { icon: ShieldCheck, title: t('about.whatWeDo.services.0.title'), desc: t('about.whatWeDo.services.0.desc') },
-    { icon: Code, title: t('about.whatWeDo.services.1.title'), desc: t('about.whatWeDo.services.1.desc') },
-    { icon: Puzzle, title: t('about.whatWeDo.services.2.title'), desc: t('about.whatWeDo.services.2.desc') },
-    { icon: Headphones, title: t('about.whatWeDo.services.3.title'), desc: t('about.whatWeDo.services.3.desc') },
+    {
+      icon: ShieldCheck,
+      title: t("about.whatWeDo.services.0.title"),
+      desc: t("about.whatWeDo.services.0.desc"),
+    },
+    {
+      icon: Code,
+      title: t("about.whatWeDo.services.1.title"),
+      desc: t("about.whatWeDo.services.1.desc"),
+    },
+    {
+      icon: Puzzle,
+      title: t("about.whatWeDo.services.2.title"),
+      desc: t("about.whatWeDo.services.2.desc"),
+    },
+    {
+      icon: Headphones,
+      title: t("about.whatWeDo.services.3.title"),
+      desc: t("about.whatWeDo.services.3.desc"),
+    },
   ];
 
   const projects = [
-    { 
-      title: t('about.ourWork.projects.0.title'), 
-      desc: t('about.ourWork.projects.0.desc'),
-      image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80"
+    {
+      title: t("about.ourWork.projects.0.title"),
+      category: t("about.ourWork.projects.0.category"),
+      status: t("about.ourWork.projects.0.status"),
+      desc: t("about.ourWork.projects.0.desc"),
+      image: "/software-bg.png",
     },
-    { 
-      title: t('about.ourWork.projects.1.title'), 
-      desc: t('about.ourWork.projects.1.desc'),
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80"
+    {
+      title: t("about.ourWork.projects.1.title"),
+      category: t("about.ourWork.projects.1.category"),
+      status: t("about.ourWork.projects.1.status"),
+      desc: t("about.ourWork.projects.1.desc"),
+      image: "/hardware-illustration.png",
     },
-    { 
-      title: t('about.ourWork.projects.2.title'), 
-      desc: t('about.ourWork.projects.2.desc'),
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80"
-    }
+    {
+      title: t("about.ourWork.projects.2.title"),
+      category: t("about.ourWork.projects.2.category"),
+      status: t("about.ourWork.projects.2.status"),
+      desc: t("about.ourWork.projects.2.desc"),
+      image: "/erp-illustration.png",
+    },
   ];
 
-  const team = [
-    { name: t('about.team.members.0.name'), role: t('about.team.members.0.role'), image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" },
-    { name: t('about.team.members.1.name'), role: t('about.team.members.1.role'), image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" },
-    { name: t('about.team.members.2.name'), role: t('about.team.members.2.role'), image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" },
-    { name: t('about.team.members.3.name'), role: t('about.team.members.3.role'), image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" },
-    { name: t('about.team.members.4.name'), role: t('about.team.members.4.role'), image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" },
-  ];
+  const team = Array.from({ length: 6 }, (_, index) => ({
+    name: t(`about.team.members.${index}.name`),
+    role: t(`about.team.members.${index}.role`),
+  }));
 
-  // --- Carousel state (projects) : rotation circulaire, 3 visibles en permanence ---
-  const [offset, setOffset] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const showNextProject = useCallback(() => {
+    setActiveProject((current) => (current + 1) % PROJECT_COUNT);
+  }, []);
+
+  const showPreviousProject = useCallback(() => {
+    setActiveProject(
+      (current) => (current - 1 + PROJECT_COUNT) % PROJECT_COUNT,
+    );
+  }, []);
 
   useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setOffset((prev) => (prev + 1) % projects.length);
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [isPaused, projects.length]);
+    if (isCarouselPaused || prefersReducedMotion) return undefined;
 
-  const next = () => setOffset((prev) => (prev + 1) % projects.length);
-  const prev = () => setOffset((p) => (p - 1 + projects.length) % projects.length);
-
-  // Ordre affiché : les 3 projets réarrangés selon l'offset (circulaire)
-  const displayedProjects = projects.map((_, i) => projects[(i + offset) % projects.length]);
+    const interval = window.setInterval(showNextProject, AUTO_ADVANCE_DELAY);
+    return () => window.clearInterval(interval);
+  }, [isCarouselPaused, prefersReducedMotion, showNextProject]);
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
-      <main className="pt-24 lg:pt-32 pb-16">
-        {/* Hero Section */}
-        <section className="container mx-auto px-4 lg:px-8 mb-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-              <p className="text-accent font-semibold mb-4 tracking-wider uppercase">{t('about.hero.badge')}</p>
-              <h1 
-                className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground mb-6 leading-tight"
-                dangerouslySetInnerHTML={{ __html: t('about.hero.title') }}
-              />
-              <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                {t('about.hero.desc1')}
+
+      <main className="pb-16 pt-24 lg:pt-32">
+        <section className="container mx-auto mb-24 px-4 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
+                {t("about.hero.badge")}
               </p>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {t('about.hero.desc2')}
+              <h1
+                className="mb-6 font-display text-4xl font-bold leading-tight text-foreground lg:text-5xl xl:text-6xl"
+                dangerouslySetInnerHTML={{ __html: t("about.hero.title") }}
+              />
+              <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
+                {t("about.hero.desc1")}
+              </p>
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                {t("about.hero.desc2")}
               </p>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80" 
-                alt="DigitalPro Systems IT Team" 
-                className="w-full h-[400px] lg:h-[500px] object-cover"
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="overflow-hidden rounded-2xl shadow-2xl"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80"
+                alt="DigitalPro Systems IT"
+                className="h-[400px] w-full object-cover lg:h-[500px]"
               />
             </motion.div>
           </div>
         </section>
 
-        {/* Partner Section */}
         <section className="bg-muted/30 py-20">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                <p className="text-accent font-semibold mb-4 tracking-wider uppercase">{t('about.partner.badge')}</p>
-                <h2 className="font-display text-3xl lg:text-4xl font-bold text-foreground mb-6">
-                  {t('about.partner.title')}
+            <div className="grid items-center gap-16 lg:grid-cols-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
+                  {t("about.partner.badge")}
+                </p>
+                <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
+                  {t("about.partner.title")}
                 </h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  {t('about.partner.desc')}
+                <p className="text-lg leading-relaxed text-muted-foreground">
+                  {t("about.partner.desc")}
                 </p>
               </motion.div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {stats.map((stat, i) => (
-                  <motion.div 
+
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                {stats.map((stat, index) => (
+                  <motion.div
                     key={stat.label}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
+                    transition={{ delay: index * 0.1 }}
                     className="flex flex-col items-center text-center"
                   >
-                    <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4">
-                      <stat.icon className="w-8 h-8 text-accent" />
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
+                      <stat.icon className="h-8 w-8 text-accent" />
                     </div>
-                    <h3 className="font-display text-4xl font-bold text-foreground mb-2">{stat.value}</h3>
-                    <p className="text-muted-foreground font-medium">{stat.label}</p>
+                    <h3 className="mb-2 font-display text-4xl font-bold text-foreground">
+                      {stat.value}
+                    </h3>
+                    <p className="font-medium text-muted-foreground">
+                      {stat.label}
+                    </p>
                   </motion.div>
                 ))}
               </div>
@@ -144,189 +239,292 @@ const AboutPage = () => {
           </div>
         </section>
 
-        {/* What We Do */}
         <section className="py-24">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <p className="text-accent font-semibold mb-4 tracking-wider uppercase">{t('about.whatWeDo.badge')}</p>
-              <h2 className="font-display text-3xl lg:text-4xl font-bold text-foreground mb-6">
-                {t('about.whatWeDo.title')}
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
+                {t("about.whatWeDo.badge")}
+              </p>
+              <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
+                {t("about.whatWeDo.title")}
               </h2>
-              <p className="text-muted-foreground text-lg">
-                {t('about.whatWeDo.desc')}
+              <p className="text-lg text-muted-foreground">
+                {t("about.whatWeDo.desc")}
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {services.map((service, i) => (
-                <motion.div 
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {services.map((service, index) => (
+                <motion.div
                   key={service.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-card border border-border rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center"
+                  transition={{ delay: index * 0.1 }}
+                  className="flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-6">
-                    <service.icon className="w-8 h-8 text-accent" strokeWidth={1.5} />
+                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
+                    <service.icon
+                      className="h-8 w-8 text-accent"
+                      strokeWidth={1.5}
+                    />
                   </div>
-                  <h3 className="font-display text-xl font-bold text-foreground mb-4">{service.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
+                  <h3 className="mb-4 font-display text-xl font-bold text-foreground">
+                    {service.title}
+                  </h3>
+                  <p className="leading-relaxed text-muted-foreground">
+                    {service.desc}
+                  </p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Our Work — 3 projets visibles, rotation circulaire */}
-        <section className="bg-navy-dark py-24 text-white">
+        <section
+          id="projects"
+          className="scroll-mt-28 overflow-hidden bg-navy-dark py-24 text-white"
+        >
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="text-center mb-16">
-              <p className="text-accent font-semibold mb-4 tracking-wider uppercase">{t('about.ourWork.badge')}</p>
-              <h2 className="font-display text-3xl lg:text-4xl font-bold mb-6">
-                {t('about.ourWork.title')}
+            <div className="mb-10 text-center lg:mb-14">
+              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
+                {t("about.ourWork.badge")}
+              </p>
+              <h2 className="mb-6 font-display text-3xl font-bold lg:text-5xl">
+                {t("about.ourWork.title")}
               </h2>
-              <p className="text-gray-300 max-w-2xl mx-auto">
-                {t('about.ourWork.desc')}
+              <p className="mx-auto max-w-2xl text-base text-white/65 lg:text-lg">
+                {t("about.ourWork.desc")}
               </p>
             </div>
 
             <div
-              className="relative mb-12"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
+              role="region"
+              aria-roledescription="carousel"
+              aria-label={t("about.ourWork.carouselLabel")}
+              tabIndex={0}
+              onKeyDown={(event) => {
+                if (event.key === "ArrowLeft") showPreviousProject();
+                if (event.key === "ArrowRight") showNextProject();
+              }}
+              onMouseEnter={() => setIsCarouselPaused(true)}
+              onMouseLeave={() => setIsCarouselPaused(false)}
+              onFocusCapture={() => setIsCarouselPaused(true)}
+              onBlurCapture={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget)) {
+                  setIsCarouselPaused(false);
+                }
+              }}
+              className="relative mx-auto max-w-7xl outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-navy-dark"
             >
-              <div className="grid md:grid-cols-3 gap-8">
-                <AnimatePresence mode="popLayout">
-                  {displayedProjects.map((project) => (
-                    <motion.div 
+              <p className="sr-only" aria-live="polite" aria-atomic="true">
+                {`${activeProject + 1} / ${PROJECT_COUNT}: ${projects[activeProject].title}`}
+              </p>
+
+              <div className="relative h-[500px] sm:h-[540px] lg:h-[610px]">
+                {projects.map((project, index) => {
+                  const position = getCarouselPosition(index, activeProject);
+                  const isActive = position === 0;
+                  const maskImage =
+                    position === -1
+                      ? "linear-gradient(to right, transparent 0%, rgba(0,0,0,.8) 45%, black 100%)"
+                      : position === 1
+                        ? "linear-gradient(to left, transparent 0%, rgba(0,0,0,.8) 45%, black 100%)"
+                        : "none";
+
+                  return (
+                    <motion.article
                       key={project.title}
-                      layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="bg-navy rounded-xl border border-white/10 overflow-hidden group"
+                      initial={false}
+                      animate={carouselMotion[String(position) as "-1" | "0" | "1"]}
+                      transition={
+                        prefersReducedMotion
+                          ? { duration: 0 }
+                          : {
+                              type: "spring",
+                              stiffness: 125,
+                              damping: 22,
+                              mass: 0.85,
+                            }
+                      }
+                      className="absolute left-1/2 top-1/2 h-[430px] w-[82vw] max-w-[780px] overflow-hidden rounded-[2rem] border border-white/15 bg-navy shadow-[0_32px_90px_rgba(0,0,0,.45)] sm:h-[470px] lg:h-[540px]"
+                      style={{
+                        WebkitMaskImage: maskImage,
+                        maskImage,
+                      }}
                     >
-                      <div className="h-48 overflow-hidden">
-                        <img 
-                          src={project.image} 
-                          alt={project.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      <img
+                        src={project.image}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#06172f] via-[#06172f]/55 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-cyan/10" />
+
+                      <motion.div
+                        initial={false}
+                        animate={{ opacity: isActive ? 1 : 0 }}
+                        transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
+                        aria-hidden={!isActive}
+                        className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-9 lg:p-12"
+                      >
+                        <div className="mb-5 flex flex-wrap items-center gap-3">
+                          <span className="rounded-full border border-accent/30 bg-accent/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">
+                            {project.category}
+                          </span>
+                          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur-md">
+                            {project.status}
+                          </span>
+                        </div>
+                        <p className="mb-2 text-sm font-semibold tracking-[0.2em] text-white/45">
+                          {String(index + 1).padStart(2, "0")} / 0{PROJECT_COUNT}
+                        </p>
+                        <h3 className="mb-4 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+                          {project.title}
+                        </h3>
+                        <p className="max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base lg:text-lg">
+                          {project.desc}
+                        </p>
+                      </motion.div>
+
+                      {!isActive && (
+                        <button
+                          type="button"
+                          onClick={() => setActiveProject(index)}
+                          aria-label={t("about.ourWork.selectProject", {
+                            project: project.title,
+                          })}
+                          className="absolute inset-0 z-20 cursor-pointer"
                         />
-                      </div>
-                      <div className="p-6">
-                        <h3 className="font-display text-xl font-bold mb-3">{project.title}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed">{project.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+                      )}
+                    </motion.article>
+                  );
+                })}
               </div>
-              
+
               <button
-                onClick={prev}
-                aria-label="Précédent"
-                className="hidden lg:flex absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10"
+                type="button"
+                onClick={showPreviousProject}
+                aria-label={t("about.ourWork.previousProject")}
+                className="absolute left-1 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy/80 text-white shadow-xl backdrop-blur-xl transition hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:left-5 lg:left-8 lg:h-14 lg:w-14"
               >
-                <ChevronLeft className="w-6 h-6 text-white" />
+                <ChevronLeft className="h-6 w-6" />
               </button>
               <button
-                onClick={next}
-                aria-label="Suivant"
-                className="hidden lg:flex absolute top-1/2 -right-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10"
+                type="button"
+                onClick={showNextProject}
+                aria-label={t("about.ourWork.nextProject")}
+                className="absolute right-1 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy/80 text-white shadow-xl backdrop-blur-xl transition hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:right-5 lg:right-8 lg:h-14 lg:w-14"
               >
-                <ChevronRight className="w-6 h-6 text-white" />
+                <ChevronRight className="h-6 w-6" />
               </button>
 
-              <div className="flex justify-center gap-2 mt-8">
-                {projects.map((_, i) => (
+              <div
+                className="mt-2 flex justify-center gap-2"
+                aria-label={t("about.ourWork.carouselLabel")}
+              >
+                {projects.map((project, index) => (
                   <button
-                    key={i}
-                    onClick={() => setOffset(i)}
-                    aria-label={`Aller à la position ${i + 1}`}
+                    key={project.title}
+                    type="button"
+                    aria-current={activeProject === index ? "true" : undefined}
+                    aria-label={t("about.ourWork.selectProject", {
+                      project: project.title,
+                    })}
+                    onClick={() => setActiveProject(index)}
                     className={`h-2 rounded-full transition-all duration-300 ${
-                      offset === i ? "w-8 bg-accent" : "w-2 bg-white/20"
+                      activeProject === index
+                        ? "w-10 bg-accent"
+                        : "w-2 bg-white/25 hover:bg-white/50"
                     }`}
                   />
                 ))}
               </div>
             </div>
-
-            <div className="text-center">
-              <a href="#" className="inline-flex items-center justify-center px-6 py-3 border border-white/20 rounded-lg text-white font-medium hover:bg-white/10 transition-colors">
-                {t('about.ourWork.seeAll')} <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
-            </div>
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="py-24">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="bg-gradient-to-r from-navy-dark to-navy rounded-3xl p-12 lg:p-20 text-center relative overflow-hidden">
-              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent via-navy-dark to-navy-dark"></div>
-              
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-navy-dark to-navy p-10 text-center sm:p-12 lg:p-20">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/20 via-navy-dark/10 to-navy-dark/80" />
               <div className="relative z-10">
-                <h2 className="font-display text-3xl lg:text-5xl font-bold text-white mb-6">
-                  {t('about.cta.title')}
+                <h2 className="mb-6 font-display text-3xl font-bold text-white lg:text-5xl">
+                  {t("about.cta.title")}
                 </h2>
-                <p className="text-gray-300 text-lg lg:text-xl max-w-2xl mx-auto mb-10">
-                  {t('about.cta.desc')}
+                <p className="mx-auto mb-10 max-w-2xl text-lg text-white/70 lg:text-xl">
+                  {t("about.cta.desc")}
                 </p>
-                <a href="/contact" className="inline-flex items-center justify-center px-8 py-4 bg-accent text-white rounded-lg font-medium text-lg hover:bg-accent/90 transition-colors">
-                  {t('about.cta.button')} <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center rounded-lg bg-accent px-8 py-4 text-lg font-medium text-white transition-colors hover:bg-accent/90"
+                >
+                  {t("about.cta.button")}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Our Team Section */}
-        <section className="py-20 bg-muted/30">
+        <section
+          id="team"
+          className="scroll-mt-28 bg-muted/30 py-20"
+        >
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="text-center mb-16">
-              <p className="text-accent font-semibold mb-4 tracking-wider uppercase">{t('about.team.badge')}</p>
-              <h2 className="font-display text-3xl lg:text-4xl font-bold text-foreground mb-6">
-                {t('about.team.title')}
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
+                {t("about.team.badge")}
+              </p>
+              <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
+                {t("about.team.title")}
               </h2>
-              <p className="text-muted-foreground text-lg">
-                {t('about.team.desc')}
+              <p className="text-lg text-muted-foreground">
+                {t("about.team.desc")}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-              {team.map((member, i) => (
-                <motion.div 
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {team.map((member, index) => (
+                <motion.article
                   key={member.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-card border border-border rounded-xl overflow-hidden text-center group shadow-sm hover:shadow-md transition-shadow"
+                  transition={{ delay: index * 0.07 }}
+                  className="group flex min-h-[480px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
                 >
-                  <div className="h-48 md:h-56 bg-muted overflow-hidden relative">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  <div className="relative h-72 overflow-hidden bg-navy-dark">
+                    <img
+                      src="/team-anonymous.svg"
+                      alt=""
+                      aria-hidden="true"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
+                    <span className="absolute right-4 top-4 rounded-full border border-white/20 bg-navy-dark/70 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur-md">
+                      {t("about.team.photoPending")}
+                    </span>
                   </div>
-                  <div className="p-6">
-                    <h3 className="font-display font-bold text-lg text-foreground mb-1">{member.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">{member.role}</p>
-                    <a href="#" className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-50 text-accent hover:bg-accent hover:text-white transition-colors">
-                      <Linkedin className="w-4 h-4" />
-                    </a>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="mb-5 font-display text-2xl font-bold text-foreground">
+                      {member.name}
+                    </h3>
+                    <div className="mt-auto rounded-xl border border-accent/15 bg-accent/5 px-4 py-3">
+                      <span className="mb-1 block text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
+                        {t("about.team.specialityLabel")}
+                      </span>
+                      <p className="text-sm font-semibold leading-snug text-foreground">
+                        {member.role}
+                      </p>
+                    </div>
                   </div>
-                </motion.div>
+                </motion.article>
               ))}
             </div>
           </div>
         </section>
-
       </main>
-      
+
       <Footer />
     </div>
   );

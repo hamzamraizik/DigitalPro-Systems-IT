@@ -560,20 +560,20 @@
     },
     "projects": {
       "eyebrow": "Our Work",
-      "title": "Recent Projects",
-      "subtitle": "Explore a selection of our successful solutions.",
+      "title": "Products built for real operations",
+      "subtitle": "A focused portfolio of business platforms designed and engineered by DigitalPro Systems IT.",
       "items": {
-        "techflow": {
-          "title": "TechFlow Portal",
-          "desc": "Streamlined IT service management portal for four enterprises and teams."
+        "medoc": {
+          "title": "Medoc",
+          "desc": "A complete clinic management system for patients, appointments, consultations, billing, and stock."
         },
-        "smartcity": {
-          "title": "SmartCity IoT",
-          "desc": "IoT platform for smart infrastructure monitoring and analytics."
+        "dpsPos": {
+          "title": "DPS-POS",
+          "desc": "Inventory, stock, sales, and point-of-sale operations in one dependable platform."
         },
-        "healthcare": {
-          "title": "HealthCare Plus",
-          "desc": "Secure healthcare app for appointments and patient management."
+        "dpsInvoice": {
+          "title": "DPS-Invoice",
+          "desc": "Invoicing, billing, and commercial management for growing businesses."
         }
       },
       "seeAllBtn": "See all projects"
@@ -586,27 +586,27 @@
     "team": {
       "eyebrow": "Our Team",
       "title": "Meet Our Team",
-      "subtitle": "The minds behind our IT solutions.",
+      "subtitle": "A multidisciplinary Moroccan team turning business challenges into dependable technology.",
       "members": {
-        "johnD": {
-          "name": "John D.",
-          "role": "CEO"
+        "omarAssahsah": {
+          "name": "Omar Assahsah",
+          "role": "Co-Founder & CEO"
         },
-        "tinaK": {
-          "name": "Tina K.",
-          "role": "CTO"
+        "abdelatifAghozaf": {
+          "name": "Abdelatif Aghozaf",
+          "role": "Co-Founder & CTO"
         },
-        "michaelR": {
-          "name": "Michael R.",
-          "role": "Lead Developer"
+        "hamzaMraizik": {
+          "name": "Hamza Mraizik",
+          "role": "Tech Lead & Software Engineer"
         },
-        "saraL": {
-          "name": "Sara L.",
-          "role": "Project Manager"
+        "salmaElAmrani": {
+          "name": "Salma El Amrani",
+          "role": "Product & UX Designer"
         },
-        "chrisM": {
-          "name": "Chris M.",
-          "role": "UX Designer"
+        "youssefElMansouri": {
+          "name": "Youssef El Mansouri",
+          "role": "Systems & Cybersecurity Engineer"
         }
       }
     }
@@ -751,23 +751,32 @@
     },
     "ourWork": {
       "badge": "Our work",
-      "title": "Recent Projects",
-      "desc": "Explore a selection of our successful solutions.",
+      "title": "Products built for real operations",
+      "desc": "A focused portfolio of business platforms designed and engineered by DigitalPro Systems IT.",
+      "carouselLabel": "DigitalPro Systems IT product showcase",
+      "previousProject": "Show previous project",
+      "nextProject": "Show next project",
+      "selectProject": "Show {{project}}",
       "projects": [
         {
-          "title": "TechFlow Portal",
-          "desc": "Streamlined IT service management portal for enterprises and teams."
+          "title": "Medoc",
+          "category": "Healthcare platform",
+          "status": "In operation",
+          "desc": "A complete clinic management system that brings patient records, appointments, consultations, billing, stock, and daily medical operations into one reliable workspace."
         },
         {
-          "title": "SmartCity IoT",
-          "desc": "IoT platform for smart infrastructure monitoring and analytics."
+          "title": "DPS-POS",
+          "category": "Retail operations",
+          "status": "In operation",
+          "desc": "An inventory, stock, and point-of-sale platform built for fast checkout, precise product control, sales visibility, and dependable day-to-day store management."
         },
         {
-          "title": "HealthCare Plus",
-          "desc": "Secure healthcare app for appointments and patient management."
+          "title": "DPS-Invoice",
+          "category": "Commercial management",
+          "status": "In development",
+          "desc": "An invoicing, billing, and commercial management system for creating quotes and invoices, organizing customers, tracking payments, and keeping business activity clear."
         }
-      ],
-      "seeAll": "See all projects"
+      ]
     },
     "cta": {
       "title": "Let's make your project the Next One",
@@ -777,27 +786,33 @@
     "team": {
       "badge": "Our team",
       "title": "Meet Our Team",
-      "desc": "The minds behind our IT solutions.",
+      "desc": "A multidisciplinary Moroccan team turning business challenges into dependable technology.",
+      "photoPending": "Photo coming soon",
+      "specialityLabel": "Speciality",
       "members": [
         {
-          "name": "John D.",
-          "role": "CEO"
+          "name": "Omar Assahsah",
+          "role": "Co-Founder & CEO"
         },
         {
-          "name": "Tina K.",
-          "role": "CTO"
+          "name": "Abdelatif Aghozaf",
+          "role": "Co-Founder & CTO"
         },
         {
-          "name": "Michael R.",
-          "role": "Lead Developer"
+          "name": "Hamza Mraizik",
+          "role": "Tech Lead & Software Engineer"
         },
         {
-          "name": "Sara L.",
-          "role": "Project Manager"
+          "name": "Salma El Amrani",
+          "role": "Product & UX Designer"
         },
         {
-          "name": "Chris M.",
-          "role": "UX Designer"
+          "name": "Youssef El Mansouri",
+          "role": "Systems & Cybersecurity Engineer"
+        },
+        {
+          "name": "Nadia Bennani",
+          "role": "Project & Customer Success Manager"
         }
       ]
     }
