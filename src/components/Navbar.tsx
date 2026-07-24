@@ -18,8 +18,7 @@ const Navbar = () => {
     { label: t("nav.home"), path: "/" },
     { label: t("nav.services"), path: "/services" },
     { label: t("nav.about"), path: "/a-propos" },
-    { label: t("nav.blog"), path: "/blog" },
-    { label: t("nav.contact"), path: "/contact" },
+{ label: t("nav.projects"), path: "/projets" },    { label: t("nav.contact"), path: "/contact" },
   ];
 
   useEffect(() => {
