@@ -73,10 +73,6 @@ const AboutPage = () => {
 
   const next = () => setOffset((prev) => (prev + 1) % projects.length);
   const prev = () => setOffset((p) => (p - 1 + projects.length) % projects.length);
-
-  // Ordre affiché : les 3 projets réarrangés selon l'offset (circulaire)
-  const displayedProjects = projects.map((_, i) => projects[(i + offset) % projects.length]);
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -191,69 +187,84 @@ const AboutPage = () => {
               </p>
             </div>
 
-            <div
-              className="relative mb-12"
+<div
+              className="relative mb-12 flex items-center justify-center"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="grid md:grid-cols-3 gap-8">
-                <AnimatePresence mode="popLayout">
-                  {displayedProjects.map((project) => (
-                    <motion.div 
-                      key={project.title}
+              <button
+                onClick={prev}
+                aria-label="Précédent"
+                className="hidden lg:flex absolute top-1/2 left-0 -translate-y-1/2 -translate-x-4 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-20"
+              >
+                <ChevronLeft className="w-6 h-6 text-white" />
+              </button>
+
+              <div className="flex items-center justify-center gap-4 md:gap-0 overflow-hidden py-6">
+                <AnimatePresence mode="popLayout" initial={false}>
+                  {[
+                    { project: projects[(offset - 1 + projects.length) % projects.length], role: "side", key: `left-${offset}` },
+                    { project: projects[offset], role: "center", key: `center-${offset}` },
+                    { project: projects[(offset + 1) % projects.length], role: "side", key: `right-${offset}` },
+                  ].map(({ project, role, key }) => (
+                    <motion.div
+                      key={key}
                       layout
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      animate={
+                        role === "center"
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0.45, scale: 0.85 }
+                      }
+                      exit={{ opacity: 0, scale: 0.8 }}
                       transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="bg-navy rounded-xl border border-white/10 overflow-hidden group"
+                      className={`shrink-0 bg-navy rounded-2xl overflow-hidden ${
+                        role === "center"
+                          ? "w-[260px] sm:w-[320px] md:w-[360px] border-2 border-accent shadow-[0_0_40px_rgba(0,174,239,0.25)] z-10"
+                          : "hidden md:block w-[220px] border border-white/10 -mx-6"
+                      }`}
                     >
-                      <div className="h-48 overflow-hidden">
-                        <img 
-                          src={project.image} 
-                          alt={project.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      <div className={role === "center" ? "h-56" : "h-40"}>
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="p-6">
-                        <h3 className="font-display text-xl font-bold mb-3">{project.title}</h3>
-                        <p className="text-gray-400 text-sm leading-relaxed">{project.desc}</p>
+                      <div className={role === "center" ? "p-6" : "p-4"}>
+                        <h3 className={`font-display font-bold mb-2 ${role === "center" ? "text-xl" : "text-base"}`}>
+                          {project.title}
+                        </h3>
+                        <p className={`text-gray-400 leading-relaxed ${role === "center" ? "text-sm" : "text-xs line-clamp-2"}`}>
+                          {project.desc}
+                        </p>
                       </div>
                     </motion.div>
                   ))}
                 </AnimatePresence>
               </div>
-              
-              <button
-                onClick={prev}
-                aria-label="Précédent"
-                className="hidden lg:flex absolute top-1/2 -left-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10"
-              >
-                <ChevronLeft className="w-6 h-6 text-white" />
-              </button>
+
               <button
                 onClick={next}
                 aria-label="Suivant"
-                className="hidden lg:flex absolute top-1/2 -right-6 -translate-y-1/2 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-10"
+                className="hidden lg:flex absolute top-1/2 right-0 -translate-y-1/2 translate-x-4 w-12 h-12 rounded-full bg-navy border border-white/20 items-center justify-center hover:bg-white/10 transition-colors z-20"
               >
                 <ChevronRight className="w-6 h-6 text-white" />
               </button>
-
-              <div className="flex justify-center gap-2 mt-8">
-                {projects.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setOffset(i)}
-                    aria-label={`Aller à la position ${i + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      offset === i ? "w-8 bg-accent" : "w-2 bg-white/20"
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
 
-            <div className="text-center">
+            <div className="flex justify-center gap-2 mb-12">
+              {projects.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setOffset(i)}
+                  aria-label={`Aller à la position ${i + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    offset === i ? "w-8 bg-accent" : "w-2 bg-white/20"
+                  }`}
+                />
+              ))}
+            </div>            <div className="text-center">
               <a href="#" className="inline-flex items-center justify-center px-6 py-3 border border-white/20 rounded-lg text-white font-medium hover:bg-white/10 transition-colors">
                 {t('about.ourWork.seeAll')} <ArrowRight className="ml-2 w-4 h-4" />
               </a>
