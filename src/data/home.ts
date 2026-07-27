@@ -195,6 +195,6 @@ export const footerServiceLinks = [
 
 export const footerCompanyLinks = [
   { label: "À propos", href: "/a-propos" },
-  { label: "Blog", href: "/blog" },
+{ label: "Projets", href: "/projets" },
   { label: "Contact", href: "/contact" },
 ];

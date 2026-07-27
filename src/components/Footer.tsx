@@ -51,8 +51,7 @@ export const Footer = () => {
           <ul className="mt-5 space-y-3 text-sm text-white/[0.58]">
             {[
               { label: t("nav.about"), href: "/a-propos" },
-              { label: t("nav.blog"), href: "/blog" },
-              { label: t("nav.contact"), href: "/contact" }
+{ label: t("nav.projects"), href: "/projets" },              { label: t("nav.contact"), href: "/contact" }
             ].map((link) => (
               <li key={link.href}>
                 <Link to={link.href} className="transition-colors hover:text-white">

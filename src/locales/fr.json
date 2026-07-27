@@ -3,7 +3,7 @@
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
-    "blog": "Blog",
+"projects": "Projets",
     "contact": "Contact",
     "quote": "Demander un devis"
   },
@@ -674,8 +674,19 @@
       "iframeTitle": "DigitalPro Systems IT - Localisation Casablanca"
     }
   },
-  "blogPage": {
+"projectsPage": {
+    "badge": "Nos réalisations",
     "hero": {
+      "title": "Nos projets",
+      "subtitle": "Découvrez les plateformes métier conçues et développées par DigitalPro Systems IT."
+    },
+"viewProject": "Voir le projet",
+    "backToProjects": "Retour aux projets",    "modal": {
+      "close": "Fermer",
+      "requestQuote": "Demander un devis"
+    }
+  },
+  "blogPage": {    "hero": {
       "title": "Blog Tech",
       "subtitle": "Actualités, conseils et tendances du monde IT et de la cybersécurité."
     },

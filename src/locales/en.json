@@ -3,8 +3,8 @@
     "home": "Home",
     "services": "Services",
     "about": "About",
-    "blog": "Blog",
-    "contact": "Contact",
+"projects": "Projects", 
+   "contact": "Contact",
     "quote": "Get a quote"
   },
   "hero": {
@@ -609,6 +609,18 @@
           "role": "Systems & Cybersecurity Engineer"
         }
       }
+    }
+  },
+  "projectsPage": {
+    "badge": "Our work",
+    "hero": {
+      "title": "Our projects",
+      "subtitle": "Discover the business platforms designed and engineered by DigitalPro Systems IT."
+    },
+"viewProject": "View project",
+    "backToProjects": "Back to projects",    "modal": {
+      "close": "Close",
+      "requestQuote": "Request a quote"
     }
   },
   "blogPage": {
