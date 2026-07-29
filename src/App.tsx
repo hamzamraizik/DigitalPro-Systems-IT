@@ -6,8 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import About from "./pages/About";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
+import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ControleAcces from "./pages/securite-electronique/ControleAcces";
 import Videosurveillance from "./pages/securite-electronique/Videosurveillance";
@@ -68,8 +68,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
           <Route path="/a-propos" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
+<Route path="/projets" element={<Projects />} />
+          <Route path="/projets/:slug" element={<ProjectDetail />} />   <Route path="/contact" element={<Contact />} />
           
           {/* Sécurité Électronique */}
           <Route path="/services/securite-electronique/controle-acces" element={<ControleAcces />} />
