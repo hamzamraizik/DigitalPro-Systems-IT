@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ProjectImpactChart from "@/components/ProjectImpactChart";
 import { projectsMeta } from "@/data/projectsData";
-
 const ProjectDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
@@ -16,11 +16,13 @@ const ProjectDetailPage = () => {
     return <Navigate to="/projets" replace />;
   }
 
-  const title = t(`about.ourWork.projects.${meta.index}.title`);
+const title = t(`about.ourWork.projects.${meta.index}.title`);
   const category = t(`about.ourWork.projects.${meta.index}.category`);
   const status = t(`about.ourWork.projects.${meta.index}.status`);
-  const desc = t(`about.ourWork.projects.${meta.index}.desc`);
-
+  const intro = t(`projectsPage.details.${meta.slug}.intro`);
+  const outro = t(`projectsPage.details.${meta.slug}.outro`);
+  const chartTitle = t(`projectsPage.details.${meta.slug}.chartTitle`);
+  const chartCaption = t(`projectsPage.details.${meta.slug}.chartCaption`);
   return (
     <div className="min-h-screen bg-page transition-colors duration-500">
       <Navbar />
@@ -63,15 +65,25 @@ const ProjectDetailPage = () => {
         {/* Contenu */}
         <section className="py-16 lg:py-24 bg-background">
           <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+<motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-foreground text-lg leading-relaxed"
+            >
+              {intro}
+            </motion.p>
+
+            <ProjectImpactChart metrics={meta.metrics} title={chartTitle} caption={chartCaption} />
+
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-foreground text-lg leading-relaxed mb-12"
             >
-              {desc}
+              {outro}
             </motion.p>
-
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-10 border-t border-border">
               <Link
                 to="/contact"

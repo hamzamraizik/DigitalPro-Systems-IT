@@ -16,7 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
+import { projectsMeta } from "@/data/projectsData";
 const PROJECT_COUNT = 3;
 const AUTO_ADVANCE_DELAY = 6000;
 
@@ -387,7 +387,13 @@ const AboutPage = () => {
                         </p>
                       </motion.div>
 
-                      {!isActive && (
+{isActive ? (
+                        <Link
+                          to={`/projets/${projectsMeta[index].slug}`}
+                          aria-label={t("projectsPage.viewProject")}
+                          className="absolute inset-0 z-20 cursor-pointer"
+                        />
+                      ) : (
                         <button
                           type="button"
                           onClick={() => setActiveProject(index)}
@@ -396,8 +402,7 @@ const AboutPage = () => {
                           })}
                           className="absolute inset-0 z-20 cursor-pointer"
                         />
-                      )}
-                    </motion.article>
+                      )}                    </motion.article>
                   );
                 })}
               </div>

@@ -681,8 +681,39 @@
       "subtitle": "Découvrez les plateformes métier conçues et développées par DigitalPro Systems IT."
     },
 "viewProject": "Voir le projet",
-    "backToProjects": "Retour aux projets",    "modal": {
-      "close": "Fermer",
+"backToProjects": "Retour aux projets",
+    "metrics": {
+      "stockTime": "Temps de traitement du stock (min)",
+      "stockErrors": "Erreurs d'inventaire (%)",
+      "availability": "Disponibilité produit (%)",
+      "transactionTime": "Temps moyen par transaction (s)",
+      "dailySales": "Tickets traités par jour",
+      "errorRate": "Taux d'erreur caisse (%)",
+      "invoiceDelay": "Délai de facturation (jours)",
+      "processedInvoices": "Factures traitées par mois",
+      "disputeRate": "Taux de litiges (%)"
+    },
+    "details": {
+      "medoc": {
+        "intro": "Medoc a été conçu pour répondre aux contraintes opérationnelles des officines et grossistes pharmaceutiques : suivi des stocks en temps réel, gestion des péremptions et traçabilité des lots. Avant la mise en place de la solution, la gestion des stocks reposait en grande partie sur des relevés manuels, source d'erreurs et de ruptures fréquentes.",
+        "chartTitle": "Impact mesuré après déploiement",
+        "chartCaption": "Comparaison avant / après mise en production (données illustratives à ajuster avec vos chiffres réels).",
+        "outro": "Résultat : une équipe opérationnelle qui passe moins de temps sur les tâches de saisie et de contrôle, et une meilleure disponibilité des produits en rayon. La solution continue d'évoluer avec des modules d'alertes de péremption et de réapprovisionnement automatique."
+      },
+      "dps-pos": {
+        "intro": "DPS-POS est une solution de caisse pensée pour les commerces à fort volume de transactions. L'objectif : fluidifier le passage en caisse, réduire les erreurs de saisie et donner une visibilité en temps réel sur l'activité du point de vente.",
+        "chartTitle": "Impact mesuré après déploiement",
+        "chartCaption": "Comparaison avant / après mise en production (données illustratives à ajuster avec vos chiffres réels).",
+        "outro": "Résultat : des files d'attente réduites, une équipe en caisse plus sereine, et des rapports de vente fiables et disponibles instantanément pour la direction. La solution s'intègre avec le module de facturation DPS-Invoice pour un suivi comptable unifié."
+      },
+      "dps-invoice": {
+        "intro": "DPS-Invoice automatise la création, l'envoi et le suivi des factures pour les équipes commerciales et comptables. Avant sa mise en place, chaque facture nécessitait plusieurs validations manuelles et un suivi par tableur, ralentissant le cycle de facturation.",
+        "chartTitle": "Impact mesuré après déploiement",
+        "chartCaption": "Comparaison avant / après mise en production (données illustratives à ajuster avec vos chiffres réels).",
+        "outro": "Résultat : un cycle de facturation nettement raccourci, moins de litiges liés à des erreurs de saisie, et une meilleure visibilité sur les encaissements à venir pour la direction financière."
+      }
+    },
+    "modal": {      "close": "Fermer",
       "requestQuote": "Demander un devis"
     }
   },
