@@ -618,7 +618,39 @@
       "subtitle": "Discover the business platforms designed and engineered by DigitalPro Systems IT."
     },
 "viewProject": "View project",
-    "backToProjects": "Back to projects",    "modal": {
+   "backToProjects": "Back to projects",
+    "metrics": {
+      "stockTime": "Stock processing time (min)",
+      "stockErrors": "Inventory errors (%)",
+      "availability": "Product availability (%)",
+      "transactionTime": "Average transaction time (s)",
+      "dailySales": "Transactions processed per day",
+      "errorRate": "Checkout error rate (%)",
+      "invoiceDelay": "Invoicing delay (days)",
+      "processedInvoices": "Invoices processed per month",
+      "disputeRate": "Dispute rate (%)"
+    },
+    "details": {
+      "medoc": {
+        "intro": "Medoc was built to address the operational constraints of pharmacies and pharmaceutical wholesalers: real-time stock tracking, expiry date management and batch traceability. Before the solution was deployed, stock management relied largely on manual records, a frequent source of errors and stock-outs.",
+        "chartTitle": "Measured impact after deployment",
+        "chartCaption": "Before / after comparison following production rollout (illustrative figures — replace with your real data).",
+        "outro": "Result: an operations team spending less time on manual entry and checks, and better product availability on the shelves. The solution keeps evolving with expiry-alert and automatic reordering modules."
+      },
+      "dps-pos": {
+        "intro": "DPS-POS is a point-of-sale solution designed for high-volume retail environments. The goal: streamline checkout, reduce input errors, and give real-time visibility into store activity.",
+        "chartTitle": "Measured impact after deployment",
+        "chartCaption": "Before / after comparison following production rollout (illustrative figures — replace with your real data).",
+        "outro": "Result: shorter queues, a calmer checkout team, and reliable sales reports available instantly for management. The solution integrates with the DPS-Invoice module for unified accounting."
+      },
+      "dps-invoice": {
+        "intro": "DPS-Invoice automates invoice creation, delivery and tracking for sales and accounting teams. Before it was deployed, each invoice required several manual approvals and spreadsheet-based tracking, slowing down the billing cycle.",
+        "chartTitle": "Measured impact after deployment",
+        "chartCaption": "Before / after comparison following production rollout (illustrative figures — replace with your real data).",
+        "outro": "Result: a significantly shorter billing cycle, fewer disputes caused by input errors, and better visibility into upcoming cash inflows for the finance team."
+      }
+    },
+    "modal": {
       "close": "Close",
       "requestQuote": "Request a quote"
     }
