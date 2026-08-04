@@ -49,11 +49,13 @@ export const Footer = () => {
             {t("footer.companyTitle")}
           </h2>
           <ul className="mt-5 space-y-3 text-sm text-white/[0.58]">
-            {[
+{[
+              { label: t("nav.home"), href: "/" },
+              { label: t("nav.services"), href: "/services" },
               { label: t("nav.about"), href: "/a-propos" },
-{ label: t("nav.projects"), href: "/projets" },              { label: t("nav.contact"), href: "/contact" }
-            ].map((link) => (
-              <li key={link.href}>
+              { label: t("nav.projects"), href: "/projets" },
+              { label: t("nav.contact"), href: "/contact" }
+            ].map((link) => (              <li key={link.href}>
                 <Link to={link.href} className="transition-colors hover:text-white">
                   {link.label}
                 </Link>

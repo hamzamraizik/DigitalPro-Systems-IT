@@ -15,7 +15,7 @@ import AlarmeAntiIntrusion from "./pages/securite-electronique/AlarmeAntiIntrusi
 import ProtectionIncendie from "./pages/securite-electronique/ProtectionIncendie";
 import SecuritePeripherique from "./pages/securite-electronique/SecuritePeripherique";
 import SerruresBatiments from "./pages/securite-electronique/SerruresBatiments";
-
+import ScrollToTop from "@/components/ScrollToTop";
 // Cybersécurité
 import FirewallVpn from "./pages/cybersecurite/FirewallVpn";
 import DetectionIntrusion from "./pages/cybersecurite/DetectionIntrusion";
@@ -63,7 +63,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+ <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
