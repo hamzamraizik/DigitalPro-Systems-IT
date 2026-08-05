@@ -374,15 +374,18 @@ const AboutPage = () => {
                         <p className="max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base lg:text-lg">
                           {project.desc}
                         </p>
+                        {isActive && (
+                          <Link
+                            to={`/projets/${projectsMeta[index].slug}`}
+                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+                          >
+                            {t("projectsPage.viewProject")}
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        )}
                       </motion.div>
 
-{isActive ? (
-                        <Link
-                          to={`/projets/${projectsMeta[index].slug}`}
-                          aria-label={t("projectsPage.viewProject")}
-                          className="absolute inset-0 z-20 cursor-pointer"
-                        />
-                      ) : (
+                      {!isActive && (
                         <button
                           type="button"
                           onClick={() => setActiveProject(index)}
@@ -391,7 +394,8 @@ const AboutPage = () => {
                           })}
                           className="absolute inset-0 z-20 cursor-pointer"
                         />
-                      )}                    </motion.article>
+                      )}
+                    </motion.article>
                   );
                 })}
               </div>
@@ -475,6 +479,10 @@ const AboutPage = () => {
               </h2>
               <p className="text-lg text-muted-foreground">
                 {t("about.team.desc")}
+              </p>
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-5 py-2.5 text-sm font-semibold text-foreground">
+                <Users className="h-4 w-4 text-accent" />
+                {t("about.team.extendedTeam")}
               </p>
             </div>
 

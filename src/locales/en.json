@@ -831,7 +831,7 @@
       "badge": "Our team",
       "title": "Meet Our Team",
       "desc": "A multidisciplinary Moroccan team turning business challenges into dependable technology.",
-      "photoPending": "Photo coming soon",
+      "extendedTeam": "Alongside them, more than 6 engineers and developers contribute to our projects.",
       "specialityLabel": "Speciality",
       "members": [
         {
@@ -845,18 +845,6 @@
         {
           "name": "Hamza Mraizik",
           "role": "Tech Lead & Software Engineer"
-        },
-        {
-          "name": "Salma El Amrani",
-          "role": "Product & UX Designer"
-        },
-        {
-          "name": "Youssef El Mansouri",
-          "role": "Systems & Cybersecurity Engineer"
-        },
-        {
-          "name": "Nadia Bennani",
-          "role": "Project & Customer Success Manager"
         }
       ]
     }
