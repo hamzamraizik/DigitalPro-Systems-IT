@@ -16,7 +16,7 @@ import {
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { projectsMeta } from "@/data/projectsData";
+import { getProjectLocale, projectsMeta } from "@/data/projectsData";
 import { teamMembers } from "@/data/teamData";
 const PROJECT_COUNT = 3;
 const AUTO_ADVANCE_DELAY = 6000;
@@ -62,7 +62,8 @@ const carouselMotion = {
 } as const;
 
 const AboutPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = getProjectLocale(i18n.language);
   const prefersReducedMotion = useReducedMotion();
   const [activeProject, setActiveProject] = useState(0);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
@@ -108,29 +109,16 @@ const AboutPage = () => {
     },
   ];
 
-  const projects = [
-    {
-      title: t("about.ourWork.projects.0.title"),
-      category: t("about.ourWork.projects.0.category"),
-      status: t("about.ourWork.projects.0.status"),
-      desc: t("about.ourWork.projects.0.desc"),
-      image: "/software-bg.png",
-    },
-    {
-      title: t("about.ourWork.projects.1.title"),
-      category: t("about.ourWork.projects.1.category"),
-      status: t("about.ourWork.projects.1.status"),
-      desc: t("about.ourWork.projects.1.desc"),
-      image: "/hardware-illustration.png",
-    },
-    {
-      title: t("about.ourWork.projects.2.title"),
-      category: t("about.ourWork.projects.2.category"),
-      status: t("about.ourWork.projects.2.status"),
-      desc: t("about.ourWork.projects.2.desc"),
-      image: "/erp-illustration.png",
-    },
-  ];
+  const projects = projectsMeta.map((project) => {
+    const story = project.content[locale];
+    return {
+      title: project.name,
+      category: story.category,
+      status: story.status,
+      desc: story.summary,
+      image: project.image,
+    };
+  });
 
   const team = teamMembers.map((member) => ({
     ...member,
@@ -503,7 +491,11 @@ const AboutPage = () => {
                   <div className="relative h-80 overflow-hidden bg-navy-dark">
                     <img
                       src={member.image}
-                      alt={`Portrait de ${member.name}`}
+                      alt={
+                        locale === "fr"
+                          ? `Portrait de ${member.name}`
+                          : `Portrait of ${member.name}`
+                      }
                       loading="lazy"
                       width={900}
                       height={1100}
