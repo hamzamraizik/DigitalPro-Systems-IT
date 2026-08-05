@@ -16,7 +16,8 @@ import {
 import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { projectsMeta } from "@/data/projectsData";
+import { getProjectLocale, projectsMeta } from "@/data/projectsData";
+import { teamMembers } from "@/data/teamData";
 const PROJECT_COUNT = 3;
 const AUTO_ADVANCE_DELAY = 6000;
 
@@ -61,7 +62,8 @@ const carouselMotion = {
 } as const;
 
 const AboutPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const locale = getProjectLocale(i18n.language);
   const prefersReducedMotion = useReducedMotion();
   const [activeProject, setActiveProject] = useState(0);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
@@ -107,33 +109,20 @@ const AboutPage = () => {
     },
   ];
 
-  const projects = [
-    {
-      title: t("about.ourWork.projects.0.title"),
-      category: t("about.ourWork.projects.0.category"),
-      status: t("about.ourWork.projects.0.status"),
-      desc: t("about.ourWork.projects.0.desc"),
-      image: "/software-bg.png",
-    },
-    {
-      title: t("about.ourWork.projects.1.title"),
-      category: t("about.ourWork.projects.1.category"),
-      status: t("about.ourWork.projects.1.status"),
-      desc: t("about.ourWork.projects.1.desc"),
-      image: "/hardware-illustration.png",
-    },
-    {
-      title: t("about.ourWork.projects.2.title"),
-      category: t("about.ourWork.projects.2.category"),
-      status: t("about.ourWork.projects.2.status"),
-      desc: t("about.ourWork.projects.2.desc"),
-      image: "/erp-illustration.png",
-    },
-  ];
+  const projects = projectsMeta.map((project) => {
+    const story = project.content[locale];
+    return {
+      title: project.name,
+      category: story.category,
+      status: story.status,
+      desc: story.summary,
+      image: project.image,
+    };
+  });
 
-  const team = Array.from({ length: 6 }, (_, index) => ({
-    name: t(`about.team.members.${index}.name`),
-    role: t(`about.team.members.${index}.role`),
+  const team = teamMembers.map((member) => ({
+    ...member,
+    role: t(`about.team.members.${member.roleKey}.role`),
   }));
 
   const showNextProject = useCallback(() => {
@@ -385,15 +374,18 @@ const AboutPage = () => {
                         <p className="max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base lg:text-lg">
                           {project.desc}
                         </p>
+                        {isActive && (
+                          <Link
+                            to={`/projets/${projectsMeta[index].slug}`}
+                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+                          >
+                            {t("projectsPage.viewProject")}
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        )}
                       </motion.div>
 
-{isActive ? (
-                        <Link
-                          to={`/projets/${projectsMeta[index].slug}`}
-                          aria-label={t("projectsPage.viewProject")}
-                          className="absolute inset-0 z-20 cursor-pointer"
-                        />
-                      ) : (
+                      {!isActive && (
                         <button
                           type="button"
                           onClick={() => setActiveProject(index)}
@@ -402,7 +394,8 @@ const AboutPage = () => {
                           })}
                           className="absolute inset-0 z-20 cursor-pointer"
                         />
-                      )}                    </motion.article>
+                      )}
+                    </motion.article>
                   );
                 })}
               </div>
@@ -487,6 +480,10 @@ const AboutPage = () => {
               <p className="text-lg text-muted-foreground">
                 {t("about.team.desc")}
               </p>
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-5 py-2.5 text-sm font-semibold text-foreground">
+                <Users className="h-4 w-4 text-accent" />
+                {t("about.team.extendedTeam")}
+              </p>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -497,18 +494,22 @@ const AboutPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.07 }}
-                  className="group flex min-h-[480px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
+                  className="group flex min-h-[460px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
                 >
-                  <div className="relative h-72 overflow-hidden bg-navy-dark">
+                  <div className="relative h-80 overflow-hidden bg-navy-dark">
                     <img
-                      src="/team-anonymous.svg"
-                      alt=""
-                      aria-hidden="true"
+                      src={member.image}
+                      alt={
+                        locale === "fr"
+                          ? `Portrait de ${member.name}`
+                          : `Portrait of ${member.name}`
+                      }
+                      loading="lazy"
+                      width={900}
+                      height={1100}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      style={{ objectPosition: member.imagePosition }}
                     />
-                    <span className="absolute right-4 top-4 rounded-full border border-white/20 bg-navy-dark/70 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur-md">
-                      {t("about.team.photoPending")}
-                    </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="mb-5 font-display text-2xl font-bold text-foreground">
