@@ -7,8 +7,10 @@ import Index from "./pages/Index";
 import Services from "./pages/Services";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";import Contact from "./pages/Contact";
+import ProjectDetail from "./pages/ProjectDetail";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import LegacyRouteRedirect from "@/components/LegacyRouteRedirect";
 import ControleAcces from "./pages/securite-electronique/ControleAcces";
 import Videosurveillance from "./pages/securite-electronique/Videosurveillance";
 import AlarmeAntiIntrusion from "./pages/securite-electronique/AlarmeAntiIntrusion";
@@ -69,8 +71,12 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
           <Route path="/a-propos" element={<About />} />
-<Route path="/projets" element={<Projects />} />
-          <Route path="/projets/:slug" element={<ProjectDetail />} />   <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<LegacyRouteRedirect to="/a-propos" />} />
+          <Route path="/projets" element={<Projects />} />
+          <Route path="/projects" element={<LegacyRouteRedirect to="/projets" />} />
+          <Route path="/projets/:slug" element={<ProjectDetail />} />
+          <Route path="/projects/:slug" element={<LegacyRouteRedirect to="/projets/:slug" />} />
+          <Route path="/contact" element={<Contact />} />
           
           {/* Sécurité Électronique */}
           <Route path="/services/securite-electronique/controle-acces" element={<ControleAcces />} />
