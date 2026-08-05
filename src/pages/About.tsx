@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projectsMeta } from "@/data/projectsData";
+import { teamMembers } from "@/data/teamData";
 const PROJECT_COUNT = 3;
 const AUTO_ADVANCE_DELAY = 6000;
 
@@ -131,9 +132,9 @@ const AboutPage = () => {
     },
   ];
 
-  const team = Array.from({ length: 6 }, (_, index) => ({
-    name: t(`about.team.members.${index}.name`),
-    role: t(`about.team.members.${index}.role`),
+  const team = teamMembers.map((member) => ({
+    ...member,
+    role: t(`about.team.members.${member.roleKey}.role`),
   }));
 
   const showNextProject = useCallback(() => {
@@ -497,18 +498,18 @@ const AboutPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.07 }}
-                  className="group flex min-h-[480px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
+                  className="group flex min-h-[460px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
                 >
-                  <div className="relative h-72 overflow-hidden bg-navy-dark">
+                  <div className="relative h-80 overflow-hidden bg-navy-dark">
                     <img
-                      src="/team-anonymous.svg"
-                      alt=""
-                      aria-hidden="true"
+                      src={member.image}
+                      alt={`Portrait de ${member.name}`}
+                      loading="lazy"
+                      width={900}
+                      height={1100}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      style={{ objectPosition: member.imagePosition }}
                     />
-                    <span className="absolute right-4 top-4 rounded-full border border-white/20 bg-navy-dark/70 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur-md">
-                      {t("about.team.photoPending")}
-                    </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="mb-5 font-display text-2xl font-bold text-foreground">
