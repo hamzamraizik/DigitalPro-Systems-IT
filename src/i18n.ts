@@ -14,6 +14,13 @@ i18n
       en: { translation: enTranslations },
     },
     fallbackLng: 'fr',
+    detection: {
+      // Keep the canonical, server-generated French content aligned with the
+      // first client render. A visitor's explicit language choice is persisted.
+      order: ['localStorage'],
+      caches: ['localStorage'],
+      lookupLocalStorage: 'i18nextLng',
+    },
     interpolation: {
       escapeValue: false, // react already safes from xss
     },

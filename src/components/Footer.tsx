@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { COMPANY } from "@/constants/company";
 
-import logo from "@/assets/dps-it_logo.png";
+import logo from "@/assets/dps-it_logo.webp";
 
 export const Footer = () => {
   const { t } = useTranslation();
@@ -15,6 +16,8 @@ export const Footer = () => {
             <img
               src={logo}
               alt="DigitalPro Systems IT"
+              width="600"
+              height="400"
               className="h-auto w-[180px] object-contain brightness-0 invert"
             />
           </Link>
@@ -75,13 +78,13 @@ export const Footer = () => {
             </li>
             <li className="flex items-center gap-3">
               <Phone className="h-4 w-4 shrink-0 text-[#00AEEF]" aria-hidden="true" />
-              <a href="tel:+212522000000" className="transition-colors hover:text-white">
+              <a href={`tel:${COMPANY.phone}`} className="transition-colors hover:text-white">
                 {t("footer.phone")}
               </a>
             </li>
             <li className="flex items-center gap-3">
               <Mail className="h-4 w-4 shrink-0 text-[#00AEEF]" aria-hidden="true" />
-              <a href="mailto:contact@dps-it.ma" className="break-all transition-colors hover:text-white">
+              <a href={`mailto:${COMPANY.email}`} className="break-all transition-colors hover:text-white">
                 {t("footer.email")}
               </a>
             </li>

@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
+import { COMPANY } from "@/constants/company";
 
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string;
 const ContactPage = () => {
@@ -57,7 +58,7 @@ const ContactPage = () => {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          to: "contact@dps-it.ma",
+          to: COMPANY.email,
           subject: `[DPS-IT Contact] ${result.data.subject}`,
           from_name: result.data.name,
           email: result.data.email,
@@ -124,7 +125,7 @@ const ContactPage = () => {
                         {info.label === t("contactPage.info.labels.email") ? (
                           <a href={`mailto:${info.value}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
                         ) : info.label === t("contactPage.info.labels.phone") ? (
-                          <a href={`tel:+212663463189`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
+                          <a href={`tel:${COMPANY.phone}`} className="text-sm text-muted-foreground hover:text-accent transition-colors">{info.value}</a>
                         ) : (
                           <div className="text-sm text-muted-foreground">{info.value}</div>
                         )}

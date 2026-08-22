@@ -8,5 +8,5 @@ export const COMPANY = {
 
   phoneDisplay: "07 66 21 85 98",
 
-  email: "contact@digitalpro.ma",
+  email: "contact@dps-it.ma",
 };

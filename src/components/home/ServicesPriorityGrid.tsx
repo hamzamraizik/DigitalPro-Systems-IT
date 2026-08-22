@@ -60,7 +60,7 @@ const softwareServices: PriorityService[] = [
     variant: "erp",
     group: "software",
     icon: Workflow,
-    image: "/software-bg.png",
+    image: "/software-bg.webp",
   },
   {
     title: "Développement Web & Plateformes Digitales",
@@ -93,7 +93,7 @@ const hardwareServices: PriorityService[] = [
     variant: "hardware",
     group: "hardware",
     icon: Server,
-    image: "/hardware-bg.png",
+    image: "/hardware-bg.webp",
   },
   {
     title: "Sécurité Électronique",
@@ -104,7 +104,7 @@ const hardwareServices: PriorityService[] = [
     variant: "securityPhysical",
     group: "hardware",
     icon: Fingerprint,
-    image: "/security-bg.png",
+    image: "/security-bg.webp",
   },
   {
     title: "Infrastructures Réseaux & Systèmes",
@@ -115,7 +115,7 @@ const hardwareServices: PriorityService[] = [
     variant: "network",
     group: "hardware",
     icon: Network,
-    image: "/network-bg.png",
+    image: "/network-bg.webp",
   },
   {
     title: "Cybersécurité",
@@ -125,7 +125,7 @@ const hardwareServices: PriorityService[] = [
     variant: "cyber",
     group: "hardware",
     icon: ShieldCheck,
-    image: "/cyber-bg.png",
+    image: "/cyber-bg.webp",
   },
   {
     title: "Gestion de Parc IT",
@@ -135,7 +135,7 @@ const hardwareServices: PriorityService[] = [
     variant: "gestion",
     group: "hardware",
     icon: Headphones,
-    image: "/gestion-bg.png",
+    image: "/gestion-bg.webp",
   },
 ];
 
@@ -184,8 +184,10 @@ const DashboardPreview = () => (
        <div className="absolute inset-0 scale-75 rounded-full bg-[#00AEEF]/5 blur-3xl transition-colors duration-500 group-hover:bg-[#00AEEF]/10" />
        
        <img 
-         src="/erp-illustration.png" 
+         src="/erp-illustration.webp"
          alt="ERP CRM Dashboard" 
+         loading="lazy"
+         decoding="async"
          className="relative z-10 h-full w-full scale-[1.15] object-contain drop-shadow-xl transition-transform duration-700 group-hover:-translate-y-2 group-hover:scale-[1.25]"
        />
     </div>
@@ -217,8 +219,10 @@ const WebPreview = () => (
   <div className="relative flex h-full w-full max-w-xl items-center justify-center p-4">
     <div className="group relative w-full overflow-hidden rounded-[24px] border border-white/10 shadow-2xl ring-1 ring-white/5 transition-all duration-700 hover:border-[#00AEEF]/50">
       <img 
-        src="/web-realistic.png" 
+        src="/web-realistic.webp"
         alt="Web Development" 
+        loading="lazy"
+        decoding="async"
         className="w-full object-cover aspect-video transition-transform duration-1000 ease-out group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent pointer-events-none" />
@@ -338,8 +342,10 @@ const HardwarePreview = () => (
   <div className="relative flex h-full w-full max-w-xl items-center justify-center p-4">
     <div className="group relative w-full overflow-hidden rounded-[24px] border border-white/10 shadow-2xl ring-1 ring-white/5 transition-all duration-700 hover:border-[#00AEEF]/50">
       <img 
-        src="/hardware-realistic.png" 
+        src="/hardware-realistic.webp"
         alt="IT Hardware and Servers" 
+        loading="lazy"
+        decoding="async"
         className="w-full object-cover aspect-video transition-transform duration-1000 ease-out group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent pointer-events-none" />
@@ -360,8 +366,10 @@ const MobileAppPreview = () => (
   <div className="relative flex h-full w-full max-w-xl items-center justify-center p-4">
     <div className="group relative w-full overflow-hidden rounded-[24px] border border-white/10 shadow-2xl ring-1 ring-white/5 transition-all duration-700 hover:border-[#00AEEF]/50">
       <img 
-        src="/mobile-realistic.png" 
+        src="/mobile-realistic.webp"
         alt="Mobile Apps" 
+        loading="lazy"
+        decoding="async"
         className="w-full object-cover aspect-[4/3] transition-transform duration-1000 ease-out group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent pointer-events-none" />
@@ -429,6 +437,8 @@ const PriorityCard = ({ service }: { service: PriorityService }) => {
             <img 
               src={service.image} 
               alt="" 
+              loading="lazy"
+              decoding="async"
               className={cn(
                 "h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105",
                 isSecurityPhysical ? "opacity-40 mix-blend-multiply" : isLight ? "opacity-[0.08] mix-blend-multiply" : "opacity-[0.25] mix-blend-screen"
