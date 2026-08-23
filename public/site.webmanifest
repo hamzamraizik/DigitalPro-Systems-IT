@@ -1,0 +1,18 @@
+{
+  "name": "DigitalPro Systems IT",
+  "short_name": "DPS IT",
+  "description": "Solutions IT, sécurité électronique, réseaux, cybersécurité et logiciels métier à Casablanca.",
+  "lang": "fr-MA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "icons": [
+    {
+      "src": "/hero-bg.webp",
+      "sizes": "1024x1024",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Moon, Sun, Globe } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-import logo from "@/assets/dps-it_logo.png";
+import logo from "@/assets/dps-it_logo.webp";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -80,6 +80,8 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="DigitalPro Systems IT" 
+                width="600"
+                height="400"
                 className={cn("h-auto object-contain transition-all duration-500", scrolled ? "w-[140px]" : "w-[160px]")} 
               />
             </Link>
@@ -148,7 +150,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 top-20 z-[60] flex max-h-[calc(100dvh-6rem)] flex-col overflow-y-auto rounded-[24px] border border-black/10 bg-white/[0.98] p-4 text-[#111111] shadow-2xl backdrop-blur-3xl dark:border-white/10 dark:bg-[#0A0A0A]/[0.98] dark:text-white lg:hidden"
+            className="fixed inset-x-4 top-20 z-[60] flex max-h-[calc(100dvh-6rem)] flex-col overflow-y-auto rounded-[24px] border border-black/10 bg-white p-4 text-[#111111] shadow-2xl dark:border-white/10 dark:bg-[#0A0A0A] dark:text-white lg:hidden"
             style={{ WebkitBackdropFilter: "blur(32px)" }}
           >
             <div className="flex flex-col gap-2">

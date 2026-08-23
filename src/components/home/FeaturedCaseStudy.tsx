@@ -13,7 +13,9 @@ const CaseStudyVisual = () => {
     <div className="group relative flex w-full flex-col overflow-hidden rounded-[24px] border border-white/10 bg-zinc-900 shadow-2xl ring-1 ring-white/5 transition-all duration-700 hover:border-[#00AEEF]/50 aspect-square sm:aspect-[4/3] lg:aspect-square">
       <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
          <img 
-           src="/case-study-realistic.png" 
+           src="/case-study-realistic.webp"
+           loading="lazy"
+           decoding="async"
            alt="Security Operations Center (SOC) Architecture" 
            className="relative z-10 h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
          />

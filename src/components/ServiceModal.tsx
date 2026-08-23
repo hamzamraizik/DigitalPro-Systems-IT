@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { X, ArrowRight, Check } from "lucide-react";
-import { whyUs, type ServiceCategory } from "@/data/servicesData";
+import { serviceSlugByKey, whyUs, type ServiceCategory } from "@/data/servicesData";
 
 interface ServiceModalProps {
   service: ServiceCategory | null;
@@ -126,8 +126,10 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
                   : null;
 
                 return (
-                  <div
+                  <Link
                     key={item.key}
+                    to={`/services/${service.id}/${serviceSlugByKey[item.key]}`}
+                    onClick={onClose}
                     className="flex items-start gap-4 bg-black/[0.02] dark:bg-white/[0.03] border border-black/10 dark:border-white/10 hover:border-cyan/40 rounded-xl px-5 py-4 transition-all duration-300 hover:bg-black/[0.04] dark:hover:bg-white/[0.05]"
                   >
                     <div className="w-11 h-11 shrink-0 rounded-lg bg-cyan/10 flex items-center justify-center">
@@ -154,7 +156,7 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
                         </ul>
                       )}
                     </div>
-                  </div>
+                  </Link>
                 );
               })}
             </div>

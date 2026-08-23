@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -62,20 +61,6 @@ const ProjectDetail = () => {
           ctaBody: "Tell us how your work really happens. We will turn its friction into a clear, dependable system built to evolve.",
           ctaButton: "Discuss your project",
         };
-
-  useEffect(() => {
-    if (!project) return;
-    const story = project.content[locale];
-    document.title = `${project.name} — ${story.category} | DPS-IT`;
-
-    let description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (!description) {
-      description = document.createElement("meta");
-      description.name = "description";
-      document.head.appendChild(description);
-    }
-    description.content = story.summary;
-  }, [locale, project]);
 
   if (!project) {
     return (

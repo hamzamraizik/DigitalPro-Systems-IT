@@ -1,72 +1,67 @@
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import Services from "./pages/Services";
-import About from "./pages/About";
-import Projects from "./pages/Projects";
-import ProjectDetail from "./pages/ProjectDetail";
-import Contact from "./pages/Contact";
-import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from "react";
 import LegacyRouteRedirect from "@/components/LegacyRouteRedirect";
-import ControleAcces from "./pages/securite-electronique/ControleAcces";
-import Videosurveillance from "./pages/securite-electronique/Videosurveillance";
-import AlarmeAntiIntrusion from "./pages/securite-electronique/AlarmeAntiIntrusion";
-import ProtectionIncendie from "./pages/securite-electronique/ProtectionIncendie";
-import SecuritePeripherique from "./pages/securite-electronique/SecuritePeripherique";
-import SerruresBatiments from "./pages/securite-electronique/SerruresBatiments";
 import ScrollToTop from "@/components/ScrollToTop";
-// Cybersécurité
-import FirewallVpn from "./pages/cybersecurite/FirewallVpn";
-import DetectionIntrusion from "./pages/cybersecurite/DetectionIntrusion";
-import SocSupervision from "./pages/cybersecurite/SocSupervision";
-import AuditSecurite from "./pages/cybersecurite/AuditSecurite";
-import Sensibilisation from "./pages/cybersecurite/Sensibilisation";
-import PlanReprise from "./pages/cybersecurite/PlanReprise";
+import SeoManager from "@/seo/SeoManager";
 
-// Infrastructures & Réseaux
-import ReseauxLanWan from "./pages/infrastructures-reseaux/ReseauxLanWan";
-import CablageStructure from "./pages/infrastructures-reseaux/CablageStructure";
-import WifiEntreprise from "./pages/infrastructures-reseaux/WifiEntreprise";
-import Virtualisation from "./pages/infrastructures-reseaux/Virtualisation";
-import FirewallReseau from "./pages/infrastructures-reseaux/FirewallReseau";
-import CloudHybride from "./pages/infrastructures-reseaux/CloudHybride";
+const Index = lazy(() => import("./pages/Index"));
+const Services = lazy(() => import("./pages/Services"));
+const About = lazy(() => import("./pages/About"));
+const Projects = lazy(() => import("./pages/Projects"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const Contact = lazy(() => import("./pages/Contact"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
-// Gestion de Parc
-import MaintenancePreventive from "./pages/gestion-parc/MaintenancePreventive";
-import Helpdesk from "./pages/gestion-parc/Helpdesk";
-import SupervisionProactive from "./pages/gestion-parc/SupervisionProactive";
-import InventaireSuivi from "./pages/gestion-parc/InventaireSuivi";
-import MigrationPostes from "./pages/gestion-parc/MigrationPostes";
-import GestionLicences from "./pages/gestion-parc/GestionLicences";
+const ControleAcces = lazy(() => import("./pages/securite-electronique/ControleAcces"));
+const Videosurveillance = lazy(() => import("./pages/securite-electronique/Videosurveillance"));
+const AlarmeAntiIntrusion = lazy(() => import("./pages/securite-electronique/AlarmeAntiIntrusion"));
+const ProtectionIncendie = lazy(() => import("./pages/securite-electronique/ProtectionIncendie"));
+const SecuritePeripherique = lazy(() => import("./pages/securite-electronique/SecuritePeripherique"));
+const SerruresBatiments = lazy(() => import("./pages/securite-electronique/SerruresBatiments"));
 
-// Développement
-import ApplicationsWeb from "./pages/developpement/ApplicationsWeb";
-import ApplicationsMobiles from "./pages/developpement/ApplicationsMobiles";
-import ApiIntegrations from "./pages/developpement/ApiIntegrations";
-import ErpSurMesure from "./pages/developpement/ErpSurMesure";
-import CrmRelationClient from "./pages/developpement/CrmRelationClient";
-import BusinessIntelligence from "./pages/developpement/BusinessIntelligence";
+const FirewallVpn = lazy(() => import("./pages/cybersecurite/FirewallVpn"));
+const DetectionIntrusion = lazy(() => import("./pages/cybersecurite/DetectionIntrusion"));
+const SocSupervision = lazy(() => import("./pages/cybersecurite/SocSupervision"));
+const AuditSecurite = lazy(() => import("./pages/cybersecurite/AuditSecurite"));
+const Sensibilisation = lazy(() => import("./pages/cybersecurite/Sensibilisation"));
+const PlanReprise = lazy(() => import("./pages/cybersecurite/PlanReprise"));
 
-// Distribution
-import ServeursStockage from "./pages/distribution/ServeursStockage";
-import PostesTravail from "./pages/distribution/PostesTravail";
-import EquipementsReseau from "./pages/distribution/EquipementsReseau";
-import Peripheriques from "./pages/distribution/Peripheriques";
-import LicencesLogiciellesDistribution from "./pages/distribution/LicencesLogiciellesDistribution";
-import ImportExport from "./pages/distribution/ImportExport";
+const ReseauxLanWan = lazy(() => import("./pages/infrastructures-reseaux/ReseauxLanWan"));
+const CablageStructure = lazy(() => import("./pages/infrastructures-reseaux/CablageStructure"));
+const WifiEntreprise = lazy(() => import("./pages/infrastructures-reseaux/WifiEntreprise"));
+const Virtualisation = lazy(() => import("./pages/infrastructures-reseaux/Virtualisation"));
+const FirewallReseau = lazy(() => import("./pages/infrastructures-reseaux/FirewallReseau"));
+const CloudHybride = lazy(() => import("./pages/infrastructures-reseaux/CloudHybride"));
 
-const queryClient = new QueryClient();
+const MaintenancePreventive = lazy(() => import("./pages/gestion-parc/MaintenancePreventive"));
+const Helpdesk = lazy(() => import("./pages/gestion-parc/Helpdesk"));
+const SupervisionProactive = lazy(() => import("./pages/gestion-parc/SupervisionProactive"));
+const InventaireSuivi = lazy(() => import("./pages/gestion-parc/InventaireSuivi"));
+const MigrationPostes = lazy(() => import("./pages/gestion-parc/MigrationPostes"));
+const GestionLicences = lazy(() => import("./pages/gestion-parc/GestionLicences"));
+
+const ApplicationsWeb = lazy(() => import("./pages/developpement/ApplicationsWeb"));
+const ApplicationsMobiles = lazy(() => import("./pages/developpement/ApplicationsMobiles"));
+const ApiIntegrations = lazy(() => import("./pages/developpement/ApiIntegrations"));
+const ErpSurMesure = lazy(() => import("./pages/developpement/ErpSurMesure"));
+const CrmRelationClient = lazy(() => import("./pages/developpement/CrmRelationClient"));
+const BusinessIntelligence = lazy(() => import("./pages/developpement/BusinessIntelligence"));
+
+const ServeursStockage = lazy(() => import("./pages/distribution/ServeursStockage"));
+const PostesTravail = lazy(() => import("./pages/distribution/PostesTravail"));
+const EquipementsReseau = lazy(() => import("./pages/distribution/EquipementsReseau"));
+const Peripheriques = lazy(() => import("./pages/distribution/Peripheriques"));
+const LicencesLogiciellesDistribution = lazy(() => import("./pages/distribution/LicencesLogiciellesDistribution"));
+const ImportExport = lazy(() => import("./pages/distribution/ImportExport"));
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
- <BrowserRouter>
-        <ScrollToTop />
+  <>
+    <Toaster />
+    <BrowserRouter>
+      <ScrollToTop />
+      <SeoManager />
+      <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Chargement de la page" />}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
@@ -128,9 +123,9 @@ const App = () => (
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+      </Suspense>
+    </BrowserRouter>
+  </>
 );
 
 export default App;
