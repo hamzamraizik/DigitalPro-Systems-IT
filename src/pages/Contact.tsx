@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { COMPANY } from "@/constants/company";
 
-const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string;
+const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || COMPANY.email;
 const ContactPage = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
@@ -53,16 +53,16 @@ const ContactPage = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          to: COMPANY.email,
-          subject: `[DPS-IT Contact] ${result.data.subject}`,
-          from_name: result.data.name,
+          _captcha: "false",
+          _template: "table",
+          name: result.data.name,
           email: result.data.email,
           phone: result.data.phone ?? "",
+          subject: `[DPS-IT Contact] ${result.data.subject}`,
           message: result.data.message,
         }),
       });

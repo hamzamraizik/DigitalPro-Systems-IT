@@ -64,10 +64,10 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f7] px-6 text-center">
+      <div className="flex min-h-screen items-center justify-center bg-[#f5f5f7] px-6 text-center dark:bg-[#0a0b10]">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">404</p>
-          <h1 className="mt-4 text-4xl font-semibold text-[#1d1d1f]">Project not found</h1>
+          <h1 className="mt-4 text-4xl font-semibold text-[#1d1d1f] dark:text-zinc-100">Project not found</h1>
           <Link to="/projets" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-accent">
             <ArrowLeft className="h-4 w-4" /> {labels.back}
           </Link>
@@ -80,7 +80,7 @@ const ProjectDetail = () => {
   const related = projects.filter((item) => item.slug !== project.slug);
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
+    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#0a0b10] dark:text-zinc-100">
       <Navbar />
       <main>
         <section className="relative overflow-hidden bg-[#07080b] px-4 pb-16 pt-32 text-white sm:px-6 lg:pb-24 lg:pt-40">
@@ -132,8 +132,7 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        <section className="bg-white px-4 py-24 sm:px-6 lg:py-36">
-          <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
+        <section className="bg-white px-4 py-24 sm:px-6 lg:py-36 dark:bg-[#111318]">          <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-24">
             <div>
               <p className="sticky top-28 flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em]" style={{ color: project.accent }}>
                 <span className="flex h-8 w-8 items-center justify-center rounded-full" style={{ backgroundColor: project.accentSoft }}>01</span>
@@ -141,18 +140,18 @@ const ProjectDetail = () => {
               </p>
             </div>
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.17em] text-[#86868b]">{labels.friction}</p>
-              <h2 className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.17em] text-[#86868b] dark:text-zinc-500">{labels.friction}</p>
+              <h2 className="mt-5 text-balance font-display text-4xl font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl dark:text-zinc-100">
                 {story.problem.title}
               </h2>
-              <p className="mt-7 text-lg leading-[1.8] text-[#6e6e73]">{story.problem.body}</p>
+              <p className="mt-7 text-lg leading-[1.8] text-[#6e6e73] dark:text-zinc-400">{story.problem.body}</p>
               <div className="mt-10 space-y-4">
                 {story.problem.points.map((point) => (
-                  <div key={point} className="flex gap-4 rounded-2xl border border-black/5 bg-[#f5f5f7] p-5 sm:p-6">
+                  <div key={point} className="flex gap-4 rounded-2xl border border-black/5 bg-[#f5f5f7] p-5 sm:p-6 dark:border-white/10 dark:bg-white/[0.04]">
                     <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white" style={{ backgroundColor: project.accent }}>
                       <Check className="h-3.5 w-3.5" />
                     </span>
-                    <p className="leading-relaxed text-[#424245]">{point}</p>
+                    <p className="leading-relaxed text-[#424245] dark:text-zinc-300">{point}</p>
                   </div>
                 ))}
               </div>
@@ -168,16 +167,16 @@ const ProjectDetail = () => {
                 {labels.approach}
               </p>
               <div>
-                <h2 className="text-balance font-display text-4xl font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl">
+                <h2 className="text-balance font-display text-4xl font-semibold leading-[1.08] tracking-[-0.035em] sm:text-5xl dark:text-zinc-100">
                   {story.solution.title}
                 </h2>
-                <p className="mt-7 text-lg leading-[1.8] text-[#6e6e73]">{story.solution.body}</p>
+                <p className="mt-7 text-lg leading-[1.8] text-[#6e6e73] dark:text-zinc-400">{story.solution.body}</p>
               </div>
             </div>
 
-            <div className="mt-20 border-t border-black/10 pt-16 lg:mt-28 lg:pt-24">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#86868b]">{labels.capabilities}</p>
-              <h3 className="mt-5 max-w-4xl text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl lg:text-6xl">
+            <div className="mt-20 border-t border-black/10 pt-16 lg:mt-28 lg:pt-24 dark:border-white/10">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#86868b] dark:text-zinc-500">{labels.capabilities}</p>
+              <h3 className="mt-5 max-w-4xl text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl lg:text-6xl dark:text-zinc-100">
                 {labels.capabilitiesTitle}
               </h3>
               <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -190,13 +189,13 @@ const ProjectDetail = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.25 }}
                       transition={{ duration: 0.55, delay: index * 0.07 }}
-                      className="rounded-[2rem] border border-black/5 bg-white p-7 shadow-[0_18px_60px_rgba(0,0,0,0.05)] sm:p-9"
+                      className="rounded-[2rem] border border-black/5 bg-white p-7 shadow-[0_18px_60px_rgba(0,0,0,0.05)] sm:p-9 dark:border-white/10 dark:bg-[#12141a] dark:shadow-none"
                     >
                       <span className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: project.accentSoft, color: project.accent }}>
                         <Icon className="h-5 w-5" />
                       </span>
-                      <h4 className="mt-8 text-2xl font-semibold tracking-[-0.025em]">{capability.title}</h4>
-                      <p className="mt-4 leading-relaxed text-[#6e6e73]">{capability.body}</p>
+                      <h4 className="mt-8 text-2xl font-semibold tracking-[-0.025em] dark:text-zinc-100">{capability.title}</h4>
+                      <p className="mt-4 leading-relaxed text-[#6e6e73] dark:text-zinc-400">{capability.body}</p>
                     </motion.article>
                   );
                 })}
@@ -226,25 +225,25 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        <section className="bg-white px-4 py-24 sm:px-6 lg:py-36">
+        <section className="bg-white px-4 py-24 sm:px-6 lg:py-36 dark:bg-[#111318]">
           <div className="mx-auto max-w-6xl">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em]" style={{ color: project.accent }}>{labels.outcomes}</p>
-                <h2 className="mt-5 text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl">{story.closing}</h2>
+                <h2 className="mt-5 text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl dark:text-zinc-100">{story.closing}</h2>
               </div>
               <div className="space-y-4 lg:pt-10">
                 {story.outcomes.map((outcome) => (
-                  <div key={outcome} className="flex gap-4 border-b border-black/10 pb-5">
+                  <div key={outcome} className="flex gap-4 border-b border-black/10 pb-5 dark:border-white/10">
                     <CircleCheck className="mt-0.5 h-5 w-5 shrink-0" style={{ color: project.accent }} />
-                    <p className="leading-relaxed text-[#424245]">{outcome}</p>
+                    <p className="leading-relaxed text-[#424245] dark:text-zinc-300">{outcome}</p>
                   </div>
                 ))}
                 <div className="pt-5">
-                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#86868b]">{labels.stack}</p>
+                  <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#86868b] dark:text-zinc-500">{labels.stack}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map((item) => (
-                      <span key={item} className="rounded-full bg-[#f5f5f7] px-4 py-2 text-xs font-semibold text-[#424245]">{item}</span>
+                      <span key={item} className="rounded-full bg-[#f5f5f7] px-4 py-2 text-xs font-semibold text-[#424245] dark:bg-white/10 dark:text-zinc-200">{item}</span>
                     ))}
                   </div>
                 </div>
@@ -255,15 +254,15 @@ const ProjectDetail = () => {
 
         <section className="px-4 py-24 sm:px-6 lg:py-32">
           <div className="mx-auto max-w-7xl">
-            <p className="mb-8 text-sm font-semibold uppercase tracking-[0.18em] text-[#86868b]">{labels.next}</p>
+            <p className="mb-8 text-sm font-semibold uppercase tracking-[0.18em] text-[#86868b] dark:text-zinc-500">{labels.next}</p>
             <div className="grid gap-5 md:grid-cols-2">
               {related.map((item) => {
                 const itemStory = item.content[locale];
                 return (
-                  <Link key={item.slug} to={`/projets/${item.slug}`} className="group relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-1 sm:p-10">
+                  <Link key={item.slug} to={`/projets/${item.slug}`} className="group relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-1 sm:p-10 dark:bg-[#12141a] dark:shadow-none">
                     <span className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: item.accent }}>{item.name}</span>
-                    <h3 className="mt-5 max-w-xl text-balance text-3xl font-semibold leading-tight tracking-[-0.03em]">{itemStory.headline}</h3>
-                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#424245]">{labels.next}<ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
+                    <h3 className="mt-5 max-w-xl text-balance text-3xl font-semibold leading-tight tracking-[-0.03em] dark:text-zinc-100">{itemStory.headline}</h3>
+                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#424245] dark:text-zinc-300">{labels.next}<ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
                   </Link>
                 );
               })}

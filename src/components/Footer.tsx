@@ -32,15 +32,15 @@ export const Footer = () => {
           </h2>
           <ul className="mt-5 space-y-3 text-sm text-white/[0.58]">
             {[
-              t("servicesGrid.hardware.cards.securityPhysical.title"),
-              t("servicesGrid.hardware.cards.network.title"),
-              t("servicesGrid.software.cards.web.title"),
-              t("servicesGrid.software.cards.erp.title"),
-              t("servicesGrid.hardware.cards.hardware.title")
-            ].map((label) => (
-              <li key={label}>
-                <Link to="/services" className="transition-colors hover:text-white">
-                  {label}
+              { label: t("servicesGrid.hardware.cards.securityPhysical.title"), href: "/services#securite-electronique" },
+              { label: t("servicesGrid.hardware.cards.network.title"), href: "/services#infrastructures-reseaux" },
+              { label: t("servicesGrid.software.cards.web.title"), href: "/services#developpement" },
+              { label: t("servicesGrid.software.cards.erp.title"), href: "/services#developpement" },
+              { label: t("servicesGrid.hardware.cards.hardware.title"), href: "/services#distribution" }
+            ].map((link) => (
+              <li key={link.href}>
+                <Link to={link.href} className="transition-colors hover:text-white">
+                  {link.label}
                 </Link>
               </li>
             ))}
