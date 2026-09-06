@@ -9,7 +9,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Hamza Mraizik",
     roleKey: "2",
-    image: "/team/hamza-mraizik.webp",
+    image: "/team/hamza-mraizik.png",
     imagePosition: "center 18%",
   },
   {

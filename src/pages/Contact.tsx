@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { NetworkBackground } from "@/components/NetworkBackground";import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -91,7 +90,6 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
       <div className="pt-24 lg:pt-28">
         <section className="bg-hero py-16 lg:py-24">
           <div className="container mx-auto px-4 lg:px-8">

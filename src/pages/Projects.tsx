@@ -2,7 +2,6 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProjectProductVisual from "@/components/projects/ProjectProductVisual";
 import { getProjectLocale, projects } from "@/data/projectsData";
@@ -37,7 +36,7 @@ const Projects = () => {
         };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#0a0b10] dark:text-zinc-100">    <Navbar />
+    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#0a0b10] dark:text-zinc-100">
       <main>
         <section className="px-4 pb-20 pt-36 sm:px-6 lg:pb-28 lg:pt-44">
           <motion.div

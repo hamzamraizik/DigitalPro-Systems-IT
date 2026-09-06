@@ -13,7 +13,6 @@ import {
   Workflow,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProjectProductVisual from "@/components/projects/ProjectProductVisual";
 import { getProject, getProjectLocale, projects } from "@/data/projectsData";
@@ -81,7 +80,6 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#0a0b10] dark:text-zinc-100">
-      <Navbar />
       <main>
         <section className="relative overflow-hidden bg-[#07080b] px-4 pb-16 pt-32 text-white sm:px-6 lg:pb-24 lg:pt-40">
           <div
