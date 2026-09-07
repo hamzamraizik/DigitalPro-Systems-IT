@@ -2,7 +2,6 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProjectProductVisual from "@/components/projects/ProjectProductVisual";
 import { getProjectLocale, projects } from "@/data/projectsData";
@@ -37,8 +36,7 @@ const Projects = () => {
         };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f]">
-      <Navbar />
+    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] dark:bg-[#0a0b10] dark:text-zinc-100">
       <main>
         <section className="px-4 pb-20 pt-36 sm:px-6 lg:pb-28 lg:pt-44">
           <motion.div
@@ -53,7 +51,7 @@ const Projects = () => {
             <h1 className="text-balance font-display text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-6xl lg:text-8xl">
               {copy.title}
             </h1>
-            <p className="mx-auto mt-8 max-w-3xl text-balance text-lg leading-relaxed text-[#6e6e73] sm:text-xl lg:text-2xl">
+            <p className="mx-auto mt-8 max-w-3xl text-balance text-lg leading-relaxed text-[#6e6e73] sm:text-xl lg:text-2xl dark:text-zinc-400">
               {copy.intro}
             </p>
           </motion.div>
@@ -88,7 +86,7 @@ const Projects = () => {
                     <h2 className="text-balance font-display text-4xl font-semibold leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-6xl">
                       {story.headline}
                     </h2>
-                    <p className={`mx-auto mt-6 max-w-3xl text-balance text-base leading-relaxed sm:text-lg ${dark ? "text-white/62" : "text-[#6e6e73]"}`}>
+                    <p className={`mx-auto mt-6 max-w-3xl text-balance text-base leading-relaxed sm:text-lg ${dark ? "text-white/62" : "text-[#6e6e73] dark:text-zinc-400"}`}>
                       {story.summary}
                     </p>
                     <Link
@@ -109,17 +107,17 @@ const Projects = () => {
           </div>
         </section>
 
-        <section className="bg-white px-4 py-24 sm:px-6 lg:py-36">
+        <section className="bg-white px-4 py-24 sm:px-6 lg:py-36 dark:bg-[#111318]">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
               <Sparkles className="h-5 w-5" />
               {copy.principle}
             </div>
             <div>
-              <h2 className="text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl lg:text-6xl">
+              <h2 className="text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.035em] sm:text-5xl lg:text-6xl dark:text-zinc-100">
                 {copy.principleTitle}
               </h2>
-              <p className="mt-7 max-w-3xl text-lg leading-relaxed text-[#6e6e73] lg:text-xl">
+              <p className="mt-7 max-w-3xl text-lg leading-relaxed text-[#6e6e73] lg:text-xl dark:text-zinc-400">
                 {copy.principleBody}
               </p>
             </div>

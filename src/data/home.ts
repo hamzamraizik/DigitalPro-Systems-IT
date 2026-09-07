@@ -42,9 +42,9 @@ export interface TrustPoint {
 }
 
 export const heroMetrics: Metric[] = [
-  { value: "20+", label: "Clients accompagnés", tKey: "clients" },
-  { value: "5+", label: "Années d'expérience", tKey: "experience" },
-  { value: "50+", label: "Projets livrés", tKey: "projects" },
+  { value: "14+", label: "Clients accompagnés", tKey: "clients" },
+  { value: "2+", label: "Années d'expérience", tKey: "experience" },
+  { value: "17+", label: "Projets livrés", tKey: "projects" },
   { value: "24/7", label: "Support technique", tKey: "support" },
 ];
 

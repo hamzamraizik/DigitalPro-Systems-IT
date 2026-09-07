@@ -14,7 +14,6 @@ import {
   Users,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getProjectLocale, projectsMeta } from "@/data/projectsData";
 import { teamMembers } from "@/data/teamData";
@@ -144,7 +143,6 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
 
       <main className="pb-16 pt-24 lg:pt-32">
         <section className="container mx-auto mb-24 px-4 lg:px-8">
@@ -507,8 +505,8 @@ const AboutPage = () => {
                       loading="lazy"
                       width={900}
                       height={1100}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                      style={{ objectPosition: member.imagePosition }}
+                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                      style={{ objectPosition: "center" }}
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-6">

@@ -2,7 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import LegacyRouteRedirect from "@/components/LegacyRouteRedirect";
+import Navbar from "@/components/Navbar";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToHash from "@/components/ScrollToHash";
 import SeoManager from "@/seo/SeoManager";
 
 const Index = lazy(() => import("./pages/Index"));
@@ -60,6 +62,8 @@ const App = () => (
     <Toaster />
     <BrowserRouter>
       <ScrollToTop />
+      <ScrollToHash />
+      <Navbar />
       <SeoManager />
       <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Chargement de la page" />}>
         <Routes>

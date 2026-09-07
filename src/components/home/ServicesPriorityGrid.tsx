@@ -365,9 +365,9 @@ const HardwarePreview = () => (
 const MobileAppPreview = () => (
   <div className="relative flex h-full w-full max-w-xl items-center justify-center p-4">
     <div className="group relative w-full overflow-hidden rounded-[24px] border border-white/10 shadow-2xl ring-1 ring-white/5 transition-all duration-700 hover:border-[#00AEEF]/50">
-      <img 
-        src="/mobile-realistic.webp"
-        alt="Mobile Apps" 
+<img 
+         src="/mobile-apps-real.webp"
+         alt="Mobile Apps"
         loading="lazy"
         decoding="async"
         className="w-full object-cover aspect-[4/3] transition-transform duration-1000 ease-out group-hover:scale-105"

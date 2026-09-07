@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -48,7 +47,6 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen bg-page transition-colors duration-500">
-      <Navbar />
       <div className="pt-16 lg:pt-20">
         {/* Hero */}
         <header className="relative pt-20 pb-20 overflow-hidden">

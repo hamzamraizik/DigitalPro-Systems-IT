@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { motion } from "framer-motion";
@@ -18,7 +17,6 @@ const features = [
 export default function Helpdesk() {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <div className="pt-24 lg:pt-28">
         {/* Hero */}
         <ParallaxSection

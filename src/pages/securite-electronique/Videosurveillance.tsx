@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { motion } from "framer-motion";
@@ -20,7 +19,6 @@ const features = [
 export default function Videosurveillance() {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <div className="pt-24 lg:pt-28">
         <ParallaxSection
           imageUrl="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80"
