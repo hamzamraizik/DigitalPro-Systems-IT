@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Container } from "@/components/home/Container";
 import { HeroMedia } from "@/components/home/HeroMedia";
+import { HeroAtmosphere } from "@/components/home/HeroAtmosphere";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 
@@ -31,7 +32,8 @@ export const HeroSection = () => {
   const { t } = useTranslation();
 
   return (
-<section className="relative min-h-screen overflow-hidden pt-24 text-[#111111] dark:text-white sm:pt-28 lg:pt-32 transition-colors duration-500">      {/* Creative IT Background */}
+    <section className="relative min-h-screen overflow-hidden pt-24 text-[#111111] transition-colors duration-500 dark:text-white sm:pt-28 lg:pt-32">
+      <HeroAtmosphere />
 
       <Container className="relative z-10 flex min-h-[calc(100vh-7rem)] items-center py-14 lg:py-16">
         <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:gap-14">
