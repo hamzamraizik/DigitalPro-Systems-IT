@@ -40,9 +40,6 @@ export const NetworkBackground = ({ className = "" }: NetworkBackgroundProps) =>
         <line x1="1180" y1="330" x2="1120" y2="425" />
         <line x1="1180" y1="330" x2="1195" y2="480" />
 
-        {/* fil isolé haut-centre */}
-        <line x1="640" y1="10" x2="700" y2="55" />
-
         {/* cluster bas-gauche */}
         <line x1="45" y1="705" x2="115" y2="765" />
         <line x1="45" y1="705" x2="30" y2="605" />
@@ -65,10 +62,6 @@ export const NetworkBackground = ({ className = "" }: NetworkBackgroundProps) =>
         { cx: 1180, cy: 330, r: 5.5, hub: true },
         { cx: 1120, cy: 425, r: 3.5 },
         { cx: 1195, cy: 480, r: 3 },
-
-        // fil isolé haut-centre
-        { cx: 640, cy: 10, r: 3 },
-        { cx: 700, cy: 55, r: 2.5 },
 
         // cluster bas-gauche
         { cx: 45, cy: 705, r: 7, hub: true },

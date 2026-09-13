@@ -65,7 +65,7 @@ const App = () => (
       <ScrollToHash />
       <Navbar />
       <SeoManager />
-      <Suspense fallback={<div className="min-h-screen bg-background" aria-label="Chargement de la page" />}>
+      <Suspense fallback={<div className="min-h-screen" aria-label="Chargement de la page" />}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />

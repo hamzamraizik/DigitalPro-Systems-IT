@@ -7,14 +7,30 @@
    "contact": "Contact",
     "quote": "Get a quote"
   },
+  "servicePage": {
+    "back": "Back to services",
+    "cta": "Request a free quote",
+    "detailLabel": "Service overview"
+  },
   "hero": {
-    "badge": "DigitalPro Systems IT - Casablanca",
-    "title": "Security, networks and IT solutions for demanding businesses.",
-    "description": "We design, secure, and maintain critical infrastructures for SMEs, large enterprises, and administrations in Morocco.",
-    "btnQuote": "Request a free quote",
-    "btnServices": "Discover our services",
-    "media": {
-      "offer": "Offer"
+    "h1": {
+      "a": "Security, networks and",
+      "b": "IT solutions",
+      "c": "for demanding businesses."
+    },
+    "description": "Fast, reliable and secure — we design, protect, and maintain critical infrastructures for SMEs, large enterprises, and administrations in Morocco.",
+    "cta": {
+      "placeholder": "Enter your work email",
+      "label": "Get a free quote",
+      "secondary": "Discover our services"
+    },
+    "stats": {
+      "uptime": { "value": "99.9%", "label": "Uptime guarantee" },
+      "companies": { "value": "200+", "label": "Companies protected" }
+    },
+    "rating": {
+      "value": "4.9",
+      "label": "Average client satisfaction"
     },
     "offerings": {
       "erp": {
@@ -85,10 +101,13 @@
     "projects": "Delivered projects",
     "support": "Technical support"
   },
-  "expertise": {
-    "eyebrow": "Our Expertise",
-    "title": "4 pillars for your digital transformation.",
-    "description": "From installing cameras to developing your ERP, we master the complete technical chain.",
+"expertise": {
+    "eyebrow": "Our expertise",
+    "title": "IT solutions designed for your business.",
+    "description": "Secure infrastructure, cybersecurity, business systems and physical security: we design and maintain your entire technical stack.",
+    "whyEyebrow": "Why DigitalPro",
+    "whyTitle": "Technical expertise serving your business goals.",
+    "whyText": "We cover the full lifecycle of your systems — design, deployment, monitoring and maintenance — with a single point of contact in Morocco.",
     "points": {
       "cyber": {
         "title": "Operational Cybersecurity",
@@ -107,17 +126,38 @@
         "description": "Advanced video surveillance, biometric access control and alarms to protect your sites."
       }
     },
-    "whyUs": "Why choose DigitalPro?"
+    "whyUs": "Why choose DigitalPro?",
+    "statValue": "15+",
+    "statLabel": "Years of combined expertise"
   },
   "whyUsPoints": {
     "p1": "Certified technical expertise",
-    "p2": "24/7 responsive support",
+    "p2": "Responsive & proactive support",
     "p3": "Customized solutions",
     "p4": "Partnerships with market leaders",
     "p5": "National presence in Morocco",
     "p6": "Commitment to quality and deadlines"
   },
   "servicesGrid": {
+    "sectionEyebrow": "Our services",
+    "sectionTitle": "A complete offer, from hardware to software.",
+    "sectionDescription": "Infrastructure, cybersecurity, physical security, ERP and digital platforms: we cover the full IT lifecycle of your business.",
+    "seeAll": "All services",
+    "console": {
+      "badge": "Systems secured",
+      "live": "Live",
+      "uptime": "99.9% uptime",
+      "labels": {
+        "t1": "Firewall & IDS/IPS",
+        "t2": "24/7 SOC monitoring",
+        "t3": "Zero Trust"
+      },
+      "status": {
+        "t1": "Active",
+        "t2": "Connected",
+        "t3": "Resilient"
+      }
+    },
     "btnExplore": "Explore this service",
     "hardware": {
       "eyebrow": "Infrastructure, security & hardware",
@@ -127,22 +167,42 @@
         "securityPhysical": {
           "title": "Electronic Security",
           "eyebrow": "Sensitive sites",
-          "description": "Access control, video surveillance, alarms and fire protection for professional sites."
+          "description": "Access control, video surveillance, alarms and fire protection for professional sites.",
+          "tags": {
+            "t1": "Access",
+            "t2": "Cameras",
+            "t3": "Fire"
+          }
         },
         "cyber": {
           "title": "Cybersecurity",
           "eyebrow": "Active protection",
-          "description": "Firewalls, VPNs, intrusion detection, audits, awareness, and SOC supervision."
+          "description": "Firewalls, VPNs, intrusion detection, audits, awareness, and SOC supervision.",
+          "tags": {
+            "t1": "SOC",
+            "t2": "VPN",
+            "t3": "Firewall"
+          }
         },
         "network": {
           "title": "Networks & Systems",
           "eyebrow": "Infrastructure",
-          "description": "Architecture, cabling, WiFi, virtualization, network firewall and hybrid cloud."
+          "description": "Architecture, cabling, WiFi, virtualization, network firewall and hybrid cloud.",
+          "tags": {
+            "t1": "Fibre",
+            "t2": "VPN",
+            "t3": "Cloud"
+          }
         },
         "gestion": {
           "title": "IT Fleet Management",
           "eyebrow": "Continuous support",
-          "description": "Helpdesk, preventive maintenance, inventory, workstation migration and license management."
+          "description": "Helpdesk, preventive maintenance, inventory, workstation migration and license management.",
+          "tags": {
+            "t1": "Support",
+            "t2": "Servers",
+            "t3": "IT fleet"
+          }
         },
         "hardware": {
           "title": "Professional Hardware",
@@ -181,35 +241,42 @@
     "steps": {
       "s1": {
         "title": "Field Audit",
-        "description": "We define the risks, business dependencies, technical baseline, and site constraints."
+        "description": "We define the risks, business dependencies, technical baseline, and site constraints.",
+        "tag": "Full diagnostic"
       },
       "s2": {
         "title": "Target Architecture",
-        "description": "We propose a clear trajectory with priorities, budget, schedule, and expected service level."
+        "description": "We propose a clear trajectory with priorities, budget, schedule, and expected service level.",
+        "tag": "Roadmap & budget"
       },
       "s3": {
         "title": "Controlled Deployment",
-        "description": "Our teams install, secure, document, and validate every component before going into production."
+        "description": "Our teams install, secure, document, and validate every component before going into production.",
+        "tag": "Docs & validation"
       },
       "s4": {
         "title": "Continuous Support",
-        "description": "Supervision, maintenance, assistance, and continuous improvement keep the infrastructure under control."
+        "description": "Supervision, maintenance, assistance, and continuous improvement keep the infrastructure under control.",
+        "tag": "Service agreement"
       }
     }
   },
   "caseStudy": {
     "badge": "Case Study",
+    "badgeText": "Architecture 100% Deployed",
     "title": "Securing a sensitive industrial site",
     "description": "Deployment of a redundant network architecture and an intelligent video surveillance system for a major logistics player.",
+    "deliveredLabel": "What we delivered",
     "highlights": {
       "h1": "Network segmentation and critical access control",
       "h2": "Centralized supervision with alerts and escalation procedures",
       "h3": "Backup, documentation and disaster recovery plan"
     },
+    "cta": "View projects",
     "metrics": {
       "m1": "Secured equipment",
       "m2": "Connected sites",
-      "m3": "Target availability"
+      "m3": "Alert response time"
     }
   },
   "cta": {
@@ -217,7 +284,18 @@
     "title": "Ready to digitalize and secure your business?",
     "description": "Tell us about your infrastructure, your sites, and your priorities. We will respond with a clear and tailored proposal.",
     "btnDetails": "Request a free consultation",
-    "btnServices": "View services"
+    "btnServices": "View services",
+    "pointsLabel": "What you get",
+    "points": {
+      "p1": "Free audit of your infrastructure",
+      "p2": "Prioritized, costed action plan",
+      "p3": "Clear quote, no commitment"
+    },
+    "trust": {
+      "t1": "Reply within 24h",
+      "t2": "No commitment",
+      "t3": "Guaranteed confidentiality"
+    }
   },
   "footer": {
     "description": "Cutting-edge IT solutions, network infrastructures, and cybersecurity for demanding businesses.",
@@ -238,6 +316,7 @@
     },
     "methodology": {
       "title": "Our Methodology",
+      "subtitle": "A proven process built on four clear, connected stages.",
       "steps": {
         "audit": {
           "title": "1. On-site Audit",
@@ -278,6 +357,12 @@
       "securite-electronique": {
         "title": "Electronic Security",
         "cardDesc": "Protect your physical assets with our intelligent access control and AI-driven HD video surveillance solutions.",
+        "imageBadge": "Active Security",
+        "checks": [
+          "Biometric and RFID/NFC badge access control",
+          "AI-driven HD video surveillance with night vision",
+          "Intrusion detection with 24/7 remote monitoring"
+        ],
         "intro": "Protect your premises, teams and physical assets with intelligent electronic security systems, custom-designed for every site: offices, warehouses, stores or industrial facilities. Our certified equipment is installed and maintained by our licensed technicians.",
         "items": {
           "controleAcces": {
@@ -347,6 +432,12 @@
       "cybersecurite": {
         "title": "Cybersecurity",
         "cardDesc": "Next-generation firewall, 24/7 SOC and intrusion detection for total resilience against digital threats.",
+        "imageBadge": "Architecture 100% Deployed",
+        "checks": [
+          "System security audits and hardening",
+          "24/7 SOC monitoring with real-time alerts",
+          "Disaster recovery plan (BCP/DRP)"
+        ],
         "intro": "Anticipate, detect and neutralize digital threats with a comprehensive cybersecurity approach: perimeter protection, continuous monitoring, regular audits and team training, for total resilience against cyberattacks.",
         "items": {
           "firewallVpn": {
@@ -378,6 +469,12 @@
       "infrastructures-reseaux": {
         "title": "Network & Systems Infrastructure",
         "cardDesc": "High-availability network architecture, high-performance WiFi and server virtualization for maximum agility.",
+        "imageBadge": "Infrastructure 100% Operational",
+        "checks": [
+          "High-availability LAN/WAN network architecture",
+          "High-performance, secured enterprise WiFi",
+          "Server virtualization and hybrid cloud"
+        ],
         "intro": "Build a robust, scalable and highly available network infrastructure. From cabling design to hybrid cloud migration, we design architectures that guarantee performance, security and agility for your business.",
         "items": {
           "reseauxLanWan": {
@@ -409,6 +506,12 @@
       "gestion-parc": {
         "title": "IT Fleet Management",
         "cardDesc": "Preventive maintenance, responsive helpdesk and automated inventory for complete operational peace of mind.",
+        "imageBadge": "Fleet 100% Monitored",
+        "checks": [
+          "Planned preventive maintenance and health reports",
+          "N1/N2/N3 helpdesk with guaranteed SLAs",
+          "Proactive monitoring and automated inventory"
+        ],
         "intro": "Entrust us with the operational management of your IT fleet. Preventive maintenance, responsive helpdesk, proactive monitoring and automated inventory: we ensure the peace of mind and continuity of your daily operations.",
         "items": {
           "maintenancePreventive": {
@@ -506,7 +609,8 @@
       "close": "Close"
     },
     "cardCta": "Learn more",
-    "customDevBadge": "Custom Dev"
+    "customDevBadge": "Custom Dev",
+    "deliversEyebrow": "What we deliver"
   },
   "aboutPage": {
     "hero": {
@@ -702,8 +806,11 @@
   },
   "contactPage": {
     "hero": {
-      "title": "Contact Us",
-      "subtitle": "Let's talk about your project. Our team is ready to listen."
+      "badge": "Contact Us",
+      "titlePrefix": "Contact ",
+      "titleHighlight": "Us",
+      "subtitle": "Let's talk about your project. Our team is ready to listen.",
+      "responseTime": "We respond within 24 business hours."
     },
     "info": {
       "title": "Our Contact Details",
@@ -728,6 +835,7 @@
       "messagePlaceholder": "Describe your needs...",
       "submit": "Send Message",
       "submitting": "Sending...",
+      "trustNote": "Your data stays confidential.",
       "errors": {
         "nameRequired": "Name is required",
         "emailInvalid": "Invalid email",
@@ -747,12 +855,20 @@
   "about": {
     "hero": {
       "badge": "About us",
-      "title": "Building technology.<br />Empowering businesses.",
+      "title": "Building technology.<br /><span class=\"text-cyan\">Empowering businesses.</span>",
       "desc1": "At DigitalPro Systems IT, we turn ideas into powerful technology solutions. Our mission is to drive innovation, solve complex IT challenges, and deliver measurable results for businesses.",
       "desc2": "With a passionate team and a customer-first mindset, we build solutions that help you scale, succeed, and lead the way."
     },
+    "story": {
+      "eyebrow": "Our Story",
+      "title": "Building trust, line by line.",
+      "text1": "DigitalPro Systems IT was born from a simple conviction: a solid IT infrastructure is the foundation of any ambitious business.",
+      "text2": "From our roots in Casablanca, we secure, connect and digitalize the operations of SMEs, large groups and public administrations.",
+      "text3": "Every project tells a story — one of teams that rely on their critical systems every single day. That's who we build for."
+    },
     "partner": {
       "badge": "Partner",
+      "statsLabel": "By the numbers",
       "title": "A trusted technology partner focused on your success.",
       "desc": "At DigitalPro Systems IT, we deliver smart solutions that drive innovation, proactive efficiency, and empower growth with confidence.",
       "stats": [
@@ -848,5 +964,43 @@
         }
       ]
     }
+  },
+
+  "illustration": {
+    "adminTitle": "DigitalPro Admin",
+    "socActive": "SOC active",
+    "security": "Security",
+    "liveMonitoring": "Real-time monitoring",
+    "firewallActive": "Firewall active",
+    "backupOk": "Backup OK",
+    "networkCloud": "Network & Cloud",
+    "live": "Live",
+    "latency": "Latency 12ms",
+    "cloudMigration": "Cloud migration OK",
+    "securityAlerts": "Security alerts",
+    "anomaly": "Anomaly detected on the firewall",
+    "analyzing": "Analyzing…",
+    "isolated": "Isolated automatically",
+    "reportSent": "Report sent to client",
+    "availability": "Availability",
+    "noDowntime": "No interruption — 30d",
+    "serversMonitored": "12 servers monitored",
+    "surveillance": "Video surveillance",
+    "camerasActive": "4 cameras active",
+    "continuousRecord": "Continuous recording",
+    "systemStatus": "System status",
+    "network": "Network",
+    "backups": "Backups",
+    "firewall": "Firewall",
+    "supportIt": "IT Support",
+    "ticketResolved": "Ticket #204 resolved",
+    "remoteAssist": "Remote assistance",
+    "uptime": "Uptime",
+    "biometric": "Biometrics",
+    "alarm": "Alarm",
+    "serversSurveilled": "Monitored servers",
+    "cameraSurveillance": "Surveillance camera",
+    "alarmSystem": "Alarm system",
+    "serverRack": "Server rack"
   }
 }

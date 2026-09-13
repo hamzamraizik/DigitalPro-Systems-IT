@@ -17,48 +17,13 @@ import { useTranslation } from "react-i18next";
 import Footer from "@/components/Footer";
 import { getProjectLocale, projectsMeta } from "@/data/projectsData";
 import { teamMembers } from "@/data/teamData";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { IconTile } from "@/components/ui/IconTile";
+import { CTAButton } from "@/components/home/CTAButton";
+import { Button } from "@/components/ui/button";
+
 const PROJECT_COUNT = 3;
 const AUTO_ADVANCE_DELAY = 6000;
-
-type CarouselPosition = -1 | 0 | 1;
-
-const getCarouselPosition = (
-  projectIndex: number,
-  activeIndex: number,
-): CarouselPosition => {
-  if (projectIndex === activeIndex) return 0;
-  if (projectIndex === (activeIndex - 1 + PROJECT_COUNT) % PROJECT_COUNT) {
-    return -1;
-  }
-  return 1;
-};
-
-const carouselMotion = {
-  "-1": {
-    x: "-102%",
-    y: "-50%",
-    scale: 0.78,
-    opacity: 0.5,
-    filter: "blur(5px)",
-    zIndex: 10,
-  },
-  "0": {
-    x: "-50%",
-    y: "-50%",
-    scale: 1,
-    opacity: 1,
-    filter: "blur(0px)",
-    zIndex: 30,
-  },
-  "1": {
-    x: "2%",
-    y: "-50%",
-    scale: 0.78,
-    opacity: 0.5,
-    filter: "blur(5px)",
-    zIndex: 10,
-  },
-} as const;
 
 const AboutPage = () => {
   const { t, i18n } = useTranslation();
@@ -69,12 +34,12 @@ const AboutPage = () => {
 
   const stats = [
     {
-      icon: Users,
+      icon: Briefcase,
       value: t("about.partner.stats.0.value"),
       label: t("about.partner.stats.0.label"),
     },
     {
-      icon: Briefcase,
+      icon: Users,
       value: t("about.partner.stats.1.value"),
       label: t("about.partner.stats.1.label"),
     },
@@ -116,6 +81,7 @@ const AboutPage = () => {
       status: story.status,
       desc: story.summary,
       image: project.image,
+      slug: project.slug,
     };
   });
 
@@ -141,97 +107,129 @@ const AboutPage = () => {
     return () => window.clearInterval(interval);
   }, [isCarouselPaused, prefersReducedMotion, showNextProject]);
 
-  return (
-    <div className="min-h-screen bg-background">
+  const [featuredService, ...moreServices] = services;
+  const project = projects[activeProject];
+  const flip = activeProject % 2 === 1;
 
-      <main className="pb-16 pt-24 lg:pt-32">
-        <section className="container mx-auto mb-24 px-4 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
-                {t("about.hero.badge")}
-              </p>
-              <h1
-                className="mb-6 font-display text-4xl font-bold leading-tight text-foreground lg:text-5xl xl:text-6xl"
-                dangerouslySetInnerHTML={{ __html: t("about.hero.title") }}
+  return (
+    <div className="min-h-screen bg-page transition-colors duration-500">
+
+      <main className="pb-24 pt-24 lg:pb-28 lg:pt-36">
+        {/* Hero + stats sidebar */}
+        <section className="container mx-auto px-4 lg:px-8">
+          <div className="relative">
+            <div
+              className="pointer-events-none absolute -top-24 right-0 h-96 w-96 rounded-full bg-cyan/10 blur-[120px]"
+              aria-hidden="true"
+            />
+            <div className="relative grid gap-12 lg:grid-cols-[minmax(0,5fr)_auto_minmax(0,4fr)] lg:items-center lg:gap-14">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Eyebrow className="mb-5">
+                  {t("about.hero.badge")}
+                </Eyebrow>
+                <h1
+                  className="mb-6 max-w-xl font-display text-4xl font-bold leading-tight text-foreground lg:text-5xl xl:text-6xl"
+                  dangerouslySetInnerHTML={{ __html: t("about.hero.title") }}
+                />
+                <div className="max-w-xl">
+                  <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
+                    {t("about.hero.desc1")}
+                  </p>
+                  <p className="text-lg leading-relaxed text-muted-foreground">
+                    {t("about.hero.desc2")}
+                  </p>
+                </div>
+              </motion.div>
+
+              <div
+                className="hidden w-px self-stretch border-l-2 border-dashed border-border/60 lg:block"
+                aria-hidden="true"
               />
-              <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
-                {t("about.hero.desc1")}
-              </p>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                {t("about.hero.desc2")}
-              </p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="overflow-hidden rounded-2xl shadow-2xl"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=80"
-                alt="DigitalPro Systems IT"
-                className="h-[400px] w-full object-cover lg:h-[500px]"
-              />
-            </motion.div>
+
+              <motion.aside
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <p className="mb-8 text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  {t("about.partner.statsLabel")}
+                </p>
+                <div className="flex flex-col gap-10">
+                  {stats.map((stat, index) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                      className="flex items-start gap-4"
+                    >
+                      <IconTile className="h-12 w-12">
+                        <stat.icon className="h-5 w-5" />
+                      </IconTile>
+                      <div>
+                        <p className="font-display text-3xl font-bold text-foreground lg:text-4xl">
+                          {stat.value}
+                        </p>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                          {stat.label}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.aside>
+            </div>
           </div>
         </section>
 
-        <section className="bg-muted/30 py-20">
+        {/* Our story */}
+        <section className="py-24 lg:py-32">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid items-center gap-16 lg:grid-cols-2">
+            <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
-                  {t("about.partner.badge")}
-                </p>
+                <Eyebrow className="mb-4">
+                  {t("about.story.eyebrow")}
+                </Eyebrow>
                 <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
-                  {t("about.partner.title")}
+                  {t("about.story.title")}
                 </h2>
-                <p className="text-lg leading-relaxed text-muted-foreground">
-                  {t("about.partner.desc")}
-                </p>
+                <div
+                  className="h-[3px] w-16 rounded-full bg-cyan"
+                  aria-hidden="true"
+                />
               </motion.div>
-
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-                {stats.map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex flex-col items-center text-center"
-                  >
-                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
-                      <stat.icon className="h-8 w-8 text-accent" />
-                    </div>
-                    <h3 className="mb-2 font-display text-4xl font-bold text-foreground">
-                      {stat.value}
-                    </h3>
-                    <p className="font-medium text-muted-foreground">
-                      {stat.label}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="max-w-2xl space-y-5 text-lg leading-relaxed text-muted-foreground"
+              >
+                <p>{t("about.story.text1")}</p>
+                <p>{t("about.story.text2")}</p>
+                <p className="mb-0 text-foreground">{t("about.story.text3")}</p>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        <section className="py-24">
+        {/* What we do — V-shape */}
+        <section className="bg-muted/30 py-24 lg:py-32">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
-                {t("about.whatWeDo.badge")}
-              </p>
+              <div className="mb-4 flex justify-center">
+                <Eyebrow>
+                  {t("about.whatWeDo.badge")}
+                </Eyebrow>
+              </div>
               <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
                 {t("about.whatWeDo.title")}
               </h2>
@@ -240,46 +238,68 @@ const AboutPage = () => {
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex flex-col items-center rounded-xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md"
-                >
-                  <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
-                    <service.icon
-                      className="h-8 w-8 text-accent"
-                      strokeWidth={1.5}
-                    />
-                  </div>
-                  <h3 className="mb-4 font-display text-xl font-bold text-foreground">
-                    {service.title}
+            <div className="flex flex-col items-center gap-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="w-full max-w-md"
+              >
+                <div className="flex flex-col items-center rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated lg:p-10">
+                  <IconTile size="lg" className="mb-6">
+                    <featuredService.icon className="h-8 w-8" strokeWidth={1.5} />
+                  </IconTile>
+                  <h3 className="mb-4 font-display text-2xl font-bold text-foreground">
+                    {featuredService.title}
                   </h3>
                   <p className="leading-relaxed text-muted-foreground">
-                    {service.desc}
+                    {featuredService.desc}
                   </p>
-                </motion.div>
-              ))}
+                </div>
+              </motion.div>
+
+              <div className="grid w-full gap-8 md:grid-cols-3">
+                {moreServices.map((service, index) => (
+                  <motion.div
+                    key={service.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (index + 1) * 0.08 }}
+                    className="flex flex-col items-center rounded-2xl border border-border bg-card p-8 text-center shadow-sm transition-shadow hover:shadow-md"
+                  >
+                    <IconTile className="mb-6 h-14 w-14">
+                      <service.icon className="h-7 w-7" strokeWidth={1.5} />
+                    </IconTile>
+                    <h3 className="mb-4 font-display text-xl font-bold text-foreground">
+                      {service.title}
+                    </h3>
+                    <p className="leading-relaxed text-muted-foreground">
+                      {service.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
+        {/* Products — alternating showcase */}
         <section
           id="projects"
-          className="scroll-mt-28 overflow-hidden bg-navy-dark py-24 text-white"
+          className="scroll-mt-28 overflow-hidden bg-navy-dark py-24 text-white lg:py-32"
         >
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="mb-10 text-center lg:mb-14">
-              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
-                {t("about.ourWork.badge")}
-              </p>
+            <div className="mb-14 text-center lg:mb-16">
+              <div className="mb-4 flex justify-center">
+                <Eyebrow>
+                  {t("about.ourWork.badge")}
+                </Eyebrow>
+              </div>
               <h2 className="mb-6 font-display text-3xl font-bold lg:text-5xl">
                 {t("about.ourWork.title")}
               </h2>
+              <div className="mx-auto mb-6 h-[3px] w-16 rounded-full bg-cyan" aria-hidden="true" />
               <p className="mx-auto max-w-2xl text-base text-white/65 lg:text-lg">
                 {t("about.ourWork.desc")}
               </p>
@@ -305,142 +325,194 @@ const AboutPage = () => {
               className="relative mx-auto max-w-7xl outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-navy-dark"
             >
               <p className="sr-only" aria-live="polite" aria-atomic="true">
-                {`${activeProject + 1} / ${PROJECT_COUNT}: ${projects[activeProject].title}`}
+                {`${activeProject + 1} / ${PROJECT_COUNT}: ${project.title}`}
               </p>
 
-              <div className="relative h-[500px] sm:h-[540px] lg:h-[610px]">
-                {projects.map((project, index) => {
-                  const position = getCarouselPosition(index, activeProject);
-                  const isActive = position === 0;
-                  const maskImage =
-                    position === -1
-                      ? "linear-gradient(to right, transparent 0%, rgba(0,0,0,.8) 45%, black 100%)"
-                      : position === 1
-                        ? "linear-gradient(to left, transparent 0%, rgba(0,0,0,.8) 45%, black 100%)"
-                        : "none";
-
-                  return (
-                    <motion.article
-                      key={project.title}
-                      initial={false}
-                      animate={carouselMotion[String(position) as "-1" | "0" | "1"]}
-                      transition={
-                        prefersReducedMotion
-                          ? { duration: 0 }
-                          : {
-                              type: "spring",
-                              stiffness: 125,
-                              damping: 22,
-                              mass: 0.85,
-                            }
-                      }
-                      className="absolute left-1/2 top-1/2 h-[430px] w-[82vw] max-w-[780px] overflow-hidden rounded-[2rem] border border-white/15 bg-navy shadow-[0_32px_90px_rgba(0,0,0,.45)] sm:h-[470px] lg:h-[540px]"
-                      style={{
-                        WebkitMaskImage: maskImage,
-                        maskImage,
-                      }}
-                    >
+              <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+                <motion.div
+                  key={`img-${project.title}`}
+                  initial={{ opacity: 0, x: flip ? -24 : 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
+                  className={flip ? "lg:order-2" : ""}
+                >
+                  <div className="group relative">
+                    <div
+                      className="pointer-events-none absolute -left-10 -top-10 h-60 w-60 rounded-full bg-[#00AEEF]/20 blur-3xl"
+                      aria-hidden="true"
+                    />
+                    <div
+                      className="pointer-events-none absolute -right-6 -bottom-6 hidden h-full w-full rounded-3xl border border-[#0B6C92]/10 bg-[#00AEEF]/10 lg:block"
+                      aria-hidden="true"
+                    />
+                    <div className="relative overflow-hidden rounded-3xl border border-black/[0.06] shadow-[0_32px_64px_-32px_rgba(11,108,146,0.3)] transition-all duration-500 group-hover:border-[#00AEEF]/50 dark:border-white/[0.08]">
                       <img
                         src={project.image}
                         alt=""
-                        className="absolute inset-0 h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                        className="h-[280px] w-full object-cover brightness-[0.92] contrast-[1.08] saturate-[1.1] transition-transform duration-1000 ease-out group-hover:scale-105 sm:h-[360px] lg:h-[440px]"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#06172f] via-[#06172f]/55 to-transparent" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-cyan/10" />
+                      <div
+                        className="absolute inset-0 bg-gradient-to-t from-[#0B1020]/75 via-[#0B1020]/10 to-transparent"
+                        aria-hidden="true"
+                      />
+                      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/60 to-transparent" />
+                      <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-[#07111F]/85 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-cyan shadow-lg ring-1 ring-inset ring-white/15 backdrop-blur-md">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#FF8A3D]" aria-hidden="true" />
+                        {project.status}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
 
-                      <motion.div
-                        initial={false}
-                        animate={{ opacity: isActive ? 1 : 0 }}
-                        transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
-                        aria-hidden={!isActive}
-                        className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-9 lg:p-12"
-                      >
-                        <div className="mb-5 flex flex-wrap items-center gap-3">
-                          <span className="rounded-full border border-accent/30 bg-accent/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-300">
-                            {project.category}
-                          </span>
-                          <span className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/75 backdrop-blur-md">
-                            {project.status}
-                          </span>
-                        </div>
-                        <p className="mb-2 text-sm font-semibold tracking-[0.2em] text-white/45">
-                          {String(index + 1).padStart(2, "0")} / 0{PROJECT_COUNT}
-                        </p>
-                        <h3 className="mb-4 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-                          {project.title}
-                        </h3>
-                        <p className="max-w-2xl text-sm leading-relaxed text-white/70 sm:text-base lg:text-lg">
-                          {project.desc}
-                        </p>
-                        {isActive && (
-                          <Link
-                            to={`/projets/${projectsMeta[index].slug}`}
-                            className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
-                          >
-                            {t("projectsPage.viewProject")}
-                            <ArrowRight className="h-4 w-4" />
-                          </Link>
-                        )}
-                      </motion.div>
-
-                      {!isActive && (
-                        <button
-                          type="button"
-                          onClick={() => setActiveProject(index)}
-                          aria-label={t("about.ourWork.selectProject", {
-                            project: project.title,
-                          })}
-                          className="absolute inset-0 z-20 cursor-pointer"
-                        />
-                      )}
-                    </motion.article>
-                  );
-                })}
+                <motion.div
+                  key={`txt-${project.title}`}
+                  initial={{ opacity: 0, x: flip ? 24 : -24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.5, delay: 0.1 }}
+                  className={flip ? "lg:order-1" : ""}
+                >
+                  <p className="mb-3 font-mono text-sm tracking-[0.25em] text-cyan">
+                    {String(activeProject + 1).padStart(2, "0")} / 0{PROJECT_COUNT}
+                  </p>
+                  <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/15 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-[#00AEEF]">
+                    {project.category}
+                  </span>
+                  <h3 className="mb-5 mt-5 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
+                    {project.title}
+                  </h3>
+                  <p className="mb-8 max-w-xl text-base leading-relaxed text-white/70 lg:text-lg">
+                    {project.desc}
+                  </p>
+                  <Button
+                    asChild
+                    variant="heroOutline"
+                    size="lg"
+                    className="rounded-full px-7"
+                  >
+                    <Link to={`/projets/${project.slug}`}>
+                      {t("projectsPage.viewProject")}
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                    </Link>
+                  </Button>
+                </motion.div>
               </div>
 
-              <button
-                type="button"
-                onClick={showPreviousProject}
-                aria-label={t("about.ourWork.previousProject")}
-                className="absolute left-1 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy/80 text-white shadow-xl backdrop-blur-xl transition hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:left-5 lg:left-8 lg:h-14 lg:w-14"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button
-                type="button"
-                onClick={showNextProject}
-                aria-label={t("about.ourWork.nextProject")}
-                className="absolute right-1 top-1/2 z-40 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-navy/80 text-white shadow-xl backdrop-blur-xl transition hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:right-5 lg:right-8 lg:h-14 lg:w-14"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
+              <div className="mt-12 flex items-center justify-center gap-5">
+                <button
+                  type="button"
+                  onClick={showPreviousProject}
+                  aria-label={t("about.ourWork.previousProject")}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-navy/80 text-white shadow-xl backdrop-blur-xl transition hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
 
-              <div
-                className="mt-2 flex justify-center gap-2"
-                aria-label={t("about.ourWork.carouselLabel")}
-              >
-                {projects.map((project, index) => (
-                  <button
-                    key={project.title}
-                    type="button"
-                    aria-current={activeProject === index ? "true" : undefined}
-                    aria-label={t("about.ourWork.selectProject", {
-                      project: project.title,
-                    })}
-                    onClick={() => setActiveProject(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      activeProject === index
-                        ? "w-10 bg-accent"
-                        : "w-2 bg-white/25 hover:bg-white/50"
-                    }`}
-                  />
-                ))}
+                <div
+                  className="flex items-center gap-2"
+                  aria-label={t("about.ourWork.carouselLabel")}
+                >
+                  {projects.map((item, index) => (
+                    <button
+                      key={item.title}
+                      type="button"
+                      aria-current={activeProject === index ? "true" : undefined}
+                      aria-label={t("about.ourWork.selectProject", {
+                        project: item.title,
+                      })}
+                      onClick={() => setActiveProject(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        activeProject === index
+                          ? "w-10 bg-accent"
+                          : "w-2 bg-white/25 hover:bg-white/50"
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={showNextProject}
+                  aria-label={t("about.ourWork.nextProject")}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-navy/80 text-white shadow-xl backdrop-blur-xl transition hover:border-accent/60 hover:bg-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-24">
+        {/* Team */}
+        <section
+          id="team"
+          className="scroll-mt-28 py-24 lg:py-32"
+        >
+          <div className="container mx-auto px-4 lg:px-8">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <div className="mb-4 flex justify-center">
+                <Eyebrow>
+                  {t("about.team.badge")}
+                </Eyebrow>
+              </div>
+              <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
+                {t("about.team.title")}
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                {t("about.team.desc")}
+              </p>
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan/20 bg-cyan/10 px-5 py-2.5 text-sm font-semibold text-foreground">
+                <Users className="h-4 w-4 text-cyan" />
+                {t("about.team.extendedTeam")}
+              </p>
+            </div>
+
+            <div className="grid gap-12 sm:grid-cols-3">
+              {team.map((member, index) => (
+                <motion.div
+                  key={member.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.08 }}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="relative mb-6">
+                    <div className="h-36 w-36 overflow-hidden rounded-full border-2 border-cyan/30 bg-navy-dark shadow-[0_0_30px_rgba(34,211,238,0.2)]">
+                      <img
+                        src={member.image}
+                        alt={
+                          locale === "fr"
+                            ? `Portrait de ${member.name}`
+                            : `Portrait of ${member.name}`
+                        }
+                        loading="lazy"
+                        width={288}
+                        height={288}
+                        className="h-full w-full object-cover"
+                        style={{ objectPosition: member.imagePosition }}
+                      />
+                    </div>
+                    <span
+                      className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full bg-[#FF8A3D] ring-4 ring-[#0B1020] dark:ring-[#0B1020]"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <h3 className="mb-1 font-display text-xl font-bold text-foreground">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm font-medium text-muted-foreground">
+                    {member.role}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-24 lg:py-28">
           <div className="container mx-auto px-4 lg:px-8">
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-navy-dark to-navy p-10 text-center sm:p-12 lg:p-20">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/20 via-navy-dark/10 to-navy-dark/80" />
@@ -451,79 +523,8 @@ const AboutPage = () => {
                 <p className="mx-auto mb-10 max-w-2xl text-lg text-white/70 lg:text-xl">
                   {t("about.cta.desc")}
                 </p>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center rounded-lg bg-accent px-8 py-4 text-lg font-medium text-white transition-colors hover:bg-accent/90"
-                >
-                  {t("about.cta.button")}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                <CTAButton to="/contact">{t("about.cta.button")}</CTAButton>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          id="team"
-          className="scroll-mt-28 bg-muted/30 py-20"
-        >
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="mx-auto mb-16 max-w-3xl text-center">
-              <p className="mb-4 font-semibold uppercase tracking-wider text-accent">
-                {t("about.team.badge")}
-              </p>
-              <h2 className="mb-6 font-display text-3xl font-bold text-foreground lg:text-4xl">
-                {t("about.team.title")}
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                {t("about.team.desc")}
-              </p>
-              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-5 py-2.5 text-sm font-semibold text-foreground">
-                <Users className="h-4 w-4 text-accent" />
-                {t("about.team.extendedTeam")}
-              </p>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {team.map((member, index) => (
-                <motion.article
-                  key={member.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.07 }}
-                  className="group flex min-h-[460px] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated"
-                >
-                  <div className="relative h-80 overflow-hidden bg-navy-dark">
-                    <img
-                      src={member.image}
-                      alt={
-                        locale === "fr"
-                          ? `Portrait de ${member.name}`
-                          : `Portrait of ${member.name}`
-                      }
-                      loading="lazy"
-                      width={900}
-                      height={1100}
-                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                      style={{ objectPosition: "center" }}
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="mb-5 font-display text-2xl font-bold text-foreground">
-                      {member.name}
-                    </h3>
-                    <div className="mt-auto rounded-xl border border-accent/15 bg-accent/5 px-4 py-3">
-                      <span className="mb-1 block text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-accent">
-                        {t("about.team.specialityLabel")}
-                      </span>
-                      <p className="text-sm font-semibold leading-snug text-foreground">
-                        {member.role}
-                      </p>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
             </div>
           </div>
         </section>
