@@ -167,7 +167,7 @@ export const processSteps: ProcessStep[] = [
 export const caseStudyMetrics: Metric[] = [
   { value: "42", label: "Équipements sécurisés" },
   { value: "6", label: "Sites raccordés" },
-  { value: "99.9%", label: "Disponibilité visée" },
+  { value: "<1h", label: "Réponse aux alertes" },
 ];
 
 export const caseStudyHighlights = [

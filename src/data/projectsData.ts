@@ -15,6 +15,8 @@ export type ProjectStory = {
   status: string;
   headline: string;
   summary: string;
+  tagline: string;
+  features: string[];
   problem: {
     title: string;
     body: string;
@@ -59,6 +61,8 @@ export const projects: Project[] = [
         headline: "Le cabinet médical, enfin réuni dans un seul parcours clair.",
         summary:
           "Med'Oc relie l'accueil, le médecin et l'administration autour d'un dossier patient fiable — du rendez-vous à la consultation, puis à l'ordonnance et au règlement.",
+        tagline: "Le cabinet médical, unifié dans un parcours clair.",
+        features: ["Dossier patient unifié", "Prise de rendez-vous", "Facturation intégrée"],
         problem: {
           title: "Un cabinet ne devrait pas perdre son temps à recoller l'information.",
           body:
@@ -124,6 +128,8 @@ export const projects: Project[] = [
         headline: "The entire medical practice, connected in one clear workflow.",
         summary:
           "Med'Oc brings reception, practitioners and administration around one dependable patient record — from appointment to consultation, prescription and payment.",
+        tagline: "The medical practice, unified in one clear workflow.",
+        features: ["Unified patient record", "Appointment scheduling", "Built-in billing"],
         problem: {
           title: "A practice should not spend its day piecing information back together.",
           body:
@@ -189,6 +195,8 @@ export const projects: Project[] = [
         headline: "Encaisser vite. Garder un stock juste. Pouvoir tout expliquer.",
         summary:
           "DPS POS transforme le comptoir en un flux fiable où vente, paiement, stock, caisse et ticket sont finalisés ensemble — même sur une installation locale.",
+        tagline: "Ventes, stock et caisse, fiables depuis le comptoir.",
+        features: ["Vente atomique", "Stock traçable", "Caisse fiable"],
         problem: {
           title: "Quand la caisse et le stock divergent, chaque vente crée un doute.",
           body:
@@ -242,6 +250,8 @@ export const projects: Project[] = [
         headline: "Checkout fast. Keep stock accurate. Explain every movement.",
         summary:
           "DPS POS turns the counter into a dependable flow where sale, payment, inventory, cash and receipt are completed together — even on a local installation.",
+        tagline: "Sales, stock and register, dependable from the counter.",
+        features: ["Atomic checkout", "Traceable inventory", "Dependable register"],
         problem: {
           title: "When checkout and inventory disagree, every sale creates doubt.",
           body:
@@ -295,6 +305,8 @@ export const projects: Project[] = [
         headline: "Du devis au règlement, sans ressaisie et sans zone grise.",
         summary:
           "DPS Gestion relie clients, documents commerciaux, stock et paiements pour donner aux équipes une vue continue de chaque affaire.",
+        tagline: "Du devis au règlement, sans ressaisie ni zone grise.",
+        features: ["Documents reliés", "Calculs déterministes", "PDF reproductibles"],
         problem: {
           title: "Le vrai coût d'une facture commence souvent avant sa création.",
           body:
@@ -348,6 +360,8 @@ export const projects: Project[] = [
         headline: "From quotation to payment, without re-entry or blind spots.",
         summary:
           "DPS Gestion connects customers, commercial documents, inventory and payments to give teams one continuous view of every deal.",
+        tagline: "From quote to payment, without re-entry or blind spots.",
+        features: ["Connected documents", "Deterministic calculations", "Reproducible PDFs"],
         problem: {
           title: "The real cost of an invoice often begins before it is created.",
           body:

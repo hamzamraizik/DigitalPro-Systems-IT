@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { X, ArrowRight, Check, Sparkles } from "lucide-react";
+import { X, ArrowRight, Check, Sparkles, ExternalLink } from "lucide-react";
 import { serviceSlugByKey, whyUs, type ServiceCategory } from "@/data/servicesData";
 
 interface ServiceModalProps {
@@ -68,12 +68,16 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/40 dark:bg-black/70 backdrop-blur-sm"
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
           onClick={(e) => {
             if (e.target === e.currentTarget) onClose();
           }}
         >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-[#07111f]/90 backdrop-blur-md" />
+
+          {/* Dialog */}
           <motion.div
             ref={dialogRef}
             role="dialog"
@@ -83,54 +87,64 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.96 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-5xl max-h-[88vh] overflow-y-auto rounded-[2rem] bg-[#F8FAFC] dark:bg-navy-dark border border-black/10 dark:border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.6)] p-6 md:p-14 transition-colors duration-300"
+            className="relative z-10 max-h-[88vh] w-full max-w-5xl overflow-y-auto rounded-[2rem] border border-white/[0.15] bg-[#0a1628] shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
+            style={{ boxShadow: "0 12px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)" }}
           >
-            {/* Décor d'arrière-plan */}
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-cyan/10 via-cyan/5 to-transparent rounded-t-[2rem]" />
-            <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 bg-cyan/15 rounded-full blur-[100px]" />
-
-            {/* Bouton fermer */}
+            {/* Close button */}
             <button
               ref={closeButtonRef}
               type="button"
               aria-label={t("servicesPage.modal.close")}
               onClick={onClose}
-              className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 border border-black/10 dark:border-white/15 flex items-center justify-center text-[#111111] dark:text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:rotate-90"
+              className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.08] text-white shadow-lg backdrop-blur-md transition-all duration-300 hover:rotate-90 hover:bg-white/15"
             >
-              <X className="w-5 h-5" />
+              <X className="h-5 w-5" />
             </button>
 
-            {/* En-tête */}
-            <div className="relative flex items-start gap-5 mb-5">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.1, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="w-16 h-16 shrink-0 rounded-2xl bg-gradient-to-br from-cyan to-cyan-light flex items-center justify-center shadow-[0_8px_24px_rgba(0,174,239,0.35)]"
-              >
-                <service.icon className="w-8 h-8 text-white" />
-              </motion.div>
-              <div className="pt-1">
-                <span className="inline-flex items-center gap-1.5 text-cyan font-semibold text-xs uppercase tracking-[0.2em] block mb-2">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  {t("servicesPage.modal.expertiseLabel")}
-                </span>
-                <h3
-                  id={`service-modal-title-${service.id}`}
-                  className="font-display text-2xl lg:text-3xl font-extrabold text-[#111111] dark:text-white tracking-tight"
+            {/* Header */}
+            <div className="relative border-b border-white/[0.1] p-8 pb-6 md:p-14 md:pb-8">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-64 rounded-t-[2rem] bg-gradient-to-b from-[#00AEEF]/10 via-[#00AEEF]/5 to-transparent" />
+              <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#00AEEF]/15 blur-[100px]" />
+
+              <div className="relative flex items-start gap-5">
+                <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.1, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-[#00AEEF]"
+                  style={{
+                    background: "rgba(0,174,239,0.12)",
+                    border: "1px solid rgba(0,174,239,0.4)",
+                    boxShadow: "0 0 10px rgba(0,174,239,0.3)",
+                  }}
                 >
-                  {t(`servicesPage.categories.${service.id}.title`)}
-                </h3>
+                  <service.icon className="h-8 w-8" />
+                </motion.div>
+                <div className="pt-1">
+                  <span className="mb-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#00AEEF]">
+                    <Sparkles className="h-3.5 w-3.5" />
+                    {t("servicesPage.modal.expertiseLabel")}
+                  </span>
+                  <h3
+                    id={`service-modal-title-${service.id}`}
+                    className="font-display text-2xl font-extrabold tracking-tight text-white lg:text-3xl"
+                  >
+                    {t(`servicesPage.categories.${service.id}.title`)}
+                  </h3>
+                </div>
               </div>
             </div>
 
-            <p className="relative text-[#555555] dark:text-white/70 leading-relaxed mb-10 max-w-3xl text-[15px]">
-              {t(`servicesPage.categories.${service.id}.intro`)}
-            </p>
+            {/* Intro */}
+            <div className="px-8 pt-6 md:px-14">
+              <p className="max-w-3xl text-[15px] leading-relaxed text-[#9aa6b2]">
+                {t(`servicesPage.categories.${service.id}.intro`)}
+              </p>
+            </div>
 
-            {/* Grille des sous-services */}
-            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4">
-              {service.items.map((item) => {
+            {/* Sub-services grid */}
+            <div className="grid grid-cols-1 gap-4 p-8 md:grid-cols-2 md:p-14">
+              {service.items.map((item, i) => {
                 const tags = item.hasTags
                   ? (t(`servicesPage.categories.${service.id}.tags.${item.key}`, { returnObjects: true }) as string[])
                   : null;
@@ -140,35 +154,32 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
                     key={item.key}
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: 0.1 }}
+                    transition={{ duration: 0.35, delay: 0.1 + i * 0.05 }}
                   >
                     <Link
                       to={`/services/${service.id}/${serviceSlugByKey[item.key]}`}
                       onClick={onClose}
-                      className="group flex items-start gap-4 bg-white dark:bg-white/[0.04] border border-black/10 dark:border-white/10 hover:border-cyan/50 rounded-2xl px-5 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,174,239,0.12)] dark:hover:shadow-[0_12px_32px_rgba(0,174,239,0.2)]"
+                      className="group flex items-start gap-4 rounded-2xl border border-white/[0.1] bg-white/[0.03] p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#00AEEF]/50 hover:bg-white/[0.06] hover:shadow-[0_12px_32px_rgba(0,174,239,0.15)]"
                     >
-                      <div className="w-11 h-11 shrink-0 rounded-xl bg-cyan/10 border border-cyan/20 flex items-center justify-center transition-all duration-300 group-hover:bg-cyan group-hover:scale-105">
-                        <item.icon className="w-5 h-5 text-cyan transition-colors duration-300 group-hover:text-white" />
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-[#00AEEF] transition-all duration-300 group-hover:bg-[#00AEEF] group-hover:text-white" style={{ background: "rgba(0,174,239,0.12)", border: "1px solid rgba(0,174,239,0.4)" }}>
+                        <item.icon className="h-5 w-5 transition-colors duration-300 group-hover:text-white" />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between gap-3 mb-1">
-                          <h4 className="font-display text-base font-bold text-[#111111] dark:text-white">
+                        <div className="mb-1 flex items-center justify-between gap-3">
+                          <h4 className="font-display text-base font-bold text-white">
                             {t(`servicesPage.categories.${service.id}.items.${item.key}.title`)}
                           </h4>
-                          <ArrowRight className="w-4 h-4 text-cyan/0 transition-all duration-300 group-hover:text-cyan group-hover:translate-x-1 shrink-0" />
+                          <ArrowRight className="h-4 w-4 shrink-0 text-[#00AEEF]/0 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#00AEEF]" />
                         </div>
-                        <p className="text-[#555555] dark:text-white/60 text-sm leading-relaxed mb-2">
+                        <p className="mb-2 text-sm leading-relaxed text-[#9aa6b2]">
                           {t(`servicesPage.categories.${service.id}.items.${item.key}.desc`)}
                         </p>
-                        {Array.isArray(tags) && (
+                        {Array.isArray(tags) && tags.length > 0 && (
                           <ul className="space-y-1.5">
                             {tags.map((tag) => (
-                              <li
-                                key={tag}
-                                className="flex items-start gap-2 text-xs text-[#666666] dark:text-white/55"
-                              >
-                                <span className="mt-0.5 w-4 h-4 shrink-0 rounded-full bg-cyan/10 flex items-center justify-center">
-                                  <Check className="w-2.5 h-2.5 text-cyan" />
+                              <li key={tag} className="flex items-start gap-2 text-xs text-[#9aa6b2]">
+                                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#00AEEF]/15">
+                                  <Check className="h-2.5 w-2.5 text-[#00AEEF]" />
                                 </span>
                                 <span>{tag}</span>
                               </li>
@@ -182,21 +193,21 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
               })}
             </div>
 
-            {/* Pourquoi nous choisir */}
-            <div className="relative mt-12 pt-8 border-t border-black/10 dark:border-white/10">
-              <span className="text-[#666666] dark:text-white/50 font-semibold text-xs uppercase tracking-[0.2em] block mb-5">
+            {/* Why us */}
+            <div className="border-t border-white/[0.1] px-8 pt-8 md:px-14">
+              <span className="mb-5 block text-xs font-semibold uppercase tracking-[0.2em] text-[#9aa6b2]">
                 {t("servicesPage.whyUs.title")}
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {whyUs.map((w) => (
                   <div
                     key={w.key}
-                    className="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-white dark:bg-white/[0.03] border border-black/5 dark:border-white/5 hover:border-cyan/30 hover:bg-cyan/[0.03] transition-all duration-300"
+                    className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3.5 transition-all duration-300 hover:border-[#00AEEF]/30 hover:bg-[#00AEEF]/[0.03]"
                   >
-                    <div className="w-8 h-8 shrink-0 rounded-lg bg-cyan/10 flex items-center justify-center">
-                      <w.icon className="w-4 h-4 text-cyan shrink-0" />
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#00AEEF]/15 text-[#00AEEF]">
+                      <w.icon className="h-4 w-4" />
                     </div>
-                    <span className="text-xs font-medium text-[#444444] dark:text-white/70">
+                    <span className="text-xs font-medium text-[#b8c4d0]">
                       {t(`servicesPage.whyUs.points.${w.key}`)}
                     </span>
                   </div>
@@ -205,19 +216,20 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
             </div>
 
             {/* CTA */}
-            <div className="relative mt-12 pt-8 border-t border-black/10 dark:border-white/10">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <div className="border-t border-white/[0.1] px-8 pt-8 pb-10 md:px-14">
+              <div className="flex flex-col items-center justify-center gap-4 md:flex-row">
                 <Link
                   to="/contact"
                   onClick={onClose}
-                  className="group inline-flex w-full md:w-auto items-center justify-center gap-2 bg-gradient-to-r from-cyan to-cyan-light text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(0,180,255,0.45)]"
+                  className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00AEEF] px-8 py-3.5 font-bold text-[#07111f] transition-all duration-300 hover:scale-[1.03] hover:bg-[#21B5F2] hover:shadow-[0_0_30px_rgba(0,174,239,0.45)] md:w-auto"
                 >
-                  {t("servicesPage.modal.requestQuote")} <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  {t("servicesPage.modal.requestQuote")}
+                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="inline-flex w-full md:w-auto items-center justify-center border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 text-[#111111] dark:text-white px-8 py-3.5 rounded-xl transition-all duration-300"
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-white/20 px-8 py-3.5 text-white transition-all duration-300 hover:bg-white/5 md:w-auto"
                 >
                   {t("servicesPage.modal.close")}
                 </button>

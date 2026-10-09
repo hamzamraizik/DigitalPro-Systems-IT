@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 interface SectionHeaderProps {
   eyebrow?: string;
@@ -19,9 +20,9 @@ export const SectionHeader = ({
 }: SectionHeaderProps) => (
   <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center", className)}>
     {eyebrow && (
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#00AEEF]">
+      <Eyebrow className="mb-3">
         {eyebrow}
-      </p>
+      </Eyebrow>
     )}
     <h2
       className={cn(
