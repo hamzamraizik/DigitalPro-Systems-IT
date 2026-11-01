@@ -64,7 +64,7 @@
     --navy-light: 215 70% 30%;
     --navy-dark: 215 85% 15%;
     --cyan: 197 100% 47%;
-    --cyan-light: 197 100% 56%;
+    --cyan-light: 197 100% 42%;
     --steel: 215 15% 50%;
     --steel-light: 215 10% 75%;
     --surface: 240 11% 96%;
@@ -81,26 +81,26 @@
   }
 
   .dark {
-    --background: 215 63% 7%;
+    --background: 220 40% 8%;
     --foreground: 210 20% 92%;
-    --card: 218 50% 11%;
+    --card: 220 35% 12%;
     --card-foreground: 210 20% 92%;
-    --popover: 218 50% 11%;
+    --popover: 220 35% 12%;
     --popover-foreground: 210 20% 92%;
     --primary: 195 90% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 216 45% 14%;
+    --secondary: 220 30% 18%;
     --secondary-foreground: 210 20% 92%;
-    --muted: 216 45% 14%;
-    --muted-foreground: 215 15% 60%;
+    --muted: 220 30% 18%;
+    --muted-foreground: 215 15% 55%;
     --accent: 195 90% 45%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 216 40% 16%;
-    --input: 216 40% 16%;
+    --border: 220 25% 20%;
+    --input: 220 25% 20%;
     --ring: 195 90% 45%;
-    --page-bg: 215 63% 7%;
+    --page-bg: 0 0% 4%;
   }
 }
 
@@ -140,16 +140,6 @@
 
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
-  }
-
-  .checkbox-pop {
-    animation: checkbox-pop 0.25s ease-out;
-  }
-
-  @keyframes checkbox-pop {
-    0% { transform: scale(0.4); opacity: 0; }
-    60% { transform: scale(1.12); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
   }
 }
 
