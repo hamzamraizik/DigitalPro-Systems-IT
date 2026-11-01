@@ -36,7 +36,6 @@ describe("HeroIllustration", () => {
     render(<HeroIllustration />);
     expect(screen.getByText("Vidéosurveillance")).toBeInTheDocument();
     expect(screen.getByText("4 caméras actives")).toBeInTheDocument();
-    expect(screen.getByText("État système")).toBeInTheDocument();
     expect(screen.getByText("Support IT")).toBeInTheDocument();
     expect(screen.getByText("Ticket #204 résolu")).toBeInTheDocument();
     expect(screen.getByText("Uptime")).toBeInTheDocument();

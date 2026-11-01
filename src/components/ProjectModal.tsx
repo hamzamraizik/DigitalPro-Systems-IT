@@ -136,7 +136,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 <Link
                   to="/contact"
                   onClick={onClose}
-                  className="inline-flex items-center gap-2 bg-cyan hover:bg-cyan/90 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(0,180,255,0.4)]"
+                  className="inline-flex items-center gap-2 bg-[#1A1A1A] hover:bg-black text-white font-bold px-8 py-3.5 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-[0_10px_25px_-12px_rgba(0,0,0,0.5)] dark:bg-white dark:text-[#1A1A1A] dark:hover:bg-zinc-200"
                 >
                   {t("projectsPage.modal.requestQuote")} <ArrowRight className="w-4 h-4" />
                 </Link>

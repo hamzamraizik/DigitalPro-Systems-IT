@@ -22,7 +22,6 @@ const Projects = () => {
           intro:
             "Trois défis métier, trois systèmes conçus pour supprimer la friction et rendre chaque opération plus claire, plus rapide et plus fiable.",
           discover: "Découvrir l'étude de cas",
-          viewProduct: "Voir le produit",
           principle: "Notre principe",
           principleTitle: "La simplicité visible. La rigueur à l'intérieur.",
           principleBody:
@@ -34,7 +33,6 @@ const Projects = () => {
           intro:
             "Three business challenges, three systems built to remove friction and make every operation clearer, faster and more dependable.",
           discover: "Explore the case study",
-          viewProduct: "View product",
           principle: "Our principle",
           principleTitle: "Visible simplicity. Rigour underneath.",
           principleBody:
@@ -146,7 +144,7 @@ const Projects = () => {
                   }`}
                 >
                   <div
-                    className="pointer-events-none absolute left-1/2 top-0 h-80 w-80 -translate-x-1/2 rounded-full blur-[120px]"
+                    className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full blur-[100px]"
                     style={{ backgroundColor: project.accentSoft }}
                   />
                   <div
@@ -182,8 +180,11 @@ const Projects = () => {
                       </ul>
                       <Link
                         to={`/projets/${project.slug}`}
-                        className="group mt-9 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
-                        style={{ backgroundColor: project.accent, color: "#071019" }}
+                        className={`group mt-9 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4 ${
+                          dark
+                            ? "bg-white text-[#0b0c10] hover:bg-zinc-200"
+                            : "bg-[#1A1A1A] text-white hover:bg-black"
+                        }`}
                       >
                         {copy.discover}
                         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -202,49 +203,6 @@ const Projects = () => {
                 </motion.article>
               );
             })}
-          </div>
-        </section>
-
-        <section className="bg-page px-4 py-20 sm:px-6 lg:py-28">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid gap-6 md:grid-cols-3">
-              {projects.map((project) => {
-                const story = project.content[locale];
-                return (
-                  <motion.div
-                    key={project.slug}
-                    initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.25 }}
-                    transition={{ duration: 0.5 }}
-                    className="group relative overflow-hidden rounded-[2rem] border border-black/5 bg-white p-8 transition-colors duration-500 dark:border-white/10 dark:bg-white/[0.03] sm:p-9"
-                  >
-                    <div
-                      className="pointer-events-none absolute -right-12 -top-14 h-36 w-36 rounded-full blur-3xl"
-                      style={{ backgroundColor: project.accentSoft }}
-                      aria-hidden="true"
-                    />
-                    <div className="relative">
-                      <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: project.accent }}>
-                        <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: project.accent }} aria-hidden="true" />
-                        {project.name}
-                      </p>
-                      <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                        {story.tagline}
-                      </p>
-                      <Link
-                        to={`/projets/${project.slug}`}
-                        className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-75"
-                        style={{ color: project.accent }}
-                      >
-                        {copy.viewProduct}
-                        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </Link>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
           </div>
         </section>
 

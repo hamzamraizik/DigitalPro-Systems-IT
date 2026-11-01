@@ -165,9 +165,9 @@ export const processSteps: ProcessStep[] = [
 ];
 
 export const caseStudyMetrics: Metric[] = [
-  { value: "42", label: "Équipements sécurisés" },
-  { value: "6", label: "Sites raccordés" },
-  { value: "<1h", label: "Réponse aux alertes" },
+  { value: "12", label: "Modèles IA en production" },
+  { value: "8", label: "Workflows automatisés" },
+  { value: "-64%", label: "Effort manuel réduit" },
 ];
 
 export const caseStudyHighlights = [

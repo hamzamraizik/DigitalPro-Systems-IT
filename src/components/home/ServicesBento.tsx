@@ -99,7 +99,7 @@ export const ServicesBento = () => {
 
                 <Link
                   to={solutionsEditorialCard.href}
-                  className="group inline-flex h-12 items-center justify-center gap-2 rounded-[8px] border border-white/20 px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-[#00AEEF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00AEEF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] sm:w-auto"
+                  className="group inline-flex h-12 items-center justify-center gap-2 rounded-[8px] border border-white/20 px-5 text-sm font-semibold text-white transition duration-300 hover:border-[#00AEEF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00AEEF] focus-visible:ring-offset-2 focus-visible:ring-offset-[#111111] sm:w-auto"
                 >
                   Explorer l'offre
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

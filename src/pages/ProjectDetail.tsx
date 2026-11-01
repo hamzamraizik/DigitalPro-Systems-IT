@@ -83,7 +83,7 @@ const ProjectDetail = () => {
       <main>
         <section className="relative overflow-hidden bg-[#07080b] px-4 pb-16 pt-32 text-white sm:px-6 lg:pb-24 lg:pt-40">
           <div
-            className="pointer-events-none absolute left-1/2 top-[-12rem] h-[36rem] w-[36rem] -translate-x-1/2 rounded-full blur-[160px]"
+            className="pointer-events-none absolute left-1/2 top-[-12rem] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full blur-[140px]"
             style={{ backgroundColor: project.accentSoft }}
           />
           <div className="relative z-10 mx-auto max-w-7xl">
@@ -187,7 +187,7 @@ const ProjectDetail = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.25 }}
                       transition={{ duration: 0.55, delay: index * 0.07 }}
-                      className="rounded-[2rem] border border-black/5 bg-white p-7 shadow-[0_18px_60px_rgba(0,0,0,0.05)] sm:p-9 dark:border-white/10 dark:bg-[#12141a] dark:shadow-none"
+                      className="rounded-[2rem] border border-black/5 bg-white p-7 shadow-none sm:p-9 dark:border-white/10 dark:bg-[#12141a]"
                     >
                       <span className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: project.accentSoft, color: project.accent }}>
                         <Icon className="h-5 w-5" />
@@ -257,7 +257,7 @@ const ProjectDetail = () => {
               {related.map((item) => {
                 const itemStory = item.content[locale];
                 return (
-                  <Link key={item.slug} to={`/projets/${item.slug}`} className="group relative overflow-hidden rounded-[2rem] bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-1 sm:p-10 dark:bg-[#12141a] dark:shadow-none">
+                  <Link key={item.slug} to={`/projets/${item.slug}`} className="group relative overflow-hidden rounded-[2rem] border border-black/[0.06] bg-white p-8 shadow-none transition-colors hover:border-black/15 sm:p-10 dark:border-white/[0.08] dark:bg-[#12141a]">
                     <span className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: item.accent }}>{item.name}</span>
                     <h3 className="mt-5 max-w-xl text-balance text-3xl font-semibold leading-tight tracking-[-0.03em] dark:text-zinc-100">{itemStory.headline}</h3>
                     <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#424245] dark:text-zinc-300">{labels.next}<ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" /></span>
@@ -274,7 +274,7 @@ const ProjectDetail = () => {
             <Sparkles className="relative z-10 mx-auto h-8 w-8" style={{ color: project.accent }} />
             <h2 className="relative z-10 mx-auto mt-7 max-w-4xl text-balance font-display text-4xl font-semibold leading-tight tracking-[-0.04em] sm:text-5xl lg:text-6xl">{labels.cta}</h2>
             <p className="relative z-10 mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/55">{labels.ctaBody}</p>
-            <Link to="/contact" className="relative z-10 mt-9 inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-[#071019] transition-transform hover:scale-[1.03]" style={{ backgroundColor: project.accent }}>
+            <Link to="/contact" className="relative z-10 mt-9 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#071019] transition-colors hover:bg-zinc-200">
               {labels.ctaButton}<ArrowRight className="h-4 w-4" />
             </Link>
           </div>

@@ -14,7 +14,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window === "undefined") return "light";
+    const stored = window.localStorage.getItem("dps-theme");
+    if (stored === "light" || stored === "dark") return stored;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
   const location = useLocation();
   const { t, i18n } = useTranslation();
 
@@ -27,20 +34,12 @@ const Navbar = () => {
   ];
 
   useEffect(() => {
-    // Check if dark mode is active on load
-    if (document.documentElement.classList.contains("dark")) {
-      setTheme("dark");
-    }
-  }, []);
+    document.documentElement.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("dps-theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    if (theme === "light") {
-      document.documentElement.classList.add("dark");
-      setTheme("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      setTheme("light");
-    }
+    setTheme((current) => (current === "light" ? "dark" : "light"));
   };
 
   useEffect(() => {
@@ -76,7 +75,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   const iconBtn =
-    "inline-flex items-center justify-center rounded-full border border-black/[0.06] bg-white/70 text-[#3A3A3A] transition-all duration-300 hover:-translate-y-[1px] hover:border-[#00AEEF]/40 hover:text-[#1A1A1A] hover:shadow-[0_6px_18px_rgba(0,174,239,0.18)] active:scale-95 dark:border-white/10 dark:bg-white/[0.06] dark:text-white/70 dark:hover:border-[#00AEEF]/40 dark:hover:bg-white/10 dark:hover:text-white";
+    "inline-flex items-center justify-center rounded-full border border-black/[0.06] bg-white/70 text-[#3A3A3A] transition-all duration-300 hover:border-[#00AEEF]/40 hover:text-[#1A1A1A] hover:shadow-[0_6px_18px_rgba(0,174,239,0.18)] active:scale-95 dark:border-white/10 dark:bg-white/[0.06] dark:text-white/70 dark:hover:border-[#00AEEF]/40 dark:hover:bg-white/10 dark:hover:text-white";
 
   return (
     <motion.nav
@@ -102,7 +101,7 @@ const Navbar = () => {
             alt="DigitalPro Systems IT"
             width="600"
             height="400"
-            className="h-[130px] w-auto object-contain transition-opacity duration-300 group-hover:opacity-90 dark:brightness-0 dark:invert"
+            className="h-[130px] w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
           />
         </Link>
 
@@ -118,25 +117,15 @@ const Navbar = () => {
                 className={cn(
                   "group inline-flex items-center gap-2 text-[14px] transition-all duration-300 hover:-translate-y-[1px]",
                   isActive
-                    ? "font-semibold text-[#0B6C92] dark:text-[#00AEEF]"
-                    : "font-normal text-[#0B6C92]/70 hover:text-[#00AEEF] dark:text-[#00AEEF]/60 dark:hover:text-[#00AEEF]",
+                    ? "font-semibold text-[#1A1A1A] dark:text-white"
+                    : "font-normal text-[#1A1A1A]/60 hover:text-[#1A1A1A] dark:text-white/60 dark:hover:text-white",
                 )}
               >
-                {isActive ? (
-                  <motion.span
-                    layoutId="nav-dot"
-                    className="h-[6px] w-[6px] rounded-full bg-gradient-to-br from-[#00AEEF] to-[#00AEEF]"
-                    aria-hidden="true"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                ) : (
-                  <span className="h-[6px] w-[6px]" aria-hidden="true" />
-                )}
                 <span className="relative">
                   {item.label}
                   <span
                     className={cn(
-                      "absolute -bottom-1 left-0 h-[2px] w-full origin-left rounded-full bg-gradient-to-r from-[#00AEEF] to-[#00AEEF] transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
+                      "absolute -bottom-1 left-0 h-[2px] w-full origin-left rounded-full bg-[#1A1A1A] dark:bg-white transition-transform duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]",
                       isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                     )}
                     aria-hidden="true"
@@ -150,7 +139,7 @@ const Navbar = () => {
         <div className="flex items-center gap-2.5">
           <Link
             to="/contact"
-            className="hidden items-center rounded-full bg-[#1A1A1A] px-5 py-2.5 text-[13px] font-semibold leading-none text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-[1px] hover:shadow-[0_8px_24px_rgba(0,174,239,0.3)] active:scale-95 dark:bg-white dark:text-[#1A1A1A] dark:hover:shadow-[0_8px_24px_rgba(0,174,239,0.25)] lg:inline-flex"
+            className="hidden items-center rounded-full bg-[#1A1A1A] px-5 py-2.5 text-[13px] font-semibold leading-none text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_8px_24px_rgba(0,174,239,0.3)] active:scale-95 dark:bg-white dark:text-[#1A1A1A] dark:hover:shadow-[0_8px_24px_rgba(0,174,239,0.25)] lg:inline-flex"
           >
             {t("nav.quote")}
           </Link>
@@ -260,14 +249,10 @@ const Navbar = () => {
                       className={cn(
                         "flex items-center gap-3 rounded-[12px] px-4 py-3.5 text-[15px] transition-all duration-200",
                         isActive
-                          ? "bg-gradient-to-r from-[#00AEEF]/10 to-[#00AEEF]/10 font-semibold text-[#0B6C92] dark:bg-white/10 dark:text-[#00AEEF]"
-                          : "font-medium text-[#0B6C92]/70 hover:bg-black/[0.03] hover:text-[#00AEEF] dark:text-[#00AEEF]/60 dark:hover:bg-white/5 dark:hover:text-[#00AEEF]",
+                          ? "bg-black/[0.05] font-semibold text-[#1A1A1A] dark:bg-white/10 dark:text-white"
+                          : "font-medium text-[#1A1A1A]/60 hover:bg-black/[0.03] hover:text-[#1A1A1A] dark:text-white/60 dark:hover:bg-white/5 dark:hover:text-white",
                       )}
                     >
-                      {isActive && (
-                        <span className="h-[6px] w-[6px] rounded-full bg-gradient-to-br from-[#00AEEF] to-[#00AEEF]" aria-hidden="true" />
-                      )}
-                      {!isActive && <span className="h-[6px] w-[6px]" aria-hidden="true" />}
                       {item.label}
                     </Link>
                   </motion.div>

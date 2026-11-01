@@ -18,7 +18,7 @@ export const Footer = () => {
               alt="DigitalPro Systems IT"
               width="600"
               height="400"
-              className="h-auto w-[180px] object-contain brightness-0 invert"
+              className="h-auto w-[180px] object-contain"
             />
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-white/[0.58]">

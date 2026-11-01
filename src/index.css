@@ -81,26 +81,26 @@
   }
 
   .dark {
-    --background: 215 63% 7%;
+    --background: 215 14% 7%;
     --foreground: 210 20% 92%;
-    --card: 218 50% 11%;
+    --card: 218 12% 11%;
     --card-foreground: 210 20% 92%;
-    --popover: 218 50% 11%;
+    --popover: 218 12% 11%;
     --popover-foreground: 210 20% 92%;
     --primary: 195 90% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 216 45% 14%;
+    --secondary: 216 10% 15%;
     --secondary-foreground: 210 20% 92%;
-    --muted: 216 45% 14%;
+    --muted: 216 10% 15%;
     --muted-foreground: 215 15% 60%;
     --accent: 195 90% 45%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 216 40% 16%;
-    --input: 216 40% 16%;
+    --border: 216 10% 17%;
+    --input: 216 10% 17%;
     --ring: 195 90% 45%;
-    --page-bg: 215 63% 7%;
+    --page-bg: 215 14% 7%;
   }
 }
 
@@ -278,4 +278,27 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero-atmosphere * { animation: none !important; }
+}
+
+/* Quiet thin scrollbar for overlay surfaces (e.g. the service modal) */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+}
+.thin-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.thin-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+  background-clip: content-box;
+  border: 2px solid transparent;
 }

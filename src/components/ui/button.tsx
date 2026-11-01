@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[8px] text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00AEEF] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[8px] text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -15,8 +15,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-[#00AEEF] text-[#09090b] hover:bg-[#0B6C92] font-semibold transition-all duration-300",
-        heroOutline: "border border-[#0B6C92]/30 bg-transparent text-[#0B6C92] hover:border-[#0B6C92]/60 hover:bg-[#00AEEF]/10 font-semibold transition-all duration-300 dark:border-white/30 dark:text-white dark:hover:border-white/60 dark:hover:bg-white/[0.08]",
+        hero: "bg-[#1A1A1A] text-white hover:bg-black font-semibold transition-all duration-300 dark:bg-white dark:text-[#1A1A1A] dark:hover:bg-zinc-200",
+        heroOutline: "border border-black/20 bg-transparent text-foreground hover:border-black/50 hover:bg-black/[0.04] font-semibold transition-all duration-300 dark:border-white/30 dark:text-white dark:hover:border-white/60 dark:hover:bg-white/[0.08]",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -10,29 +10,25 @@ export const FinalCTA = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative overflow-hidden bg-page py-20 transition-colors duration-500 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-page py-14 transition-colors duration-500 sm:py-16 lg:py-20">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 26 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.55 }}
-          className="group relative overflow-hidden rounded-[2rem] bg-[#0B1020] px-8 py-14 sm:px-12 sm:py-16 lg:px-20 lg:py-20"
+          className="group relative overflow-hidden rounded-[2rem] border border-black/[0.06] bg-white px-8 py-14 shadow-[0_20px_50px_-30px_rgba(11,108,146,0.25)] sm:px-12 sm:py-16 lg:px-20 lg:py-20 dark:border-white/[0.08] dark:bg-[#0B1020] dark:shadow-[0_20px_50px_-30px_rgba(0,0,0,0.5)]"
         >
           <div
-            className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#00AEEF]/15 blur-3xl"
+            className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[#00AEEF]/10 blur-3xl dark:bg-[#00AEEF]/15"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute -bottom-32 -right-24 h-80 w-80 rounded-full bg-[#0B6C92]/25 blur-3xl"
+            className="pointer-events-none absolute -bottom-32 -right-24 h-80 w-80 rounded-full bg-[#0B6C92]/10 blur-3xl dark:bg-[#0B6C92]/25"
             aria-hidden="true"
           />
           <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              backgroundImage: "radial-gradient(rgba(0,174,239,0.07) 1px, transparent 1px)",
-              backgroundSize: "22px 22px",
-            }}
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(11,108,146,0.10)_1px,transparent_1px)] [background-size:22px_22px] dark:bg-[radial-gradient(rgba(0,174,239,0.07)_1px,transparent_1px)]"
             aria-hidden="true"
           />
           <div
@@ -43,16 +39,16 @@ export const FinalCTA = () => {
           <div className="relative grid items-center gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
             <div>
               <span
-                className="inline-flex items-center gap-2 rounded-full border border-[#00AEEF]/30 bg-[#00AEEF]/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#00AEEF]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#00AEEF]/30 bg-[#00AEEF]/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-[#0B6C92] dark:text-[#00AEEF]"
                 aria-hidden="true"
               >
                 <ShieldCheck className="h-3.5 w-3.5" />
                 {t("cta.eyebrow")}
               </span>
-              <h2 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
+              <h2 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight text-[#111111] dark:text-white sm:text-4xl lg:text-[2.75rem]">
                 {t("cta.title")}
               </h2>
-              <p className="mt-5 max-w-xl text-base leading-8 text-zinc-400">
+              <p className="mt-5 max-w-xl text-base leading-8 text-[#555555] dark:text-zinc-400">
                 {t("cta.description")}
               </p>
 
@@ -65,7 +61,7 @@ export const FinalCTA = () => {
                 </Button>
                 <Link
                   to="/services"
-                  className="group/link inline-flex items-center gap-2 text-sm font-semibold text-zinc-300 transition-colors hover:text-[#00AEEF]"
+                  className="group/link inline-flex items-center gap-2 text-sm font-semibold text-[#555555] transition-colors hover:text-[#0B6C92] dark:text-zinc-300 dark:hover:text-[#00AEEF]"
                 >
                   {t("cta.btnServices")}
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-1" />
@@ -73,20 +69,20 @@ export const FinalCTA = () => {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-7 backdrop-blur-md sm:p-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#00AEEF]">
+            <div className="rounded-2xl border border-black/[0.06] bg-black/[0.02] p-7 backdrop-blur-md sm:p-8 dark:border-white/[0.08] dark:bg-white/[0.04]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#0B6C92] dark:text-[#00AEEF]">
                 {t("cta.pointsLabel")}
               </p>
               <ul className="mt-5 grid gap-4">
                 {[1, 2, 3].map((n) => (
                   <li key={n} className="flex items-start gap-3">
                     <span
-                      className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#00AEEF]/15 text-[#00AEEF] ring-1 ring-inset ring-[#00AEEF]/30"
+                      className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#00AEEF]/15 text-[#0B6C92] ring-1 ring-inset ring-[#00AEEF]/30 dark:text-[#00AEEF]"
                       aria-hidden="true"
                     >
                       <CheckCircle2 className="h-4 w-4" />
                     </span>
-                    <span className="text-[15px] font-medium leading-6 text-white/85">
+                    <span className="text-[15px] font-medium leading-6 text-[#111111]/85 dark:text-white/85">
                       {t(`cta.points.p${n}`)}
                     </span>
                   </li>
@@ -95,9 +91,12 @@ export const FinalCTA = () => {
             </div>
           </div>
 
-          <div className="relative mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-white/[0.08] pt-7">
+          <div className="relative mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-black/[0.08] pt-7 dark:border-white/[0.08]">
             {[1, 2, 3].map((n) => (
-              <span key={n} className="inline-flex items-center gap-2 text-xs font-medium text-zinc-400">
+              <span
+                key={n}
+                className="inline-flex items-center gap-2 text-xs font-medium text-[#555555] dark:text-zinc-400"
+              >
                 <span className="h-1.5 w-1.5 rounded-full bg-[#00AEEF]" aria-hidden="true" />
                 {t(`cta.trust.t${n}`)}
               </span>

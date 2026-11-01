@@ -268,20 +268,20 @@
   },
   "caseStudy": {
     "badge": "Cas Client",
-    "badgeText": "Architecture 100% Déployée",
-    "title": "Sécurisation d'un site industriel sensible",
-    "description": "Déploiement d'une architecture réseau redondée et d'un système de vidéosurveillance intelligent pour un acteur majeur de la logistique.",
+    "badgeText": "IA 100% Déployée",
+    "title": "Déployer l'IA pour automatiser les opérations industrielles",
+    "description": "Mise en place d'une plateforme d'automatisation IA combinant vision par ordinateur, analyse prédictive et agents intelligents pour un acteur majeur de la logistique.",
     "deliveredLabel": "Ce qui a été livré",
     "highlights": {
-      "h1": "Segmentation réseau et contrôle des accès critiques",
-      "h2": "Supervision centralisée avec alertes et procédures d'escalade",
-      "h3": "Sauvegarde, documentation et plan de reprise d'activité"
+      "h1": "Pipeline de vision par ordinateur pour la détection qualité et sécurité en temps réel",
+      "h2": "Modèles prédictifs pour la maintenance et la planification des opérations",
+      "h3": "Assistant LLM et workflows automatisés connectés aux données métier"
     },
     "cta": "Voir les projets",
     "metrics": {
-      "m1": "Équipements sécurisés",
-      "m2": "Sites raccordés",
-      "m3": "Réponse aux alertes"
+      "m1": "Modèles IA en production",
+      "m2": "Workflows automatisés",
+      "m3": "Effort manuel réduit"
     }
   },
   "cta": {
@@ -611,7 +611,25 @@
       "badge": "À propos",
       "title": "Innover par la technologie.<br /><span class=\"text-cyan\">Propulser les entreprises.</span>",
       "desc1": "Chez DigitalPro Systems IT, nous transformons vos idées en solutions technologiques puissantes. Notre mission est de stimuler l'innovation, de résoudre des défis IT complexes et d'offrir des résultats mesurables pour les entreprises.",
-      "desc2": "Avec une équipe passionnée et une approche orientée client, nous concevons des solutions qui vous aident à évoluer, réussir et ouvrir la voie."
+      "desc2": "Avec une équipe passionnée et une approche orientée client, nous concevons des solutions qui vous aident à évoluer, réussir et ouvrir la voie.",
+      "values": [
+        {
+          "title": "Approche orientée client",
+          "desc": "Chaque solution est conçue autour de vos objectifs, pas des nôtres."
+        },
+        {
+          "title": "Fiable par conception",
+          "desc": "Des systèmes conçus pour rester sécurisés, stables et disponibles."
+        },
+        {
+          "title": "Une équipe présente",
+          "desc": "Un accès direct aux personnes qui réalisent le travail, pas un centre d'appels."
+        },
+        {
+          "title": "Conçu pour évoluer",
+          "desc": "Des solutions qui grandissent avec vous, pas que vous dépassez."
+        }
+      ]
     },
     "story": {
       "eyebrow": "Notre histoire",

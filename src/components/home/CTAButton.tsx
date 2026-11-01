@@ -18,7 +18,6 @@ export const CTAButton = ({ to, children, variant = "primary", className }: CTAB
     variant={variant === "primary" ? "hero" : "heroOutline"}
     className={cn(
       "group h-12 rounded-[8px] px-5 text-sm sm:px-6 sm:text-base",
-      "transition-transform duration-300 hover:-translate-y-0.5",
       className,
     )}
   >

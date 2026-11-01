@@ -16,11 +16,16 @@ describe("About project and team sections", () => {
     await i18n.changeLanguage("en");
   });
 
-  it("offers a visible case-study link for the active carousel project", () => {
+  it("offers a visible case-study link for every project in the grid", () => {
     renderAbout();
 
-    const link = screen.getByRole("link", { name: "View project" });
-    expect(link).toHaveAttribute("href", "/projets/medoc");
+    expect(screen.getAllByText("View project")).toHaveLength(3);
+    const cards = screen.getAllByRole("link", { name: /.+/ });
+    const hrefs = cards
+      .map((link) => link.getAttribute("href"))
+      .filter((href) => href?.startsWith("/projets/"));
+    expect(hrefs).toHaveLength(3);
+    expect(hrefs).toContain("/projets/medoc");
   });
 
   it("introduces the wider engineering team without adding fake profiles", () => {

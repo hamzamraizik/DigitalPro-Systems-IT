@@ -21,13 +21,13 @@ const CaseStudyVisual = () => {
         aria-hidden="true"
       />
 
-      <div className="relative overflow-hidden rounded-3xl border border-black/[0.06] shadow-[0_32px_64px_-32px_rgba(11,108,146,0.3)] transition-all duration-500 group-hover:border-[#00AEEF]/50 dark:border-white/[0.08]">
+      <div className="relative overflow-hidden rounded-3xl border border-black/[0.06] shadow-[0_16px_40px_-24px_rgba(11,108,146,0.25)] transition-all duration-500 group-hover:border-[#00AEEF]/50 dark:border-white/[0.08]">
         <img
           src="/case-study-realistic.png"
           alt={t("caseStudy.title")}
           loading="lazy"
           decoding="async"
-          className="aspect-[4/5] w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 sm:aspect-[4/3] lg:aspect-square"
+          className="aspect-[4/5] w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 sm:aspect-[4/3] lg:aspect-[4/5]"
         />
         <div
           className="absolute inset-0 bg-gradient-to-t from-[#0B1020]/75 via-[#0B1020]/10 to-transparent"
@@ -36,7 +36,10 @@ const CaseStudyVisual = () => {
 
         <div className="absolute bottom-5 left-5">
           <span className="inline-flex items-center gap-2 rounded-full border border-[#00AEEF]/30 bg-[#0B1020]/80 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider text-[#00AEEF] backdrop-blur-md">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-[#FF8A3D] shadow-[0_0_8px_rgba(255,138,61,0.8)]" aria-hidden="true" />
+            <span
+              className="h-2 w-2 animate-pulse rounded-full bg-[#FF8A3D] shadow-[0_0_8px_rgba(255,138,61,0.8)]"
+              aria-hidden="true"
+            />
             {t("caseStudy.badgeText")}
           </span>
         </div>
@@ -45,38 +48,11 @@ const CaseStudyVisual = () => {
   );
 };
 
-const MetricStat = ({
-  value,
-  label,
-  delay,
-}: {
-  value: string;
-  label: string;
-  delay: number;
-}) => (
-  <motion.div
-    initial={{ opacity: 0, y: 18 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.4 }}
-    transition={{ duration: 0.45, delay }}
-    className="relative overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.02] p-6 transition-colors duration-500 sm:p-7 dark:border-white/[0.08] dark:bg-white/[0.03]"
-  >
-    <div
-      className="pointer-events-none absolute -right-6 -top-8 h-24 w-24 rounded-full bg-[#00AEEF]/15 blur-2xl"
-      aria-hidden="true"
-    />
-    <p className="font-display text-4xl font-semibold leading-none tracking-tight text-[#0B6C92] dark:text-[#00AEEF] sm:text-5xl">
-      {value}
-    </p>
-    <p className="mt-3 text-sm leading-6 text-[#555555] dark:text-white/[0.55]">{label}</p>
-  </motion.div>
-);
-
 export const FeaturedCaseStudy = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="relative overflow-hidden bg-page py-20 transition-colors duration-500 sm:py-24 lg:py-28">
+    <section className="relative overflow-hidden bg-page py-14 transition-colors duration-500 sm:py-16 lg:py-20">
       <Container>
         <div className="mx-auto max-w-7xl">
           <SectionHeader
@@ -85,18 +61,7 @@ export const FeaturedCaseStudy = () => {
             description={t("caseStudy.description")}
           />
 
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {caseStudyMetrics.map((metric, index) => (
-              <MetricStat
-                key={metric.value}
-                value={metric.value}
-                label={t(`caseStudy.metrics.m${index + 1}`)}
-                delay={index * 0.1}
-              />
-            ))}
-          </div>
-
-          <div className="mt-16 grid items-center gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-20">
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +77,7 @@ export const FeaturedCaseStudy = () => {
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <p className="mb-5 text-xs font-semibold uppercase tracking-[0.24em] text-[#0B6C92] dark:text-[#00AEEF]">
+              <p className="mb-5 mt-9 text-xs font-semibold uppercase tracking-[0.24em] text-[#0B6C92] dark:text-[#00AEEF]">
                 {t("caseStudy.deliveredLabel")}
               </p>
 
@@ -139,9 +104,29 @@ export const FeaturedCaseStudy = () => {
                 ))}
               </div>
 
+              <div className="mt-9 grid grid-cols-3 divide-x divide-black/[0.08] overflow-hidden rounded-2xl border border-black/[0.06] bg-black/[0.02] dark:divide-white/[0.08] dark:border-white/[0.08] dark:bg-white/[0.03]">
+                {caseStudyMetrics.map((metric, index) => (
+                  <motion.div
+                    key={metric.value}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                    className="px-3 py-5 text-center sm:px-5 sm:py-6"
+                  >
+                    <p className="font-display text-2xl font-semibold leading-none tracking-tight tabular-nums text-[#0B6C92] dark:text-[#00AEEF] sm:text-4xl">
+                      {metric.value}
+                    </p>
+                    <p className="mt-2 text-[11px] leading-4 text-[#555555] dark:text-white/[0.55] sm:text-xs">
+                      {t(`caseStudy.metrics.m${index + 1}`)}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
               <Link
                 to="/projets"
-                className="group mt-9 inline-flex items-center gap-2 text-sm font-semibold text-[#0B6C92] transition-colors hover:text-[#0A86C8] dark:text-[#00AEEF] dark:hover:text-white sm:text-base"
+                className="group mt-2 inline-flex items-center gap-2 rounded-full text-sm font-semibold text-[#0B6C92] transition-colors hover:text-[#0A86C8] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00AEEF] dark:text-[#00AEEF] dark:hover:text-white sm:text-base"
               >
                 {t("caseStudy.cta")}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

@@ -14,12 +14,181 @@ import {
   Video,
   Wrench,
 } from "lucide-react";
+import { useEffect, useRef } from "react";
+import type { RefObject } from "react";
 import { useTranslation } from "react-i18next";
 
+type ParallaxLayer = {
+  el: HTMLElement;
+  depth: number;
+  dirX: number;
+  dirY: number;
+  rot: number;
+  rotDir: number;
+  baseRotate: number;
+};
+
+const SMOOTHING_RATE = 6;
+const TILT_MAX_DEG = 10;
+const RETURN_MS = 500;
+
+const clampSym = (v: number) => Math.max(-1, Math.min(1, v));
+const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+/**
+ * Mouse-move parallax for the hero illustration.
+ * - Tracks the cursor relative to the enclosing hero <section>.
+ * - Tilts the whole illustration (max 6deg) + translates each
+ *   [data-depth] layer with its own amplitude/direction.
+ * - Interpolated through requestAnimationFrame (lerp ~0.08);
+ *   eases back to rest over 500ms on mouseleave.
+ * - Disabled on touch/coarse pointers and with reduced motion.
+ * - Transform-only writes, no layout thrash.
+ */
+function useHeroParallax(
+  containerRef: RefObject<HTMLDivElement | null>,
+  tiltRef: RefObject<HTMLDivElement | null>,
+) {
+  useEffect(() => {
+    const container = containerRef.current;
+    const tilt = tiltRef.current;
+    if (!container || !tilt || typeof window === "undefined") return;
+    const canHover = window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
+    const prefersReduced =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+    const isTouch =
+      "ontouchstart" in window || (typeof navigator !== "undefined" && navigator.maxTouchPoints > 0);
+    if (!canHover || isTouch || prefersReduced) return;
+
+    const host: HTMLElement = container.closest("section") ?? container;
+    const layers: ParallaxLayer[] = Array.from(
+      container.querySelectorAll<HTMLElement>("[data-depth]"),
+    ).map((el) => ({
+      el,
+      depth: Number(el.dataset.depth ?? 0),
+      dirX: Number(el.dataset.dirX ?? 1),
+      dirY: Number(el.dataset.dirY ?? 1),
+      rot: Number(el.dataset.rot ?? 0),
+      rotDir: Number(el.dataset.rotDir ?? 1),
+      baseRotate: Number(el.dataset.baseRotate ?? 0),
+    }));
+    if (layers.length === 0) return;
+
+    const target = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+    const returnFrom = { x: 0, y: 0 };
+    let returnStart = 0;
+    let raf = 0;
+    let mode: "idle" | "follow" | "return" = "idle";
+
+    const apply = (nx: number, ny: number) => {
+      tilt.style.transform =
+        `rotateX(${(-ny * TILT_MAX_DEG).toFixed(3)}deg) ` +
+        `rotateY(${(nx * TILT_MAX_DEG).toFixed(3)}deg)`;
+      for (const l of layers) {
+        const x = nx * l.depth * l.dirX;
+        const y = ny * l.depth * l.dirY;
+        const r = l.baseRotate + nx * l.rot * l.rotDir;
+        l.el.style.transform =
+          `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) ` +
+          `rotate(${r.toFixed(3)}deg)`;
+      }
+    };
+    const clear = () => {
+      tilt.style.transform = "";
+      for (const l of layers) l.el.style.transform = "";
+    };
+
+    let lastT = 0;
+    const stepFollow = (now: number) => {
+      const dt = Math.min(0.05, Math.max(0, (now - lastT) / 1000 || 0));
+      lastT = now;
+      const alpha = 1 - Math.exp(-dt * SMOOTHING_RATE);
+      current.x += (target.x - current.x) * alpha;
+      current.y += (target.y - current.y) * alpha;
+      apply(current.x, current.y);
+      if (
+        Math.abs(target.x - current.x) < 0.0005 &&
+        Math.abs(target.y - current.y) < 0.0005
+      ) {
+        current.x = target.x;
+        current.y = target.y;
+        apply(current.x, current.y);
+        if (target.x === 0 && target.y === 0) {
+          clear();
+          mode = "idle";
+          return;
+        }
+      }
+      raf = requestAnimationFrame(stepFollow);
+    };
+    const startFollow = () => {
+      if (mode === "follow") return;
+      mode = "follow";
+      cancelAnimationFrame(raf);
+      lastT = performance.now();
+      raf = requestAnimationFrame(stepFollow);
+    };
+    const stepReturn = (now: number) => {
+      const t = Math.min(1, (now - returnStart) / RETURN_MS);
+      const e = easeOutCubic(t);
+      current.x = returnFrom.x * (1 - e);
+      current.y = returnFrom.y * (1 - e);
+      apply(current.x, current.y);
+      if (t < 1) {
+        raf = requestAnimationFrame(stepReturn);
+      } else {
+        clear();
+        mode = "idle";
+      }
+    };
+
+    const onMove = (e: MouseEvent) => {
+      const rect = host.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
+      target.x = clampSym((e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2));
+      target.y = clampSym((e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2));
+      startFollow();
+    };
+    const onLeave = () => {
+      target.x = 0;
+      target.y = 0;
+      returnFrom.x = current.x;
+      returnFrom.y = current.y;
+      cancelAnimationFrame(raf);
+      if (Math.abs(returnFrom.x) < 0.0005 && Math.abs(returnFrom.y) < 0.0005) {
+        clear();
+        mode = "idle";
+        return;
+      }
+      mode = "return";
+      returnStart = performance.now();
+      raf = requestAnimationFrame(stepReturn);
+    };
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      if (!e.matches) return;
+      cancelAnimationFrame(raf);
+      mode = "idle";
+      clear();
+    };
+
+    host.addEventListener("mousemove", onMove);
+    host.addEventListener("mouseleave", onLeave);
+    const mqMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    mqMotion?.addEventListener?.("change", onMotionChange);
+    return () => {
+      cancelAnimationFrame(raf);
+      host.removeEventListener("mousemove", onMove);
+      host.removeEventListener("mouseleave", onLeave);
+      mqMotion?.removeEventListener?.("change", onMotionChange);
+    };
+  }, [containerRef, tiltRef]);
+}
+
 const GLASS =
-  "absolute z-[2] rounded-2xl border px-[16px] py-[14px] backdrop-blur-md " +
-  "border-[#0B1F3F]/10 bg-white/70 text-[#37423f] shadow-[0_12px_30px_rgba(11,31,63,0.15)] " +
-  "dark:border-white/20 dark:bg-white/[0.09] dark:text-[#e7ece9] dark:shadow-[0_12px_30px_rgba(0,0,0,0.4)]";
+  "absolute z-[2] rounded-2xl border px-[16px] py-[14px] " +
+  "border-[#0B1F3F]/10 bg-white text-[#37423f] shadow-[0_8px_20px_-8px_rgba(11,31,63,0.12)] " +
+  "dark:border-white/20 dark:bg-[#161c1a] dark:text-[#e7ece9] dark:shadow-[0_8px_20px_-8px_rgba(0,0,0,0.35)]";
 
 const STAT_ROW =
   "flex items-center gap-[10px] mt-[8px] text-[13px] text-[#55605c] dark:text-[#c7d0cc]";
@@ -37,18 +206,23 @@ const BARS = (
 
 export const HeroIllustration = () => {
   const { t } = useTranslation();
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const tiltRef = useRef<HTMLDivElement | null>(null);
+  useHeroParallax(containerRef, tiltRef);
 
   return (
-  <div className="relative mx-auto hidden h-[500px] w-full max-w-[640px] lg:block">
+  <div
+    ref={containerRef}
+    className="relative mx-auto hidden h-[500px] w-full max-w-[640px] lg:block"
+    style={{ perspective: "1000px" }}
+  >
     <style>{`
-      .hi-glow{position:absolute;width:8px;height:8px;border-radius:9999px;background:#00AEEF;box-shadow:0 0 12px 4px rgba(0,174,239,0.6);z-index:2;}
-      .hi-glow.small{width:5px;height:5px;box-shadow:0 0 8px 3px rgba(0,174,239,0.5);}
       .hi-comp{position:absolute;left:230px;top:60px;width:340px;z-index:2;transform:rotate(6deg);}
-      .hi-mon{background:linear-gradient(155deg,#dde0de,#a8b0ac);border:2px solid #99a19d;border-radius:14px;padding:10px;box-shadow:0 20px 40px rgba(11,31,63,0.18);}
+      .hi-mon{background:linear-gradient(155deg,#dde0de,#a8b0ac);border:2px solid #99a19d;border-radius:14px;padding:10px;box-shadow:0 12px 24px rgba(11,31,63,0.12);}
       .hi-screenc{position:relative;background:linear-gradient(160deg,#f6f9f8,#dfe5e2);border-radius:8px;padding:16px 18px;color:#1c2320;height:190px;box-sizing:border-box;overflow:hidden;}
       .hi-neck{width:16px;height:28px;background:linear-gradient(155deg,#c3c9c6,#9aa39f);margin:0 auto;}
       .hi-base{width:110px;height:9px;border-radius:4px;background:linear-gradient(155deg,#c3c9c6,#9aa39f);margin:0 auto;box-shadow:0 6px 14px rgba(11,31,63,0.2);}
-      .dark .hi-mon{background:linear-gradient(155deg,#3a3f3e,#101312);border-color:#55605c;box-shadow:0 20px 40px rgba(0,0,0,0.5);}
+      .dark .hi-mon{background:linear-gradient(155deg,#3a3f3e,#101312);border-color:#55605c;box-shadow:0 12px 24px rgba(0,0,0,0.4);}
       .dark .hi-screenc{background:linear-gradient(160deg,#161c1a,#040605);color:#e7ece9;}
       .dark .hi-neck{background:linear-gradient(155deg,#4a5350,#202623);}
       .dark .hi-base{background:linear-gradient(155deg,#4a5350,#202623);box-shadow:0 6px 14px rgba(0,0,0,0.4);}
@@ -105,9 +279,9 @@ export const HeroIllustration = () => {
         @keyframes hi-sonar{0%{transform:scale(0.95);opacity:0.7}70%{transform:scale(1.6);opacity:0}100%{transform:scale(1.6);opacity:0}}
         .hi-sonar{animation:hi-sonar 2.8s ease-out infinite;}
         .hi-sonar.b{animation-delay:1.4s;}
-        @keyframes hi-breathe{0%,100%{box-shadow:0 18px 40px rgba(11,31,63,0.15)}50%{box-shadow:0 18px 60px rgba(11,31,63,0.32)}}
+        @keyframes hi-breathe{0%,100%{box-shadow:0 12px 24px rgba(11,31,63,0.10)}50%{box-shadow:0 12px 32px rgba(11,31,63,0.18)}}
         .hi-mon{animation:hi-breathe 5s ease-in-out infinite;}
-        @keyframes hi-breatheDark{0%,100%{box-shadow:0 20px 40px rgba(0,0,0,0.5)}50%{box-shadow:0 20px 70px rgba(0,0,0,0.72)}}
+        @keyframes hi-breatheDark{0%,100%{box-shadow:0 12px 24px rgba(0,0,0,0.40)}50%{box-shadow:0 12px 36px rgba(0,0,0,0.50)}}
         .dark .hi-mon{animation:hi-breatheDark 5s ease-in-out infinite;}
         @keyframes hi-alertPulse{0%,100%{border-color:rgba(240,185,85,0.3)}50%{border-color:rgba(240,185,85,0.85)}}
         .hi-msg{animation:hi-rowReveal 16s ease-out infinite, hi-alertPulse 1.4s ease-in-out infinite;animation-delay:8.4s, 8.1s;}
@@ -118,16 +292,19 @@ export const HeroIllustration = () => {
         .hi-sh{animation:hi-shPulse 3.6s ease-in-out infinite;}
         @keyframes hi-shPulse{0%,100%{opacity:1}50%{opacity:0.55}}
         @keyframes hi-fA{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-        @keyframes hi-fC{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
         @keyframes hi-fE{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
         @keyframes hi-fF{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
         .hi-fA{animation:hi-fA 6s ease-in-out infinite;}
-        .hi-fC{animation:hi-fC 6.2s ease-in-out infinite;}
         .hi-fE{animation:hi-fE 6.4s ease-in-out infinite;}
         .hi-fF{animation:hi-fF 5.8s ease-in-out infinite;}
       }
     `}</style>
 
+    <div
+      ref={tiltRef}
+      className="absolute inset-0"
+      style={{ willChange: "transform" }}
+    >
     <svg
       viewBox="0 0 640 500"
       className="absolute inset-0 z-[1] h-full w-full"
@@ -146,15 +323,15 @@ export const HeroIllustration = () => {
       </g>
     </svg>
 
-    <div className="hi-glow" style={{ left: 560, top: 120 }} />
-    <div className="hi-glow" style={{ left: 70, top: 340 }} />
-    <div className="hi-glow small" style={{ left: 40, top: 60 }} />
-    <div className="hi-glow small" style={{ left: 600, top: 320 }} />
-    <div className="hi-glow small" style={{ left: 262, top: 118 }} />
-    <div className="hi-glow small" style={{ left: 30, top: 300 }} />
-    <div className="hi-glow small" style={{ left: 420, top: 356 }} />
-
-    <svg className="hi-siren" viewBox="0 0 56 52" role="img" aria-label={t("illustration.alarmSystem")}>
+    <svg
+      className="hi-siren will-change-transform"
+      viewBox="0 0 56 52"
+      role="img"
+      aria-label={t("illustration.alarmSystem")}
+      data-depth="16"
+      data-dir-x="-1"
+      data-dir-y="-1"
+    >
       <rect className="sB" x="12" y="4" width="32" height="7" rx="3.5" />
       <rect className="sB" x="24" y="11" width="8" height="7" rx="3" />
       <rect className="sB" x="16" y="18" width="24" height="26" rx="7" />
@@ -163,7 +340,12 @@ export const HeroIllustration = () => {
       <circle className="sL" cx="28" cy="14" r="2.2" />
     </svg>
 
-    <div className="absolute z-[2] left-[112px] top-[218px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white/70 px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_6px_16px_rgba(11,31,63,0.12)] backdrop-blur-md dark:border-white/20 dark:bg-white/[0.09] dark:text-[#00AEEF]">
+    <div
+      className="absolute z-[2] left-[112px] top-[218px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_4px_10px_rgba(11,31,63,0.08)] will-change-transform dark:border-white/20 dark:bg-[#161c1a] dark:text-[#00AEEF]"
+      data-depth="16"
+      data-dir-x="-1"
+      data-dir-y="1"
+    >
       <Flame size={14} className="text-[#00AEEF]" />{t("illustration.alarm")}
     </div>
 
@@ -179,11 +361,19 @@ export const HeroIllustration = () => {
       <path className="v" d="M14 46h16M14 54h16" />
     </svg>
 
-    <div className="absolute z-[2] left-[548px] top-[226px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white/70 px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_6px_16px_rgba(11,31,63,0.12)] backdrop-blur-md dark:border-white/20 dark:bg-white/[0.09] dark:text-[#00AEEF]">
+    <div className="absolute z-[2] left-[50px] top-[300px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_4px_10px_rgba(11,31,63,0.08)] dark:border-white/20 dark:bg-[#161c1a] dark:text-[#00AEEF]">
       <Server size={14} className="text-[#00AEEF]" />{t("illustration.serversSurveilled")}
     </div>
 
-    <svg className="hi-sh" viewBox="0 0 48 60" role="img" aria-label={t("illustration.security")}>
+    <svg
+      className="hi-sh will-change-transform"
+      viewBox="0 0 48 60"
+      role="img"
+      aria-label={t("illustration.security")}
+      data-depth="16"
+      data-dir-x="1"
+      data-dir-y="-1"
+    >
       <path
         className="sh"
         d="M24 3 L43 9.5 V27 C43 41 35 50 24 54 C13 50 5 41 5 27 V9.5 Z"
@@ -193,19 +383,37 @@ export const HeroIllustration = () => {
       <circle className="lk" cx="24" cy="30" r="1.8" />
     </svg>
 
-    <div className="absolute z-[2] left-[430px] top-[390px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white/70 px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_6px_16px_rgba(11,31,63,0.12)] backdrop-blur-md dark:border-white/20 dark:bg-white/[0.09] dark:text-[#00AEEF]">
+    <div
+      className="absolute z-[2] left-[430px] top-[390px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_4px_10px_rgba(11,31,63,0.08)] will-change-transform dark:border-white/20 dark:bg-[#161c1a] dark:text-[#00AEEF]"
+      data-depth="16"
+      data-dir-x="1"
+      data-dir-y="-1"
+    >
       <ShieldCheck size={14} className="text-[#00AEEF]" />{t("illustration.security")}
     </div>
 
-    <div className="absolute z-[2] left-[415px] top-[138px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white/70 px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_6px_16px_rgba(11,31,63,0.12)] backdrop-blur-md dark:border-white/20 dark:bg-white/[0.09] dark:text-[#00AEEF]">
+    <div className="absolute z-[2] left-[415px] top-[138px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_4px_10px_rgba(11,31,63,0.08)] dark:border-white/20 dark:bg-[#161c1a] dark:text-[#00AEEF]">
       <Fingerprint size={14} className="text-[#00AEEF]" />{t("illustration.biometric")}
     </div>
 
-    <div className="absolute z-[2] left-[300px] top-[10px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white/70 px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_6px_16px_rgba(11,31,63,0.12)] backdrop-blur-md dark:border-white/20 dark:bg-white/[0.09] dark:text-[#00AEEF]">
+    <div
+      className="absolute z-[2] left-[300px] top-[10px] flex items-center gap-[6px] rounded-[10px] border border-[#0B1F3F]/10 bg-white px-[9px] py-[6px] text-[10px] font-semibold text-[#0B6C92] shadow-[0_4px_10px_rgba(11,31,63,0.08)] will-change-transform dark:border-white/20 dark:bg-[#161c1a] dark:text-[#00AEEF]"
+      data-depth="22"
+      data-dir-x="1"
+      data-dir-y="1"
+      data-rot="2.5"
+      data-rot-dir="-1"
+    >
       <BarChart3 size={14} className="text-[#00AEEF]" />ERP
     </div>
 
-    <div className="hi-comp">
+    <div
+      className="hi-comp will-change-transform"
+      data-depth="10"
+      data-dir-x="1"
+      data-dir-y="1"
+      data-base-rotate="6"
+    >
       <div className="hi-mon">
         <div className="hi-screenc">
           <div className="hi-scr hi-s1">
@@ -340,58 +548,71 @@ export const HeroIllustration = () => {
       <div className="hi-base" />
     </div>
 
-    <div className={`${GLASS} hi-fA left-[20px] top-[30px] w-[230px]`}>
-      <div className="flex items-center justify-between">
-        <span className="text-[13px] font-semibold">{t("illustration.surveillance")}</span>
-        <span className="rounded-full border border-[#00AEEF]/50 bg-[#00AEEF]/15 px-2 py-[1px] text-[11px] font-bold text-[#0B6C92] dark:text-[#00AEEF]">
-          LIVE
-        </span>
-      </div>
-      <div className={STAT_ROW}>
-        <Camera className="hi-ic" size={13} />{t("illustration.camerasActive")}
-      </div>
-      <div className={STAT_ROW}>
-        <Video className="hi-ic" size={13} />{t("illustration.continuousRecord")}
+    <div
+      className={`${GLASS} left-[20px] top-[30px] w-[230px] will-change-transform`}
+      data-depth="22"
+      data-dir-x="-1"
+      data-dir-y="-1"
+      data-rot="2.5"
+      data-rot-dir="1"
+    >
+      <div className="hi-fA">
+        <div className="flex items-center justify-between">
+          <span className="text-[13px] font-semibold">{t("illustration.surveillance")}</span>
+          <span className="rounded-full border border-[#00AEEF]/50 bg-[#00AEEF]/15 px-2 py-[1px] text-[11px] font-bold text-[#0B6C92] dark:text-[#00AEEF]">
+            LIVE
+          </span>
+        </div>
+        <div className={STAT_ROW}>
+          <Camera className="hi-ic" size={13} />{t("illustration.camerasActive")}
+        </div>
+        <div className={STAT_ROW}>
+          <Video className="hi-ic" size={13} />{t("illustration.continuousRecord")}
+        </div>
       </div>
     </div>
 
     <div className="he-conn absolute left-[24px] top-[16px] z-[1] h-[1.5px] w-[40px] rounded-full bg-[#00AEEF]/40 dark:bg-[#00AEEF]/40" />
 
-    <div className={`${GLASS} hi-fC left-[20px] top-[290px] w-[185px]`}>
-      <div className="text-[15px] font-semibold" style={{ marginBottom: 8 }}>
-        {t("illustration.systemStatus")}
-      </div>
-      <div className={STAT_ROW}>
-        <Network className="hi-ic" size={13} />{t("illustration.network")}
-      </div>
-      <div className={STAT_ROW}>
-        <Database className="hi-ic" size={13} />{t("illustration.backups")}
-      </div>
-      <div className={STAT_ROW}>
-        <Flame className="hi-ic" size={13} />{t("illustration.firewall")}
-      </div>
-    </div>
-
-    <div className={`${GLASS} hi-fE left-[400px] top-[20px] w-[190px]`}>
-      <div className="flex items-center justify-between">
-        <span className="text-[13px] font-semibold">{t("illustration.supportIt")}</span>
-        <span className="rounded-full border border-[#00AEEF]/50 bg-[#00AEEF]/15 px-2 py-[1px] text-[11px] font-bold text-[#0B6C92] dark:text-[#00AEEF]">
-          24/7
-        </span>
-      </div>
-      <div className={STAT_ROW}>
-        <CheckCircle2 className="hi-ic" size={13} />{t("illustration.ticketResolved")}
-      </div>
-      <div className={STAT_ROW}>
-        <Wrench className="hi-ic" size={13} />{t("illustration.remoteAssist")}
+    <div
+      className={`${GLASS} left-[400px] top-[20px] w-[190px] will-change-transform`}
+      data-depth="30"
+      data-dir-x="-1"
+      data-dir-y="1"
+      data-rot="3"
+      data-rot-dir="1"
+    >
+      <div className="hi-fE">
+        <div className="flex items-center justify-between">
+          <span className="text-[13px] font-semibold">{t("illustration.supportIt")}</span>
+          <span className="rounded-full border border-[#00AEEF]/50 bg-[#00AEEF]/15 px-2 py-[1px] text-[11px] font-bold text-[#0B6C92] dark:text-[#00AEEF]">
+            24/7
+          </span>
+        </div>
+        <div className={STAT_ROW}>
+          <CheckCircle2 className="hi-ic" size={13} />{t("illustration.ticketResolved")}
+        </div>
+        <div className={STAT_ROW}>
+          <Wrench className="hi-ic" size={13} />{t("illustration.remoteAssist")}
+        </div>
       </div>
     </div>
 
-    <div className={`${GLASS} hi-fF left-[540px] top-[250px] w-[130px]`}>
-      <div className="text-[13px] font-semibold" style={{ marginBottom: 6 }}>
-        {t("illustration.uptime")}
+    <div
+      className={`${GLASS} left-[540px] top-[250px] w-[130px] will-change-transform`}
+      data-depth="30"
+      data-dir-x="1"
+      data-dir-y="-1"
+      data-rot="3"
+      data-rot-dir="-1"
+    >
+      <div className="hi-fF">
+        <div className="text-[13px] font-semibold" style={{ marginBottom: 6 }}>
+          {t("illustration.uptime")}
+        </div>
+        <div className="text-[22px] font-bold">99.9%</div>
       </div>
-      <div className="text-[22px] font-bold">99.9%</div>
+    </div>
     </div>
   </div>
 );

@@ -263,20 +263,20 @@
   },
   "caseStudy": {
     "badge": "Case Study",
-    "badgeText": "Architecture 100% Deployed",
-    "title": "Securing a sensitive industrial site",
-    "description": "Deployment of a redundant network architecture and an intelligent video surveillance system for a major logistics player.",
+    "badgeText": "AI 100% Deployed",
+    "title": "Deploying AI to automate industrial operations",
+    "description": "Deployment of an AI automation platform combining computer vision, predictive analytics and intelligent agents for a major logistics player.",
     "deliveredLabel": "What we delivered",
     "highlights": {
-      "h1": "Network segmentation and critical access control",
-      "h2": "Centralized supervision with alerts and escalation procedures",
-      "h3": "Backup, documentation and disaster recovery plan"
+      "h1": "Computer vision pipeline for real-time quality and safety detection",
+      "h2": "Predictive models for maintenance and operational forecasting",
+      "h3": "LLM assistant and automated workflows connected to business data"
     },
     "cta": "View projects",
     "metrics": {
-      "m1": "Secured equipment",
-      "m2": "Connected sites",
-      "m3": "Alert response time"
+      "m1": "AI models in production",
+      "m2": "Automated workflows",
+      "m3": "Manual effort reduced"
     }
   },
   "cta": {
@@ -857,7 +857,25 @@
       "badge": "About us",
       "title": "Building technology.<br /><span class=\"text-cyan\">Empowering businesses.</span>",
       "desc1": "At DigitalPro Systems IT, we turn ideas into powerful technology solutions. Our mission is to drive innovation, solve complex IT challenges, and deliver measurable results for businesses.",
-      "desc2": "With a passionate team and a customer-first mindset, we build solutions that help you scale, succeed, and lead the way."
+      "desc2": "With a passionate team and a customer-first mindset, we build solutions that help you scale, succeed, and lead the way.",
+      "values": [
+        {
+          "title": "Client-first approach",
+          "desc": "Every solution is built around your business goals, not ours."
+        },
+        {
+          "title": "Reliable by design",
+          "desc": "Systems built to stay secure, stable, and available."
+        },
+        {
+          "title": "A team that shows up",
+          "desc": "Direct access to the people doing the work, not a call center."
+        },
+        {
+          "title": "Built to scale",
+          "desc": "Solutions that grow with you, not ones you outgrow."
+        }
+      ]
     },
     "story": {
       "eyebrow": "Our Story",
