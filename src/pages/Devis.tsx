@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ChevronDown } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -28,6 +30,7 @@ const DevisPage = () => {
   const [loading, setLoading] = useState(false);
   const [clientType, setClientType] = useState("company");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [servicesOpen, setServicesOpen] = useState(false);
 
   const toggleService = (service: string) => {
     setSelectedServices((prev) =>
@@ -193,19 +196,38 @@ const DevisPage = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("devisPage.form.servicesLabel")}</label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-xl border border-cyan/20 bg-navy-dark/20 p-4">
-                    {(t("devisPage.form.services", { returnObjects: true }) as string[]).map((service) => (
-                      <label key={service} className="flex items-center gap-2 text-sm text-primary-foreground cursor-pointer">
-                        <Checkbox
-                          checked={selectedServices.includes(service)}
-                          onCheckedChange={() => toggleService(service)}
-                          className="border-cyan/40 data-[state=checked]:bg-cyan data-[state=checked]:text-primary-foreground"
+                  <Collapsible open={servicesOpen} onOpenChange={setServicesOpen}>
+                    <CollapsibleTrigger asChild>
+                      <button
+                        type="button"
+                        className="flex w-full items-center justify-between rounded-xl border border-cyan/20 bg-navy-dark/20 px-4 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-navy-dark/30"
+                      >
+                        <span>
+                          {t("devisPage.form.servicesLabel")}
+                          {selectedServices.length > 0 && (
+                            <span className="ml-2 text-cyan">({selectedServices.length})</span>
+                          )}
+                        </span>
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
                         />
-                        {service}
-                      </label>
-                    ))}
-                  </div>
+                      </button>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-xl border border-cyan/20 bg-navy-dark/20 p-4">
+                        {(t("devisPage.form.services", { returnObjects: true }) as string[]).map((service) => (
+                          <label key={service} className="flex items-center gap-2 text-sm text-primary-foreground cursor-pointer">
+                            <Checkbox
+                              checked={selectedServices.includes(service)}
+                              onCheckedChange={() => toggleService(service)}
+                              className="border-cyan/40 data-[state=checked]:bg-cyan data-[state=checked]:text-primary-foreground"
+                            />
+                            {service}
+                          </label>
+                        ))}
+                      </div>
+                    </CollapsibleContent>
+                  </Collapsible>
                 </div>
                 <div>
                   <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("devisPage.form.messageLabel")}</label>
