@@ -881,7 +881,20 @@
       "toastSuccessTitle": "Request sent!",
       "toastSuccessDesc": "We will get back to you shortly.",
       "toastErrorTitle": "Sending error",
-      "toastErrorDesc": "An error occurred. Please try again or contact us by phone."
+      "toastErrorDesc": "An error occurred. Please try again or contact us by phone.",
+      "servicesLabel": "Desired services",
+      "services": [
+        "Video surveillance",
+        "Access control",
+        "Alarm systems",
+        "IT networks",
+        "Cybersecurity (Firewall, VPN, etc.)",
+        "IT hardware",
+        "Custom development",
+        "ERP / CRM solutions",
+        "IT maintenance and support",
+        "Other need"
+      ]
     }
   },
   "quotePage": {
@@ -916,7 +929,20 @@
       "toastSuccessTitle": "Request sent!",
       "toastSuccessDesc": "We will get back to you shortly.",
       "toastErrorTitle": "Sending error",
-      "toastErrorDesc": "An error occurred. Please try again or contact us by phone."
+      "toastErrorDesc": "An error occurred. Please try again or contact us by phone.",
+      "servicesLabel": "Desired services",
+      "services": [
+        "Video surveillance",
+        "Access control",
+        "Alarm systems",
+        "IT networks",
+        "Cybersecurity (Firewall, VPN, etc.)",
+        "IT hardware",
+        "Custom development",
+        "ERP / CRM solutions",
+        "IT maintenance and support",
+        "Other need"
+      ]
     }
   }
 }
