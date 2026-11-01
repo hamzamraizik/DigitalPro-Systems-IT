@@ -128,7 +128,7 @@ export const HeroSection = () => {
             >
               <button
                 type="button"
-                onClick={() => navigate("/devis")}
+                onClick={() => navigate("/contact")}
                 className="inline-flex h-14 items-center gap-2 rounded-full bg-[#00AEEF] px-7 text-[15px] font-semibold text-[#0B1F3F] shadow-[0_16px_40px_-26px_rgba(11,31,63,0.5)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#21B5F2] active:scale-95"
               >
                 {t("hero.cta.label")}
