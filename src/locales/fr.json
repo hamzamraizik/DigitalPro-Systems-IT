@@ -886,7 +886,20 @@
       "toastSuccessTitle": "Demande envoyée !",
       "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
       "toastErrorTitle": "Erreur d'envoi",
-      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
+      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.",
+      "servicesLabel": "Services souhaités",
+      "services": [
+        "Vidéosurveillance",
+        "Contrôle d'accès",
+        "Systèmes d'alarme",
+        "Réseaux informatiques",
+        "Cybersécurité (Firewall, VPN, etc.)",
+        "Matériel informatique",
+        "Développement sur mesure",
+        "Solutions ERP / CRM",
+        "Maintenance et support informatique",
+        "Autre besoin"
+      ]
     }
   },
   "quotePage": {
@@ -921,7 +934,20 @@
       "toastSuccessTitle": "Demande envoyée !",
       "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
       "toastErrorTitle": "Erreur d'envoi",
-      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
+      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.",
+      "servicesLabel": "Services souhaités",
+      "services": [
+        "Vidéosurveillance",
+        "Contrôle d'accès",
+        "Systèmes d'alarme",
+        "Réseaux informatiques",
+        "Cybersécurité (Firewall, VPN, etc.)",
+        "Matériel informatique",
+        "Développement sur mesure",
+        "Solutions ERP / CRM",
+        "Maintenance et support informatique",
+        "Autre besoin"
+      ]
     }
   }
 }

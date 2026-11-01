@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -26,6 +27,13 @@ const DevisPage = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [clientType, setClientType] = useState("company");
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  const toggleService = (service: string) => {
+    setSelectedServices((prev) =>
+      prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service],
+    );
+  };
 
   const schema = z.object({
     name: z.string().trim().min(1, t("devisPage.form.errors.nameRequired")).max(100),
@@ -68,6 +76,7 @@ const DevisPage = () => {
           phone: result.data.phone ?? "",
           city: result.data.city,
           clientType: result.data.clientType === "company" ? t("devisPage.form.clientTypeCompany") : t("devisPage.form.clientTypeIndividual"),
+          services: selectedServices.join(", "),
           subject: `[DPS-IT Devis] ${result.data.name} - ${result.data.city}`,
           message: result.data.message,
         }),
@@ -82,6 +91,7 @@ const DevisPage = () => {
         });
         (e.target as HTMLFormElement).reset();
         setClientType("company");
+        setSelectedServices([]);
       } else {
         throw new Error(json.message ?? "Erreur inconnue");
       }
@@ -180,6 +190,21 @@ const DevisPage = () => {
                         <SelectItem value="individual">{t("devisPage.form.clientTypeIndividual")}</SelectItem>
                       </SelectContent>
                     </Select>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-primary-foreground mb-1.5 block">{t("devisPage.form.servicesLabel")}</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 rounded-xl border border-cyan/20 bg-navy-dark/20 p-4">
+                    {(t("devisPage.form.services", { returnObjects: true }) as string[]).map((service) => (
+                      <label key={service} className="flex items-center gap-2 text-sm text-primary-foreground cursor-pointer">
+                        <Checkbox
+                          checked={selectedServices.includes(service)}
+                          onCheckedChange={() => toggleService(service)}
+                          className="border-cyan/40 data-[state=checked]:bg-cyan data-[state=checked]:text-primary-foreground"
+                        />
+                        {service}
+                      </label>
+                    ))}
                   </div>
                 </div>
                 <div>
