@@ -58,7 +58,7 @@ export const FinalCTA = () => {
 
               <div className="mt-9 flex flex-col items-start gap-5 sm:flex-row sm:items-center">
                 <Button asChild variant="hero" size="lg" className="rounded-full">
-                  <Link to="/contact">
+                  <Link to="/devis">
                     {t("cta.btnDetails")}
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>

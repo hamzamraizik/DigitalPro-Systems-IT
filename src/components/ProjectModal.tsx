@@ -134,7 +134,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
 
               <div className="flex flex-col md:flex-row items-center justify-center gap-4 pt-8 border-t border-black/10 dark:border-white/10">
                 <Link
-                  to="/contact"
+                  to="/devis"
                   onClick={onClose}
                   className="inline-flex items-center gap-2 bg-cyan hover:bg-cyan/90 text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(0,180,255,0.4)]"
                 >
