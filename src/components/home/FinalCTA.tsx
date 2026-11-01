@@ -21,7 +21,7 @@ export const FinalCTA = () => {
         </div>
 
         <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-          <CTAButton to="/contact" className="w-full sm:w-auto">
+          <CTAButton to="/devis" className="w-full sm:w-auto">
             {t("cta.btnDetails")}
           </CTAButton>
           <CTAButton

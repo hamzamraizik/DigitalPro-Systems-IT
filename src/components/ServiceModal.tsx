@@ -208,7 +208,7 @@ const ServiceModal = ({ service, onClose }: ServiceModalProps) => {
             <div className="relative mt-12 pt-8 border-t border-black/10 dark:border-white/10">
               <div className="flex flex-col md:flex-row items-center justify-center gap-4">
                 <Link
-                  to="/contact"
+                  to="/devis"
                   onClick={onClose}
                   className="group inline-flex w-full md:w-auto items-center justify-center gap-2 bg-gradient-to-r from-cyan to-cyan-light text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(0,180,255,0.45)]"
                 >

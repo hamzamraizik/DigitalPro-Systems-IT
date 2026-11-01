@@ -63,7 +63,7 @@ export default function ProtectionIncendie() {
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Chaque installation est réalisée par des techniciens certifiés et fait l'objet d'un rapport de conformité. Nous assurons également la maintenance annuelle obligatoire.
                 </p>
-                <Link to="/contact">
+                <Link to="/devis">
                   <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white gap-2">
                     Demander un devis gratuit <ArrowRight className="w-4 h-4" />
                   </Button>

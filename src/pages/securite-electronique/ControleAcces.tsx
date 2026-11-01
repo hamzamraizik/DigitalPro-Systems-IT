@@ -65,7 +65,7 @@ export default function ControleAcces() {
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Chaque installation est accompagnée d'une formation de vos équipes et d'un support technique réactif pour garantir une exploitation optimale.
                 </p>
-                <Link to="/contact">
+                <Link to="/devis">
                   <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white gap-2">
                     Demander un devis gratuit <ArrowRight className="w-4 h-4" />
                   </Button>

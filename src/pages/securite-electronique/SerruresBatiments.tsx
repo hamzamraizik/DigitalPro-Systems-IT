@@ -63,7 +63,7 @@ export default function SerruresBatiments() {
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Que ce soit pour une PME, un immeuble de bureaux ou un site industriel, nous sélectionnons et installons les équipements les mieux adaptés à votre configuration.
                 </p>
-                <Link to="/contact">
+                <Link to="/devis">
                   <Button size="lg" className="bg-cyan-600 hover:bg-cyan-700 text-white gap-2">
                     Demander un devis gratuit <ArrowRight className="w-4 h-4" />
                   </Button>

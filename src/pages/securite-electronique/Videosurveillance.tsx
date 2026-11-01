@@ -63,7 +63,7 @@ export default function Videosurveillance() {
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Nos solutions s'appuient sur des équipements certifiés des meilleures marques du marché, avec garantie de service et support technique réactif.
                 </p>
-                <Link to="/contact">
+                <Link to="/devis">
                   <Button size="lg" className="bg-purple-600 hover:bg-purple-700 text-white gap-2">
                     Demander un devis gratuit <ArrowRight className="w-4 h-4" />
                   </Button>
