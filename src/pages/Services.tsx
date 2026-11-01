@@ -284,7 +284,7 @@ const ServicesPage = () => {
                   </h2>
                   <div className="mt-9 flex flex-col sm:flex-row sm:items-center gap-4">
                     <Link
-                      to="/contact"
+                      to="/devis"
                       className="group relative inline-flex w-full overflow-hidden sm:w-auto items-center justify-center gap-3 rounded-full bg-[#1A1A1A] px-9 py-4 font-bold text-white shadow-[0_8px_20px_-12px_rgba(0,0,0,0.4)] transition-all duration-300 hover:bg-black hover:shadow-[0_10px_24px_-12px_rgba(0,0,0,0.5)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1A1A1A] dark:bg-white dark:text-[#1A1A1A] dark:hover:bg-zinc-200 dark:focus-visible:outline-white"
                     >
                       <span aria-hidden="true" className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />

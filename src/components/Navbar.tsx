@@ -138,7 +138,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-2.5">
           <Link
-            to="/contact"
+            to="/devis"
             className="hidden items-center rounded-full bg-[#1A1A1A] px-5 py-2.5 text-[13px] font-semibold leading-none text-white transition-all duration-300 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_8px_24px_rgba(0,174,239,0.3)] active:scale-95 dark:bg-white dark:text-[#1A1A1A] dark:hover:shadow-[0_8px_24px_rgba(0,174,239,0.25)] lg:inline-flex"
           >
             {t("nav.quote")}
@@ -265,7 +265,7 @@ const Navbar = () => {
               transition={{ duration: 0.3, ease: EASE, delay: 0.05 + navItems.length * 0.05 }}
             >
               <Link
-                to="/contact"
+                to="/devis"
                 className="mt-4 w-full rounded-full bg-[#1A1A1A] py-3.5 text-center text-[15px] font-semibold text-white transition-all active:scale-95 dark:bg-white dark:text-[#1A1A1A]"
               >
                 {t("nav.quote")}
