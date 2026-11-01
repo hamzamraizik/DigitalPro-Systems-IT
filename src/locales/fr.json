@@ -887,7 +887,7 @@
       "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
       "toastErrorTitle": "Erreur d'envoi",
       "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.",
-      "servicesLabel": "Services souhaités",
+      "servicesLabel": "Services souhaités (optionnel)",
       "services": [
         "Vidéosurveillance",
         "Contrôle d'accès",
@@ -935,7 +935,7 @@
       "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
       "toastErrorTitle": "Erreur d'envoi",
       "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone.",
-      "servicesLabel": "Services souhaités",
+      "servicesLabel": "Services souhaités (optionnel)",
       "services": [
         "Vidéosurveillance",
         "Contrôle d'accès",

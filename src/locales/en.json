@@ -882,7 +882,7 @@
       "toastSuccessDesc": "We will get back to you shortly.",
       "toastErrorTitle": "Sending error",
       "toastErrorDesc": "An error occurred. Please try again or contact us by phone.",
-      "servicesLabel": "Desired services",
+      "servicesLabel": "Desired services (optional)",
       "services": [
         "Video surveillance",
         "Access control",
@@ -930,7 +930,7 @@
       "toastSuccessDesc": "We will get back to you shortly.",
       "toastErrorTitle": "Sending error",
       "toastErrorDesc": "An error occurred. Please try again or contact us by phone.",
-      "servicesLabel": "Desired services",
+      "servicesLabel": "Desired services (optional)",
       "services": [
         "Video surveillance",
         "Access control",
