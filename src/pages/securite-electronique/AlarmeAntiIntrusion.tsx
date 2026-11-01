@@ -63,7 +63,7 @@ export default function AlarmeAntiIntrusion() {
                 <p className="text-muted-foreground leading-relaxed mb-8">
                   Nos solutions sont évolutives et peuvent être connectées à un centre de télésurveillance pour une réponse rapide en cas d'incident.
                 </p>
-                <Link to="/contact">
+                <Link to="/devis">
                   <Button size="lg" className="bg-amber-600 hover:bg-amber-700 text-white gap-2">
                     Demander un devis gratuit <ArrowRight className="w-4 h-4" />
                   </Button>

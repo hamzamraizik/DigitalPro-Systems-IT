@@ -13,6 +13,7 @@ const About = lazy(() => import("./pages/About"));
 const Projects = lazy(() => import("./pages/Projects"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Devis = lazy(() => import("./pages/Devis"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const ControleAcces = lazy(() => import("./pages/securite-electronique/ControleAcces"));
@@ -76,6 +77,10 @@ const App = () => (
           <Route path="/projets/:slug" element={<ProjectDetail />} />
           <Route path="/projects/:slug" element={<LegacyRouteRedirect to="/projets/:slug" />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/devis" element={<Devis />} />
+          <Route path="/demande-de-devis" element={<Devis />} />
+          <Route path="/quote" element={<LegacyRouteRedirect to="/devis" />} />
+          <Route path="/quote-request" element={<LegacyRouteRedirect to="/devis" />} />
           
           {/* Sécurité Électronique */}
           <Route path="/services/securite-electronique/controle-acces" element={<ControleAcces />} />

@@ -122,7 +122,7 @@ const Navbar = () => {
               {theme === "light" ? <Moon className="h-[18px] w-[18px]" /> : <Sun className="h-[18px] w-[18px]" />}
             </button>
             <Link 
-              to="/contact"
+              to="/devis"
               className="rounded-full bg-[#111111] dark:bg-white px-5 py-2 text-[13px] font-semibold text-white dark:text-black transition-all hover:scale-105 hover:bg-black dark:hover:bg-zinc-200"
             >
               {t("nav.quote")}
@@ -174,7 +174,7 @@ const Navbar = () => {
                 );
               })}
               <Link
-                to="/contact"
+                to="/devis"
                 className="mt-4 w-full rounded-full bg-[#111111] py-3.5 text-center text-[15px] font-semibold text-white transition-transform active:scale-95 dark:bg-white dark:text-black"
               >
                 {t("nav.quote")}

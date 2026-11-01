@@ -3,7 +3,7 @@
     "home": "Accueil",
     "services": "Services",
     "about": "À propos",
-"projects": "Projets",
+    "projects": "Projets",
     "contact": "Contact",
     "quote": "Demander un devis"
   },
@@ -662,14 +662,14 @@
       "iframeTitle": "DigitalPro Systems IT - Localisation Casablanca"
     }
   },
-"projectsPage": {
+  "projectsPage": {
     "badge": "Nos réalisations",
     "hero": {
       "title": "Nos projets",
       "subtitle": "Découvrez les plateformes métier conçues et développées par DigitalPro Systems IT."
     },
-"viewProject": "Voir le projet",
-"backToProjects": "Retour aux projets",
+    "viewProject": "Voir le projet",
+    "backToProjects": "Retour aux projets",
     "metrics": {
       "stockTime": "Temps de traitement du stock (min)",
       "stockErrors": "Erreurs d'inventaire (%)",
@@ -701,11 +701,13 @@
         "outro": "Résultat : un cycle de facturation nettement raccourci, moins de litiges liés à des erreurs de saisie, et une meilleure visibilité sur les encaissements à venir pour la direction financière."
       }
     },
-    "modal": {      "close": "Fermer",
+    "modal": {
+      "close": "Fermer",
       "requestQuote": "Demander un devis"
     }
   },
-  "blogPage": {    "hero": {
+  "blogPage": {
+    "hero": {
       "title": "Blog Tech",
       "subtitle": "Actualités, conseils et tendances du monde IT et de la cybersécurité."
     },
@@ -850,6 +852,76 @@
           "role": "Ingénieur Systèmes & Cybersécurité"
         }
       }
+    }
+  },
+  "devisPage": {
+    "hero": {
+      "title": "Demande de devis",
+      "subtitle": "Remplissez le formulaire ci-dessous et recevez une proposition adaptée à vos besoins."
+    },
+    "form": {
+      "nameLabel": "Nom et prénom *",
+      "namePlaceholder": "Votre nom complet",
+      "companyLabel": "Nom de l'entreprise (facultatif)",
+      "companyPlaceholder": "Votre entreprise",
+      "emailLabel": "Adresse e-mail *",
+      "emailPlaceholder": "votre@email.com",
+      "phoneLabel": "Numéro de téléphone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "cityLabel": "Ville *",
+      "cityPlaceholder": "Votre ville",
+      "clientTypeLabel": "Type de client",
+      "clientTypeCompany": "Entreprise",
+      "clientTypeIndividual": "Particulier",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Décrivez votre besoin...",
+      "submit": "Envoyer la demande",
+      "submitting": "Envoi en cours...",
+      "errors": {
+        "nameRequired": "Le nom est requis",
+        "emailInvalid": "Email invalide",
+        "cityRequired": "La ville est requise",
+        "messageRequired": "Le message est requis"
+      },
+      "toastSuccessTitle": "Demande envoyée !",
+      "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
+      "toastErrorTitle": "Erreur d'envoi",
+      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
+    }
+  },
+  "quotePage": {
+    "hero": {
+      "title": "Demande de devis",
+      "subtitle": "Remplissez le formulaire ci-dessous et recevez une proposition adaptée à vos besoins."
+    },
+    "form": {
+      "nameLabel": "Nom et prénom *",
+      "namePlaceholder": "Votre nom complet",
+      "companyLabel": "Nom de l'entreprise (facultatif)",
+      "companyPlaceholder": "Votre entreprise",
+      "emailLabel": "Adresse e-mail *",
+      "emailPlaceholder": "votre@email.com",
+      "phoneLabel": "Numéro de téléphone",
+      "phonePlaceholder": "+212 6 00 00 00 00",
+      "cityLabel": "Ville *",
+      "cityPlaceholder": "Votre ville",
+      "clientTypeLabel": "Type de client",
+      "clientTypeCompany": "Entreprise",
+      "clientTypeIndividual": "Particulier",
+      "messageLabel": "Message *",
+      "messagePlaceholder": "Décrivez votre besoin...",
+      "submit": "Envoyer la demande",
+      "submitting": "Envoi en cours...",
+      "errors": {
+        "nameRequired": "Le nom est requis",
+        "emailInvalid": "Email invalide",
+        "cityRequired": "La ville est requise",
+        "messageRequired": "Le message est requis"
+      },
+      "toastSuccessTitle": "Demande envoyée !",
+      "toastSuccessDesc": "Nous vous répondrons dans les plus brefs délais.",
+      "toastErrorTitle": "Erreur d'envoi",
+      "toastErrorDesc": "Une erreur s'est produite. Veuillez réessayer ou nous contacter par téléphone."
     }
   }
 }

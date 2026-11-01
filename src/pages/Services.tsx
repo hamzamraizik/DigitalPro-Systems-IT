@@ -410,7 +410,7 @@ const ServicesPage = () => {
               </h2>
               <div className="relative z-10 flex flex-col md:flex-row items-center justify-center gap-6">
                 <Link
-                  to="/contact"
+                  to="/devis"
                   className="bg-cyan hover:bg-cyan/90 text-white font-bold px-10 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_30px_rgba(0,174,239,0.4)]"
                 >
                   {t("servicesPage.cta.btnQuote")}
